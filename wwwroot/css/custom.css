@@ -1,0 +1,44 @@
+.img-rsp {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    /*max-width: 100%;*/
+    width:100%;
+    height: auto;
+    text-align: center;
+    /*object-position:bottom;*/
+    
+}
+/*.img-spec{
+    position:absolute;
+    transform:translate(-40%, 50%)
+}*/
+.overflow-hidden{
+    overflow:hidden;
+}
+.card-custom{
+    height:500px;
+    background-size:cover;
+    background-position:center center;
+    
+}
+
+
+.card-title{
+    color:#000;
+}
+
+.card-body{
+    height:500px;
+    
+}
+
+@media screen and (max-width: 900px) {
+    .card-custom {
+        height: 300px;
+    }
+
+    .card-body {
+        height: 200px;
+    }
+}
