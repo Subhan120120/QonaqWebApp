@@ -4,9 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Repositories;
+using QonaqWebApp.Models.Context;
+using QonaqWebApp.Models.Entity;
 
 namespace QonaqWebApp
 {
@@ -23,7 +28,20 @@ namespace QonaqWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<QonaqContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
+
+            RepositoryDIImplementation(services);
         }
+
+        private void RepositoryDIImplementation(IServiceCollection services)
+        {
+            services.AddScoped<IRepository<MenuItem>, MenuItemRepository>();
+            services.AddScoped<IRepository<MenuItemGroup>, MenuItemGroupRepository>();
+        }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,7 +64,7 @@ namespace QonaqWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=about}/{id?}");
+                    pattern: "{controller=Home}/{action=menu}/{id?}");
             });
         }
     }

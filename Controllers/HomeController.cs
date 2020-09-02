@@ -4,18 +4,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models;
+using QonaqWebApp.Models.Entity;
 
 namespace QonaqWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        readonly IRepository<MenuItem> menuItemRepo;
+        readonly IRepository<MenuItemGroup> menuItemGroupRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IRepository<MenuItem> menuItemRepo,
+                                IRepository<MenuItemGroup> menuItemGroupRepo)
         {
-            _logger = logger;
+            this.menuItemRepo = menuItemRepo;
+            this.menuItemGroupRepo = menuItemGroupRepo;
         }
 
         public IActionResult Index()
@@ -30,13 +36,15 @@ namespace QonaqWebApp.Controllers
 
         public IActionResult Menu()
         {
-            return View();
+            IList<MenuItemGroup> menuItemGroup = menuItemGroupRepo.GetAll().Include(x => x.menuItems).ToList();
+            return View(menuItemGroup);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Test()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            IList<MenuItemGroup> menuItemGroupTest = menuItemGroupRepo.GetAll().Include(x => x.menuItems).ToList();
+            return View(menuItemGroupTest);
         }
+
     }
 }

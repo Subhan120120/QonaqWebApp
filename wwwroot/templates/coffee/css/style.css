@@ -1,3 +1,7 @@
+
+
+
+
 /*!
  * Bootstrap v4.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -8500,9 +8504,13 @@ textarea.form-control {
 .about-author .desc h3 {
   font-size: 24px; }
 
+div .ftco-section {
+    box-sizing: border-box;
+}
 .ftco-section {
-  padding: 7em 0;
-  position: relative; }
+    padding: 7em 0;
+    position: relative;
+}
   @media (max-width: 767.98px) {
     .ftco-section {
       padding: 6em 0; } }
@@ -9285,3 +9293,6 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+

@@ -8,28 +8,34 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="~/templates/coffee/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/animate.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/magnific-popup.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/aos.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/ionicons.min.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/flaticon.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/icomoon.css">
-    <link rel="stylesheet" href="~/templates/coffee/css/style.css">
+
+    <link href="~/templates/coffee/css/open-iconic-bootstrap.min.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/animate.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/owl.theme.default.min.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/magnific-popup.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/aos.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/jquery.timepicker.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/flaticon.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/icomoon.css" rel="stylesheet">
+    <link href="~/templates/eatery/css/style.css" rel="stylesheet">
+    <link href="~/templates/coffee/css/style.css" rel="stylesheet">
+
+
     @RenderSection("Styles", false)
 
 </head>
 <body>
+    <!-- Start nav -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
+                <span class="oi     "></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
@@ -47,7 +53,7 @@
                             <a class="dropdown-item" href="checkout">Checkout</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a asp-action="Test" class="nav-link">Test</a></li>
                     <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
                 </ul>
             </div>
@@ -67,7 +73,6 @@
                         <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                         <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -83,7 +88,6 @@
                         <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                         <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -99,7 +103,6 @@
                         <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                         <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -108,7 +111,6 @@
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
                     <div class="col-md-8 col-sm-12 text-center ftco-animate">
                         <span class="subheading">Welcome</span>
                         <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
@@ -203,12 +205,11 @@
         </div>
     </footer>
 
-
-
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="~/templates/coffee/js/jquery.min.js"></script>
     <script src="~/templates/coffee/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="~/templates/coffee/js/popper.min.js"></script>
@@ -226,7 +227,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="~/templates/coffee/js/google-map.js"></script>
     <script src="~/templates/coffee/js/main.js"></script>
-    @RenderSection("Scripts", required: true)
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", false)
 
 </body>
 </html>
