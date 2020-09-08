@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace QonaqWebApp.Models.Entity
 {
-    public class MenuItemGroup
+    public class MenuItemGroup : BaseEntity
     {
-        public int Id { get; set; }
         public string MenuItemGroupText { get; set; }
         public List<MenuItem> menuItems { get; set; }
     }

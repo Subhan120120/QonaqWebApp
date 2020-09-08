@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.AppCode.Repositories;
 using QonaqWebApp.Models.Context;
@@ -27,7 +31,8 @@ namespace QonaqWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddDbContext<QonaqContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
@@ -56,6 +61,12 @@ namespace QonaqWebApp
             }
             app.UseStaticFiles();
 
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                RequestPath = new PathString("/npm"),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules"))
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -63,9 +74,16 @@ namespace QonaqWebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Dashboard}/{action=Testing}/{id?}",
+                   defaults: new { area = "Admin", controller = "Dashboard", action = "Testing" } ////defaults_subhan!
+                );
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=menu}/{id?}");
             });
+
+
         }
     }
 }

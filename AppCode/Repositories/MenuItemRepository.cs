@@ -2,7 +2,9 @@
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace QonaqWebApp.AppCode.Repositories
 {
@@ -29,8 +31,12 @@ namespace QonaqWebApp.AppCode.Repositories
             return entity;
         }
 
-        public IQueryable<MenuItem> GetAll()
+        public IQueryable<MenuItem> GetAll(Expression<Func<MenuItem, bool>> predicate = null)
         {
+            if (predicate!=null)
+            {
+                return db.MenuItems.Where(predicate);
+            }
             return db.MenuItems.AsQueryable();
         }
 

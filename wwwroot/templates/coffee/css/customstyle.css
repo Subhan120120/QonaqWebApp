@@ -1,3 +1,15 @@
 body{
     box-sizing:border-box;
 }
+
+
+.outerdiv {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/*.innerdiv {
+    display: inline-block;
+        margin: 0 auto;
+}*/

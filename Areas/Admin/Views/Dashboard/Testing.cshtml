@@ -1,0 +1,126 @@
+﻿@model List<MenuItem>
+@{
+    ViewData["Title"] = "Testing";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Testing</h1>
+<div class="shadow mb-4">
+    <table class="table"
+           data-toggle="table"
+           data-pagination="true"
+           data-search="true"
+           data-show-search-button="true"
+           data-filter-control="true"
+           data-show-export="true"
+           data-locale="tr-TR">
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="id" data-filter-control="input">Menu Adi</th>
+                <th data-sortable="true" data-field="name" data-filter-control="input">Terkibi</th>
+                <th data-sortable="true" data-field="price" data-filter-control="input">Grub Adi</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td id="@item.Id" class="txtbx">@item.MenuItemText</td>
+                    <td id="@item.Id" class="txtbx">@item.MenuItemDescription</td>
+                    <td id="@item.Id" class="cmbx">@item.MenuItemGroup.MenuItemGroupText</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Styles{
+    <link href="~/templates/sb-admin/css/sb-admin-2.css" rel="stylesheet">
+    <link href="~/templates/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link href="~/npm/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet" />
+    <link href="~/npm/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.css" rel="stylesheet" />
+
+    @*<link href="~/templates/x-editable/x-editable/css/bootstrap.css" rel="stylesheet"/>*@
+    <link href="~/npm/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+}
+
+
+@section Scripts{
+    <script src="~/templates/sb-admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/templates/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/templates/sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/templates/sb-admin/js/sb-admin-2.min.js"></script>
+
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="~/npm/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="~/npm/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+    <script src="~/npm/bootstrap-table/dist/extensions/export/bootstrap-table-export.js"></script>
+    <script src="~/npm/bootstrap-table/dist/locale/bootstrap-table-tr-TR.js"></script>
+
+    <script src="~/npm/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            $.fn.editable.defaults.mode = 'inline';
+
+            $('.txtbx').editable();
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetMenuGroup")',
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                            $('.cmbx').editable({
+                                type: 'select',
+                                source: JSON.stringify(data)
+                            });
+                    },
+                    error: function (error) {
+                        console.log(error.responseXML);
+                    }
+                });
+
+
+                $('.cmbx').on('save', function (e, params) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetMenuGroup")',
+                        dataType: "json",
+                        data: {
+                            Id: e.target.id,
+                            MenuItemGroup: { Id: params.newValue }
+                        },
+                        success: function (data) {
+                                console.log(data)
+                        },
+                        error: function (error) {
+                            console.log(error.responseXML);
+                        }
+                      });
+                });
+
+
+                let btnsLikeHtml = '<div class="float-right search"><button class="btn btn-success btn-circle mr-3"><i class="fa fa-plus-circle"></i></button><button class="btn btn-primary btn-circle mr-3"><i class="fa fa-pen"></i></button><button class="btn btn-danger btn-circle mr-3" type="button"><i class="fa fa-eraser"></i></button></div>';
+
+
+
+                $('.fixed-table-toolbar').append(btnsLikeHtml);
+
+
+        });
+
+    </script>
+
+}
+
+
+
+

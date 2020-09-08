@@ -9,7 +9,6 @@ namespace QonaqWebApp.AppCode.Repositories
     abstract public class AbstractRepository
     {
         protected readonly QonaqContext db;
-
         public AbstractRepository(QonaqContext db)
         {
             this.db = db;

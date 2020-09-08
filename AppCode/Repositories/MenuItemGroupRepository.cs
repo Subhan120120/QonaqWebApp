@@ -2,14 +2,16 @@
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace QonaqWebApp.AppCode.Repositories
 {
     public class MenuItemGroupRepository : AbstractRepository, IRepository<MenuItemGroup>
     {
         public MenuItemGroupRepository(QonaqContext db)
-            : base(db) { }
+            : base(db) { }  
 
         public MenuItemGroup Add(MenuItemGroup entity)
         {
@@ -28,8 +30,12 @@ namespace QonaqWebApp.AppCode.Repositories
             return entity;
         }
 
-        public IQueryable<MenuItemGroup> GetAll()
+        public IQueryable<MenuItemGroup> GetAll(Expression<Func<MenuItemGroup, bool>> predicate = null)
         {
+            if (predicate!= null)
+            {
+                return db.MenuItemGroups.Where(predicate);
+            }
             return db.MenuItemGroups.AsQueryable();
         }
 

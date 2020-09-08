@@ -1,0 +1,114 @@
+﻿@using NonFactors.Mvc.Grid;
+@using System
+
+@model IList<MenuItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.MenuItemText).Titled("Menu Adi");
+        columns.Add(model => model.MenuItemDescription).Titled("Menu Terkibi");
+        columns.Add(model => model.MenuItemGroup.MenuItemGroupText).Titled("Grubu");
+    })
+    .Using(GridFilterMode.Header)
+    .Empty("No data found")
+    .Filterable()
+    .Sortable()
+    .Pageable(pager =>
+    {
+        pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { 5, "5" }, { 10, "10" } };
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 3;
+        pager.CurrentPage = 5;
+        pager.RowsPerPage = 3;
+    })
+)
+
+
+
+
+
+
+<table class="table table-bordered"
+       data-toggle="table"
+       data-pagination="true"
+       data-search="true"
+       data-show-search-button="true"
+       data-locale="tr-TR">
+    <thead>
+        <tr>
+            <th data-sortable="true" data-field="id">Item ID</th>
+            <th data-field="name">Item Name</th>
+            <th data-field="price">Item Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a href="#" id="melum1-@item.Id">@item.MenuItemText</a></td>
+                <td><a href="#" id="melum2-@item.Id">@item.MenuItemDescription</a></td>
+                <td><a href="#" id="melum3-@item.Id">@item.MenuItemGroup.MenuItemGroupText</a></td>
+
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+
+
+@section Styles{
+    @*<link href="~/NonFactorsGridMVC6/content/css/mvc-grid/mvc-grid.css" rel="stylesheet" />*@
+
+    <link href="~/npm/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet" />
+
+    <script src="~/templates/sb-admin/vendor/jquery/jquery.min.js"></script>
+
+    <link href="~/templates/x-editable/x-editable/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/templates/x-editable/x-editable/js/bootstrap.js"></script>
+    <link href="~/templates/x-editable/x-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="~/templates/x-editable/x-editable/js/bootstrap-editable.js"></script>
+    <script src="~/templates/x-editable/x-editable/main.js"></script>
+
+    @foreach (var item in Model)
+    {
+        <script>
+            $('#melum1-@item.Id').editable();
+            $('#melum2-@item.Id').editable();
+            $('#melum3-@item.Id').editable();
+        </script>
+    }
+
+}
+
+@section Scripts{
+
+
+    @*<script src="~/NonFactorsGridMVC6/content/js/mvc-grid/mvc-grid.js"></script>
+        <script>
+            document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+        </script>*@
+
+    @*<script src="~/npm/bootstrap-table/dist/bootstrap-table-locale-all.js"></script>*@
+    <script src="~/npm/bootstrap-table/dist/bootstrap-table.js"></script>
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>*@
+    @*<script src="~/npm/bootstrap-editable/js/index.js"></script>*@
+
+
+    @*<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>*@
+
+
+
+
+}
+
+

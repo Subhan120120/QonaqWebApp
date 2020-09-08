@@ -2,6 +2,11 @@
 
 @model List<MenuItemGroup>
 
+@section styles{ 
+
+    <link href="~/templates/coffee/css/customstyle.css" rel="stylesheet" />
+
+}
 <section class="ftco-section">
     <div class="container">
         <div class="row">
@@ -15,8 +20,7 @@
                         <div class="pricing-entry d-flex ftco-animate">
                             <div class="img" style="background-image: url('@item.ImagePath');"></div>
                             <div class="desc pl-3">
-                                <a href="#@item.MenuItemText">
-
+                                <a href="#@item.Id">
                                     <div class="d-flex text align-items-center">
                                         <h3><span>@item.MenuItemText</span></h3>
                                         <span class="price">@item.Price ₼</span>
@@ -42,70 +46,23 @@
         {
             @foreach (var item in group.menuItems)
             {
-        <div class="col-md-6 col-11 mx-auto">
-
-            <div  class=" card mb-3">
-                <div class="row no-gutters ">
-                    <div  style="background-image:url(./@item.ImagePath)" class=" card-custom col-md-8 col-sm-12 img-top overflow-hidden">
-                        @*<img  src="@item.ImagePath" class=" card-img img-rsp img-spec" alt="...">*@
-                    </div>
-                    <div class="col-md-4 col-sm-12 ">
-                        <div class="card-body transparent-custom">
-                            <h5 class="card-title">@item.MenuItemText</h5>
-                            <p class="card-text">@item.MenuItemDescription</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
+                    <div class=" card mb-3">
+                        <div class="row no-gutters ">
+                            <div style="background-image:url(./@item.ImagePath)" class=" card-custom col-md-8  img-top overflow-hidden">
+                            </div>
+                            <div class="col-md-4  ">
+                                <div class="card-body outerdiv">                                    
+                                        <h5 class="card-title">@item.MenuItemText</h5>
+                                        <p class="card-text">@item.MenuItemDescription</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-        </div>
-
             }
         }
-        @*<div class=col-6 mb-1">
-                <div class="menu-item " d-flex flex-row" style="background:whitesmoke" id="@item.MenuItemText">
-
-                    <div class="col-md-8">
-                        <a href="#" class="item-dishes">
-                            <div class="text">
-                                <p class="dishes-price">@item.Price</p>
-                            </div>
-                            <img src="https://dummyimage.com/600x400/bfd8e6/345222.png" alt="" class="img-fluid" />
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.MenuItemText</h5>
-                            <p class="card-text">@item.MenuItemDescription</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
-
-
-        @*<div class="card mx-lg-auto ftco-animate mb-lg-6 col-lg-6" id="@item.MenuItemText">
-                <div class="row no-gutters">
-                    <div class="col-md-8">
-                        <a href="#" class="item-dishes">
-                            <div class="text">
-                                <p class="dishes-price">@item.Price</p>
-                            </div>
-                            <img src="@Url.Content(item.ImagePath)" alt="" class="img-fluid" />
-                        </a>
-                    </div>
-                    <div class="col-md-4 ">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.MenuItemText</h5>
-                            <p class="card-text">@item.MenuItemDescription</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
 
     </div>
 </section>
@@ -120,7 +77,7 @@
         // ScrollSpy Smooth Animation
         $(document).ready(function () {
             $('body').scrollspy({ target: ".navbar", offset: 50 });
-            $("#myNavbar a").on('click', function (event) {
+            $(".pl-3 a").on('click', function (event) {
                 if (this.hash !== "") {
                     event.preventDefault();
                     var hash = this.hash;
@@ -133,4 +90,33 @@
             });
         });
     </script>
+    <script>
+
+
+    </script>
+
 }
+
+
+
+
+
+@*<div class="card mx-lg-auto ftco-animate mb-lg-6 col-lg-6" id="@item.MenuItemText">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <a href="#" class="item-dishes">
+                    <div class="text">
+                        <p class="dishes-price">@item.Price</p>
+                    </div>
+                    <img src="@Url.Content(item.ImagePath)" alt="" class="img-fluid" />
+                </a>
+            </div>
+            <div class="col-md-4 ">
+                <div class="card-body">
+                    <h5 class="card-title">@item.MenuItemText</h5>
+                    <p class="card-text">@item.MenuItemDescription</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>*@
