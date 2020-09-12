@@ -5,64 +5,13 @@
 }
 
 <h1>Testing</h1>
-<div id="reset-editable" class="shadow mb-4">
 
-    <style>
-    </style>
+<div id="view-all">
 
-    <div class="float-left search">
-        <a class="btn btn-outline-success btn-circle m-2" onclick="showInPopup('@Url.Action("AddOrEdit","Dashboard",null,Context.Request.Scheme)', 'New Menu Item')"><i class="fa fa-plus-circle"></i></a>
-        <a class="btn btn-outline-warning btn-circle m-2" asp-action=""><i class="fa fa-pen"></i></a>
-        <a class="btn btn-outline-danger btn-circle m-2" asp-action="AddOrEdit"><i class="fa fa-eraser"></i></a>
+    @await Html.PartialAsync("_ViewAll", Model);
 
-    </div>
-
-    <table id="Etable" class="table"
-           data-unique-id="Id"
-           data-toggle="table"
-           data-toolbar=".btn-danger"
-           data-pagination="true"
-           data-search="true"
-           data-visible-search="true"
-           data-show-search-button="true"
-           data-search-on-enter-key="true"
-           data-filter-control="true"
-           data-id-field="id"
-           data-select-item-name="MenuAdi"
-           data-multiple-select-row="true"
-           data-click-to-select="true"
-           data-show-export="true"
-           data-remember-order="true"
-           data-page-size="5"
-           data-page-list="[5, 10, 15, All]"
-           data-buttons-class="outline-primary btn-circle"
-           data-locale="tr-TR">
-        <thead class="thead-light">
-            <tr>
-
-                <th data-checkbox="true" data-field="Chbx"></th>
-                <th data-visible="false" data-field="Id">Id</th>
-                <th data-sortable="true" data-field="MenuItemText">Menu Adi</th>
-                <th data-sortable="true" data-field="MenuItemDescription">Terkibi</th>
-                <th data-sortable="true" data-field="Price">Qiymeti</th>
-                <th data-sortable="true" data-field="MenuItemGroupText">Grub Adi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td></td>
-                    <td id="@item.Id" class="txtbx1">@item.Id</td>
-                    <td id="@item.Id" class="txtbx2">@item.MenuItemText</td>
-                    <td id="@item.Id" class="txtbx3">@item.MenuItemDescription</td>
-                    <td id="@item.Id" class="txtbx4">@item.Price</td>
-                    <td id="@item.Id" class="cmbx">@item.MenuItemGroup.MenuItemGroupText</td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </div>
+
 
 @section Styles{
     <link href="~/templates/sb-admin/css/sb-admin-2.css" rel="stylesheet">
@@ -84,59 +33,5 @@
     <script src="~/npm/bootstrap-table/dist/bootstrap-table.js"></script>
     <script src="~/npm/bootstrap-table/dist/extensions/export/bootstrap-table-export.js"></script>
     <script src="~/npm/bootstrap-table/dist/locale/bootstrap-table-tr-TR.js"></script>
-    <script>
-
-
-
-
-
-    </script>
-    <script>
-
-        $('.btn-outline-danger').click(function () {
-
-            let getSelected = $('#Etable').bootstrapTable('getAllSelections')
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("Delete")',
-                dataType: "json",
-                data: getSelected[0],
-                success: function (data) {
-                    console.log(data)
-                    $table.bootstrapTable('removeByUniqueId', 1)
-                },
-                error: function (error) {
-                    console.log(error.responseXML);
-                }
-            });
-        });
-
-
-
-    </script>
-
-
-    <script>
-
-        $(document).ready(function () {
-
-
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("GetMenuGroup")',
-                dataType: "json",
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-
-
-                },
-                error: function (error) {
-                    console.log(error.responseXML);
-                }
-            });
-
-        });
-
-    </script>
-
+    <script src="~/js/site.js"></script>
 }

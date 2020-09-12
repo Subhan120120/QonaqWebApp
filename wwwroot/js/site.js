@@ -1,6 +1,46 @@
 ﻿
 
 
+
+$('.btn-outline-danger').click(function () {
+
+    let getSelected = $('#Etable').bootstrapTable('getAllSelections')
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("Delete")',
+        dataType: "json",
+        data: getSelected[0],
+        success: function (data) {
+            console.log(data)
+            $table.bootstrapTable('removeByUniqueId', 1)
+        },
+        error: function (error) {
+            console.log(error.responseXML);
+        }
+    });
+});
+
+
+$(document).ready(function () {
+
+
+    $.ajax({
+        type: "GET",
+        url: '@Url.Action("GetMenuGroup")',
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+
+
+        },
+        error: function (error) {
+            console.log(error.responseXML);
+        }
+    });
+
+});
+
+
 showInPopup = (url, title) => {
 
     $.ajax({
@@ -37,9 +77,11 @@ jQueryAjaxPost = form => {
                 console.log(err)
             }
         })
-        //to prevent default form submit event
-        return false;
     } catch (ex) {
         console.log(ex)
     }
+    //to prevent default form submit event
+    return false;
 }
+
+

@@ -70,7 +70,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                     }
 
                 }
-                return Json(new { isValid = true, html = CustomFunctions.RenderRazorViewToString(this, "Index", menuItemRepo.GetAll().ToList())});
+                return Json(new { isValid = true, html = CustomFunctions.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList())});
             }
 
             return Json(new { isValid = false, html = CustomFunctions.RenderRazorViewToString(this, "AddOrEdit", menuItem) });
