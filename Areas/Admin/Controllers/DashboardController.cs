@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using QonaqWebApp.AppCode.Functions;
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models.Entity;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,12 +29,54 @@ namespace QonaqWebApp.Areas.Admin.Controllers
             return View(melumat);
         }
 
-        public IActionResult Testing()
+        public IActionResult AddOrEdit(int id = 0)
         {
-            ViewBag.Gr = menuItemGroupRepo.GetAll().ToList();
-            IList<MenuItem> melumat = menuItemRepo.GetAll().Include(x => x.MenuItemGroup).ToList();
-            return View(melumat);
+
+            if (id == 0)
+            {
+                return View(new MenuItem());
+            }
+            else
+            {
+                var menuItem = menuItemRepo.GetById(id);
+                if (menuItem == null)
+                {
+                    return NotFound();
+                }
+                return View(menuItem);
+            }
         }
+
+
+        [HttpPost]
+        public IActionResult AddOrEdit(int id, MenuItem menuItem)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    menuItemRepo.Add(menuItem);
+                    menuItemRepo.SaveChanges();
+                }
+                else
+                {
+                    try
+                    {
+                        menuItemRepo.Update(menuItem);
+                        menuItemRepo.SaveChanges();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                    }
+
+                }
+                return Json(new { isValid = true, html = CustomFunctions.RenderRazorViewToString(this, "Index", menuItemRepo.GetAll().ToList())});
+            }
+
+            return Json(new { isValid = false, html = CustomFunctions.RenderRazorViewToString(this, "AddOrEdit", menuItem) });
+        }
+
+
 
         [HttpGet]
         public JsonResult GetMenuGroup()
@@ -54,17 +97,23 @@ namespace QonaqWebApp.Areas.Admin.Controllers
             return Json(list);
         }
 
-        [HttpPost]
+
         public JsonResult GetMenuGroup(MenuItem menuItem)
-            {
-            menuItemRepo.GetById(menuItem.Id).MenuItemGroupId = menuItem.MenuItemGroup.Id;
-            menuItemRepo.SaveChanges();
-            
-            return Json(new
         {
-            value = 0,
-            text = "Example"
-        });
+            //if (menuItem.MenuItemGroup.Id != null)
+            //{
+            //    menuItemRepo.GetById(menuItem.Id).MenuItemGroupId = menuItem.MenuItemGroup.Id;
+            //}
+
+            menuItemRepo.Update(menuItem);
+
+            menuItemRepo.SaveChanges();
+
+            return Json(new
+            {
+                value = 0,
+                text = "Ugurla Silindi"
+            });
         }
     }
 }

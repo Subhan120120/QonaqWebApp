@@ -75,8 +75,8 @@ namespace QonaqWebApp
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Dashboard}/{action=Testing}/{id?}",
-                   defaults: new { area = "Admin", controller = "Dashboard", action = "Testing" } ////defaults_subhan!
+                  pattern: "{area:exists}/{controller=Dashboard}/{action=Testing}/{id?}"
+                   //defaults: new { area = "Admin", controller = "Dashboard", action = "Testing" }
                 );
                 endpoints.MapControllerRoute(
                     name: "default",
