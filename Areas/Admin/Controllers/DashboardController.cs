@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using QonaqWebApp.AppCode.Functions;
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models.Entity;
 using System.Collections.Generic;
@@ -25,13 +24,15 @@ namespace QonaqWebApp.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+
             IList<MenuItem> melumat = menuItemRepo.GetAll().Include(x => x.MenuItemGroup).ToList();
             return View(melumat);
         }
 
+        [HttpGet]
         public IActionResult AddOrEdit(int id = 0)
         {
-
+            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupText");
             if (id == 0)
             {
                 return View(new MenuItem());
@@ -49,8 +50,11 @@ namespace QonaqWebApp.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddOrEdit(int id, MenuItem menuItem)
         {
+            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupText");
+
             if (ModelState.IsValid)
             {
                 if (id == 0)
@@ -70,50 +74,20 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                     }
 
                 }
-                return Json(new { isValid = true, html = CustomFunctions.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList())});
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList())});
             }
 
-            return Json(new { isValid = false, html = CustomFunctions.RenderRazorViewToString(this, "AddOrEdit", menuItem) });
+            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", menuItem) });
         }
 
-
-
-        [HttpGet]
-        public JsonResult GetMenuGroup()
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
         {
-            var list = new List<object>();
-
-            List<MenuItemGroup> menuItemGroup = menuItemGroupRepo.GetAll().ToList();
-            for (var i = 0; i < menuItemGroup.Count; i++)
-            {
-                var obj = new
-                {
-                    value = menuItemGroup[i].Id.ToString(),
-                    text = menuItemGroup[i].MenuItemGroupText
-                };
-
-                list.Add(obj);
-            }
-            return Json(list);
-        }
-
-
-        public JsonResult GetMenuGroup(MenuItem menuItem)
-        {
-            //if (menuItem.MenuItemGroup.Id != null)
-            //{
-            //    menuItemRepo.GetById(menuItem.Id).MenuItemGroupId = menuItem.MenuItemGroup.Id;
-            //}
-
-            menuItemRepo.Update(menuItem);
-
+            menuItemRepo.Delete(menuItemRepo.GetById(id));
             menuItemRepo.SaveChanges();
-
-            return Json(new
-            {
-                value = 0,
-                text = "Ugurla Silindi"
-            });
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList())});
         }
+
     }
 }

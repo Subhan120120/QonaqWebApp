@@ -10,6 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200913083525_added_Virtual_properties_to_Models_v1.cs" />
+    <Compile Remove="Migrations\20200913083525_added_Virtual_properties_to_Models_v1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="node_modules/bootstrap-editable/css/bootstrap-editable.css" />
     <Content Include="node_modules/bootstrap-editable/img/clear.png" />
     <Content Include="node_modules/bootstrap-editable/img/loading.gif" />

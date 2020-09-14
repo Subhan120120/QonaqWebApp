@@ -1,10 +1,17 @@
-﻿<div id="reset-editable" class="shadow mb-4">
+﻿
+@model List<MenuItem>
 
-    <div class="float-left search">
-        <a class="btn btn-outline-success btn-circle m-2" onclick="showInPopup('@Url.Action("AddOrEdit","Dashboard",null,Context.Request.Scheme)', 'New Menu Item')"><i class="fa fa-plus-circle"></i></a>
-        <a class="btn btn-outline-warning btn-circle m-2" asp-action=""><i class="fa fa-pen"></i></a>
-        <a class="btn btn-outline-danger btn-circle m-2" asp-action="AddOrEdit"><i class="fa fa-eraser"></i></a>
 
+<div id="reset-editable" class="shadow mb-4">
+
+    <div class="float-left">
+        <a onclick="showInPopup('@Url.Action("AddOrEdit","Dashboard", null, Context.Request.Scheme)', 'Yeni Menyu', 'Add')" class="btn btn-outline-success btn-circle m-2"><i class="fa fa-plus-circle"></i></a>
+
+        <a onclick="showInPopup('@Url.Action("AddOrEdit","Dashboard", null, Context.Request.Scheme)', 'Menyunu Dəyiş', 'Edit')" class="btn btn-outline-warning btn-circle m-2"><i class="fa fa-pen"></i></a>
+
+        <form asp-action="Delete" onclick="return jQueryAjaxDelete(this)" class="d-inline">
+            <a class="btn btn-outline-danger btn-circle m-2"><i class="fa fa-eraser"></i></a>
+        </form>
     </div>
 
     <table id="Etable" class="table"
@@ -29,7 +36,6 @@
            data-locale="tr-TR">
         <thead class="thead-light">
             <tr>
-
                 <th data-checkbox="true" data-field="Chbx"></th>
                 <th data-visible="false" data-field="Id">Id</th>
                 <th data-sortable="true" data-field="MenuItemText">Menu Adi</th>
