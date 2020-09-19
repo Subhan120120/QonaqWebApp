@@ -29,7 +29,6 @@ namespace QonaqWebApp.Models.Entity
 
         [DisplayName("Qurupu")]
         [Required(ErrorMessage = "Boş buraxıla bilməz.")]
-        //[Range(1, 100, ErrorMessage = "Deyer 1 - 100 aralığında olmalıdır.")]
         public int MenuItemGroupId { get; set; }
 
         public virtual MenuItemGroup MenuItemGroup { get; set; }

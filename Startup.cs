@@ -34,6 +34,7 @@ namespace QonaqWebApp
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
+            //AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true);
             services.AddDbContext<QonaqContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
 

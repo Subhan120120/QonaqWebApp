@@ -1,44 +1,8 @@
 ﻿
-//$('.btn-outline-danger').click(function () {
-
-//    let getSelected = $('#Etable').bootstrapTable('getAllSelections')
-//    $.ajax({
-//        type: "POST",
-//        url: '@Url.Action("Delete")',
-//        dataType: "json",
-//        data: getSelected[0],
-//        success: function (data) {
-//            console.log(data)
-//            $table.bootstrapTable('removeByUniqueId', 1)
-//        },
-//        error: function (error) {
-//            console.log(error.responseXML);
-//        }
-//    });
-//});
-
-
-//$(document).ready(function () {
-
-//    $.ajax({
-//        type: "GET",
-//        url: '@Url.Action("GetMenuGroup")',
-//        dataType: "json",
-//        contentType: 'application/json; charset=utf-8',
-//        success: function (data) {
-
-
-//        },
-//        error: function (error) {
-//            console.log(error.responseXML);
-//        }
-//    });
-//});
-
 
 showInPopup = (url, title, action) => {
 
-let SelectedRow = $('#Etable').bootstrapTable('getSelections')[0];
+    let SelectedRow = $('#Etable').bootstrapTable('getSelections')[0];
 
     if (SelectedRow === undefined && action == 'Edit') {
         alert(`Zehmet olmasa 1 setir secin`);
@@ -69,17 +33,30 @@ jQueryAjaxPost = form => {
             type: 'POST',
             url: form.action,
             data: new FormData(form),
+            dataType: "json",
             contentType: false,
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    $('#view-all').html(res.html)
+
+                    var formActionId = form.action.substring(form.action.lastIndexOf('/') + 1);
+
+                    if (formActionId == 0) {
+                        $('#Etable').bootstrapTable('append', res.menuItem);
+                    }
+                    else {
+                        $('#Etable').bootstrapTable('updateByUniqueId', {
+                            id: res.menuItem.Id,
+                            row: res.menuItem
+                        })
+                    }
                     $('#form-modal .modal-body').html('');
                     $('#form-modal .modal-title').html('');
                     $('#form-modal').modal('hide');
                 }
-                else
-                    $('#form-modal .modal-body').html(res.html);
+                else {
+
+                }
             },
             error: function (err) {
                 console.log(err)
@@ -94,30 +71,40 @@ jQueryAjaxPost = form => {
 
 
 jQueryAjaxDelete = form => {
-    let SelectedRow = $('#Etable').bootstrapTable('getSelections')[0];
-    let url = `${form.action}/${SelectedRow.Id}`
 
-    if (SelectedRow === undefined) {
+    let SelectedRows = $('#Etable').bootstrapTable('getSelections'); 
 
+    if (SelectedRows[0] === undefined) {
         alert(`Zehmet olmasa 1 setir secin`);
     }
     else {
 
-        if (confirm('Are you sure to delete this record ? form action:')) {
+        var selectRowsArr = []
+        for (let SelectedRow of SelectedRows) {
+            selectRowsArr.push(parseInt(SelectedRow.Id))
+        }
+
+        if (confirm(Object.keys(selectRowsArr).length + ' element silinecek:')) {
+
             try {
+                
                 $.ajax({
                     type: 'POST',
-                    url: url,
-                    data: new FormData(form),
-                    contentType: false,
-                    processData: false,
+                    url: form.action,
+                    data: { selectRowsArr: selectRowsArr },
+                    datatype: "json",
+                    traditional: true,
                     success: function (res) {
-                        $('#view-all').html(res.html);
+      
+                        for (let SelectedRow of SelectedRows) {
+                            $('#Etable').bootstrapTable('removeByUniqueId', SelectedRow.Id)
+                        }
                     },
                     error: function (err) {
                         console.log(err)
                     }
                 })
+
             } catch (ex) {
                 console.log(ex)
             }

@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+//using System.Text.Json;
+
+
 
 namespace QonaqWebApp.Areas.Admin.Controllers
 {
@@ -51,7 +56,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit(int id, MenuItem menuItem)
+        public JsonResult AddOrEdit(int id, MenuItem menuItem)
         {
             ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupText");
 
@@ -72,21 +77,31 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                     catch (DbUpdateConcurrencyException)
                     {
                     }
-
                 }
-                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList())});
-            }
 
+
+                MenuItem AddedRow = menuItemRepo.GetAll(x => x.Id == menuItem.Id).Include(x => x.MenuItemGroup).FirstOrDefault();
+
+                //string jsonResult = JsonConvert.SerializeObject(melumat, Formatting.Indented, options);
+
+
+                var JSONoptions = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+                return Json(new { isValid = true, menuItem = AddedRow }, JSONoptions);
+            }
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", menuItem) });
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        //[ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int[] selectRowsArr)
         {
-            menuItemRepo.Delete(menuItemRepo.GetById(id));
-            menuItemRepo.SaveChanges();
-            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList())});
+            foreach (int item in selectRowsArr)
+            {
+                menuItemRepo.Delete(menuItemRepo.GetById(item));
+            }
+                menuItemRepo.SaveChanges();
+
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList()) });
         }
 
     }
