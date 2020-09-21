@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using QonaqWebApp.AppCode.Interface;
 using QonaqWebApp.Models.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 //using System.Text.Json;
 
@@ -56,12 +59,23 @@ namespace QonaqWebApp.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult AddOrEdit(int id, MenuItem menuItem)
+        public JsonResult AddOrEdit(int id, MenuItem menuItem, IFormFile ImagePath)
         {
             ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupText");
 
             if (ModelState.IsValid)
             {
+
+                if (ImagePath != null)
+                {
+                    string randomFileName = Path.Combine("wwwroot", "Uploads", "Images", $"{Guid.NewGuid().ToString()}{Path.GetExtension(ImagePath.FileName)}");
+                    using (var stream = new FileStream(randomFileName, FileMode.Create))
+                        ImagePath.CopyTo(stream);
+                    menuItem.ImagePath = Path.GetFileName(randomFileName);
+                }
+                else
+                    menuItem.ImagePath = "empty-img.jpg";                
+
                 if (id == 0)
                 {
                     menuItemRepo.Add(menuItem);
@@ -79,16 +93,14 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                     }
                 }
 
-
                 MenuItem AddedRow = menuItemRepo.GetAll(x => x.Id == menuItem.Id).Include(x => x.MenuItemGroup).FirstOrDefault();
 
                 //string jsonResult = JsonConvert.SerializeObject(melumat, Formatting.Indented, options);
 
 
-                var JSONoptions = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
-                return Json(new { isValid = true, menuItem = AddedRow }, JSONoptions);
+                return Json(new { isValid = true, menuItem = AddedRow }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             }
-            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", menuItem) });
+            return Json(new { isValid = false });
         }
 
         [HttpPost, ActionName("Delete")]
@@ -97,11 +109,18 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         {
             foreach (int item in selectRowsArr)
             {
-                menuItemRepo.Delete(menuItemRepo.GetById(item));
+                MenuItem MenuRow = menuItemRepo.GetById(item);
+                menuItemRepo.Delete(MenuRow);
+                var pathImage = Path.Combine("wwwroot", "Uploads", "Images", MenuRow.ImagePath);
+                if (System.IO.File.Exists(pathImage))
+                    System.IO.File.Delete(pathImage);
             }
-                menuItemRepo.SaveChanges();
+            int affectedRow = menuItemRepo.SaveChanges();
 
-            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", menuItemRepo.GetAll().ToList()) });
+            if (affectedRow != 0)
+                return Json(new { isValid = true });
+            else
+                return Json(new { isValid = false });
         }
 
     }

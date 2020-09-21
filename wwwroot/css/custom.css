@@ -41,6 +41,7 @@
     }
 }
 
+/*buttons shadow  */
 
 .btn-success:hover {
     box-shadow: 0px 0px 5px 0px rgb(92, 184, 92), 0px 0px 5px 0px rgb(92, 184, 92);
@@ -53,16 +54,7 @@
 .btn-danger:hover {
     box-shadow: 0px 0px 5px 0px rgb(217, 83, 79), 0px 0px 5px 0px rgb(217, 83, 79);
 }
-
-
-.toggle.ios, .toggle-on.ios, .toggle-off.ios {
-    border-radius: 20rem;
-}
-
-    .toggle.ios .toggle-handle {
-        border-radius: 20rem;
-    }
-
+/*buttons shadow end*/
 
 /* CSS for Loader spin */
 .loaderbody {
@@ -100,3 +92,73 @@
 .hide {
     display: none;
 }
+/* CSS for Loader spin end*/
+
+/*table image column*/
+.center-cropped {
+    width: auto;
+    height: 50px;
+    background-size : cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+/*table image column end*/
+
+/*image chooser*/
+
+.image-container {
+    width: 100%;
+    position: relative;
+    height: unset;
+    border-color: transparent;
+}
+
+#news-image {
+    min-width: 100%;
+    min-height: 157px;
+    cursor: pointer;
+    width: 100%;
+    max-height: 250px;
+}
+
+
+/*img[src=""] + i.empty-icon:after {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    cursor: pointer;
+    content: "\f03e";
+    font-size: 42pt;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}*/
+
+/*img + i + a > i.clear-icon:after {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f00d";
+    font-size: 12pt;
+}*/
+
+i.header-right-button {
+    right: 24px;
+    top: 14px;
+    position: absolute;
+    cursor: pointer;
+}
+
+/*img[src=""] + i + a > i.clear-icon::after {
+    display: none;
+}*/
+
+/*image chooser end*/

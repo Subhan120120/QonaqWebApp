@@ -5,8 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\NonFactorsGridMVC6\**" />
+    <Content Remove="wwwroot\NonFactorsGridMVC6\**" />
+    <EmbeddedResource Remove="wwwroot\NonFactorsGridMVC6\**" />
+    <None Remove="wwwroot\NonFactorsGridMVC6\**" />
     <TypeScriptCompile Remove="node_modules\bootstrap4-toggle\**" />
     <TypeScriptCompile Remove="node_modules\x-editable\**" />
+    <TypeScriptCompile Remove="wwwroot\NonFactorsGridMVC6\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,6 +87,8 @@
     <Content Include="node_modules/bootstrap/dist/css/bootstrap.css" />
     <Content Include="node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <Content Include="node_modules/bootstrap/package.json" />
+    <Content Include="node_modules\sweetalert2\dist\sweetalert2.css" />
+    <Content Include="node_modules\sweetalert2\dist\sweetalert2.min.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -125,7 +132,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot/NonFactorsGridMVC6/" />
+    <Folder Include="wwwroot\Uploads\Images\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -574,6 +581,10 @@
     <None Include="node_modules/bootstrap/scss/_type.scss" />
     <None Include="node_modules/bootstrap/scss/_utilities.scss" />
     <None Include="node_modules/bootstrap/scss/_variables.scss" />
+    <None Include="node_modules\sweetalert2\dist\sweetalert2.all.js" />
+    <None Include="node_modules\sweetalert2\dist\sweetalert2.all.min.js" />
+    <None Include="node_modules\sweetalert2\dist\sweetalert2.js" />
+    <None Include="node_modules\sweetalert2\dist\sweetalert2.min.js" />
   </ItemGroup>
 
   <ItemGroup>

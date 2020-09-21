@@ -9,6 +9,7 @@
     "bootstrap-toggle": "^2.2.2",
     "bootstrap4-toggle": "^3.6.1",
     "mdbootstrap": "^4.9.0",
+    "sweetalert2": "^9.9.0",
     "x-editable": "^1.5.1"
   }
 }
