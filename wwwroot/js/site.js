@@ -51,20 +51,24 @@ jQueryAjaxPost = form => {
             processData: false,
             success: function (res) {
                 if (res.isValid) {
-                    var formActionId = form.action.substring(form.action.lastIndexOf('/') + 1);
 
-                    if (formActionId == 0) {
-                        $('#Etable').bootstrapTable('append', res.menuItem);
-                    }
-                    else {
-                        $('#Etable').bootstrapTable('updateByUniqueId', {
-                            id: res.menuItem.Id,
-                            row: res.menuItem
-                        })
-                    }
+                    //window.location.href = "/{Dashboard}/{action}"
+                    window.location.href = ''
+
                     $('#form-modal .modal-body').html('');
                     $('#form-modal .modal-title').html('');
                     $('#form-modal').modal('hide');
+
+                    //var formActionId = form.action.substring(form.action.lastIndexOf('/') + 1);
+                    //if (formActionId == 0) {
+                    //    $('#Etable').bootstrapTable('append', res.menuItem);
+                    //}
+                    //else {
+                    //    $('#Etable').bootstrapTable('updateByUniqueId', {
+                    //        id: res.menuItem.Id,
+                    //        row: res.menuItem
+                    //    })
+                    //}
                 }
                 else {
                     swalWithBootstrapButtons.fire('Valid deyil', `Melumatlari Duzgun formatda daxil edin`, 'error')

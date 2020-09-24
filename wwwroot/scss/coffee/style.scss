@@ -38,7 +38,7 @@ body {
     line-height: 1.8;
     font-weight: 300;
     color: lighten($black,50%);
-    background: url(../images/bg_4.jpg) no-repeat fixed;
+    background: url(../../Uploads/Images/bg_4.jpg) no-repeat fixed;
     background-size: cover;
 
     &.menu-show {
@@ -1011,7 +1011,7 @@ h1, h2, h3, h4, h5,
 
             span {
                 background: $darken;
-                background: url(../images/bg_4.jpg) no-repeat fixed;
+                background: url(../../Uploads/Images/bg_4.jpg) no-repeat fixed;
                 padding-right: 20px;
             }
         }
@@ -1021,7 +1021,7 @@ h1, h2, h3, h4, h5,
             color: $primary;
             text-align: right;
             background: $darken;
-            background: url(../images/bg_4.jpg) no-repeat fixed;
+            background: url(../../Uploads/Images/bg_4.jpg) no-repeat fixed;
             font-size: 16px;
         }
     }
