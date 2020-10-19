@@ -73,8 +73,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                         ImagePath.CopyTo(stream);
                     menuItem.ImagePath = Path.GetFileName(randomFileName);
                 }
-                else
-                    menuItem.ImagePath = "empty-img.jpg";                
+
 
                 if (id == 0)
                 {
@@ -85,7 +84,12 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                 {
                     try
                     {
-                        menuItemRepo.Update(menuItem);
+                        if (ImagePath != null)
+                            menuItemRepo.GetById(id).ImagePath = menuItem.ImagePath;
+                        menuItemRepo.GetById(id).MenuItemDescription = menuItem.MenuItemDescription;
+                        menuItemRepo.GetById(id).MenuItemGroupId = menuItem.MenuItemGroupId;
+                        menuItemRepo.GetById(id).MenuItemText = menuItem.MenuItemText;
+                        menuItemRepo.GetById(id).Price = menuItem.Price;
                         menuItemRepo.SaveChanges();
                     }
                     catch (DbUpdateConcurrencyException)

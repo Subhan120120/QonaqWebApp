@@ -14,5 +14,6 @@ namespace QonaqWebApp.Models.Context
 
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<MenuItemGroup> MenuItemGroups { get; set; }
+        public DbSet<AppDetail> AppDetails { get; set; }
     }
 }

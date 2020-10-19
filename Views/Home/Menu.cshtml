@@ -3,18 +3,19 @@
 @model List<MenuItemGroup>
 
 
+
 <section class="ftco-section">
     <div class="container">
-        <div class="row">
+        <div class="row d-flex align-self-start">
 
             @foreach (var group in Model)
             {
+
                 if (group.menuItems.Any())
                 {
-
-
-                    <div class="col-md-6 mb-5 pb-3">
+                    <div class="col-md-6  mb-5 pb-3">
                         <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupText</h3>
+
                         @foreach (var item in group.menuItems)
                         {
                             <div class="pricing-entry d-flex ftco-animate">
@@ -42,29 +43,39 @@
 
 
 <section class="ftco-section">
-    <div class="d-flex flex-wrap">
-        @foreach (var group in Model)
-        {
-            @foreach (var item in group.menuItems)
+    <div class="container">
+        <div class="d-flex flex-wrap">
+            @foreach (var group in Model)
             {
-                <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
-                    <div class=" card mb-3">
-                        <div class="row no-gutters ">
-                            <div style="background-image:url(../Uploads/Images/@item.ImagePath)" class=" card-custom col-md-8  img-top overflow-hidden">
-                            </div>
-                            <div class="col-md-4  ">
-                                <div class="card-body outerdiv">
-                                    <h5 class="card-title">@item.MenuItemText</h5>
-                                    <p class="card-text">@item.MenuItemDescription</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                @foreach (var item in group.menuItems)
+                {
+                    <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
+                        <div class=" card mb-3">
+                            <div class="row no-gutters ">
+                                @*style="background-image:url(../Uploads/Images/@item.ImagePath)"*@
+                                <div class="item-dishes card-custom col-md-8  img-top overflow-hidden">
+                                    <div class="text">
+                                        <p class="dishes-price">@item.Price &#x20BC</p>
+                                        <h2 class="dishes-heading">@item.MenuItemText</h2>
+                                    </div>
+
+                                    <img src="../Uploads/Images/@item.ImagePath">
+                                </div>
+                                <div class="col-md-4 bg-color ">
+                                    <div class="card-body outerdiv">
+                                        <h5 class="card-title">@item.MenuItemDescription</h5>
+                                        <p class="card-text">@item.MenuItemDescription</p>
+
+                                        <a href="" class="btn btn-outline-danger rounded-circle"><i class="fa fa-cart-arrow-down"></i></a>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             }
-        }
-
+        </div>
     </div>
 </section>
 
@@ -91,9 +102,8 @@
             });
         });
     </script>
-    <script>
 
-
-    </script>
+<script src="~/npm/@@fortawesome/fontawesome-free/js/all.js"></script>
+    <script src="~/npm/@@fortawesome/fontawesome-free/js/fontawesome.js"></script>
 
 }

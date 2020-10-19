@@ -37,11 +37,5 @@ namespace QonaqWebApp.Controllers
             return View(menuItemGroup);
         }
 
-        public IActionResult Test()
-        {
-            IList<MenuItemGroup> menuItemGroupTest = menuItemGroupRepo.GetAll().Include(x => x.menuItems).ToList();
-            return View(menuItemGroupTest);
-        }
-
     }
 }

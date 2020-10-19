@@ -81,7 +81,7 @@ namespace QonaqWebApp
                 );
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=menu}/{id?}");
+                    pattern: "{controller=Home}/{action=About}/{id?}");
             });
 
 

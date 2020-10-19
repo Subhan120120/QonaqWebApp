@@ -1,6 +1,11 @@
 ﻿
+
+<section class="video-section">
+    <video src="~/coffee/images/video_6_videosmaller_720.mp4" autoplay="" muted="" loop=""></video>
+</section>
+
 <section class="ftco-about d-md-flex">
-    <div class="one-half img" style="background-image: url('../templates/coffee/images/about.jpg');"></div>
+    <div class="one-half img" style="background-image: url('/coffee/images/IMG_9221.jpg');"></div>
     <div class="one-half ftco-animate">
         <div class="overlap">
             <div class="heading-section ftco-animate ">
@@ -14,16 +19,15 @@
     </div>
 </section>
 
-<section class="ftco-section img" id="ftco-testimony" style="background-image: url(../images/IMG_9233.jpg);" data-stellar-background-ratio="0.5">
-
+<section class="ftco-section img" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9233.jpg');" data-stellar-background-ratio="0.5">
 
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Testimony</span>
-                <h2 class="mb-4">Customers Says</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <span class="subheading">Kompliment</span>
+                <h2 class="mb-4">MÜŞTƏRİLƏRİN DÜŞÜNCƏLƏRİ</h2>
+                <p>Bizə dəyər verən və verməyən bütün müştərilər bizim üçün əzizdir. </p>
             </div>
         </div>
     </div>
@@ -36,7 +40,7 @@
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
-                            <img src="~/templates/coffee/images/person_2.jpg" alt="">
+                            <img src="/coffee/images/person_2.jpg" alt="">
                         </div>
                         <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
                     </div>
@@ -49,7 +53,7 @@
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
-                            <img src="~/templates/coffee/images/person_2.jpg" alt="">
+                            <img src="/coffee/images/person_3.jpg" alt="">
                         </div>
                         <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
                     </div>
@@ -62,7 +66,7 @@
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
-                            <img src="~/templates/coffee/images/person_3.jpg" alt="">
+                            <img src="/coffee/images/person_4.jpg" alt="">
                         </div>
                         <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
                     </div>
@@ -75,7 +79,7 @@
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
-                            <img src="~/templates/coffee/images/person_2.jpg" alt="">
+                            <img src="/coffee/images/person_2.jpg" alt="">
                         </div>
                         <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
                     </div>
@@ -88,7 +92,7 @@
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
-                            <img src="~/templates/coffee/images/person_3.jpg" alt="">
+                            <img src="/coffee/images/person_3.jpg" alt="">
                         </div>
                         <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
                     </div>
@@ -113,22 +117,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(../templates/coffee/images/menu-1.jpg);"></a>
+                            <a href="#" class="img" style="background-image: url(/coffee/images/menu-1.jpg);"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(../templates/coffee/images/menu-2.jpg);"></a>
+                            <a href="#" class="img" style="background-image: url(/coffee/images/menu-2.jpg);"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(../templates/coffee/images/menu-3.jpg);"></a>
+                            <a href="#" class="img" style="background-image: url(/coffee/images/menu-3.jpg);"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(../templates/coffee/images/menu-4.jpg);"></a>
+                            <a href="#" class="img" style="background-image: url(/coffee/images/menu-4.jpg);"></a>
                         </div>
                     </div>
                 </div>
@@ -137,7 +141,7 @@
     </div>
 </section>
 
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(../templates/coffee/images/bg_2.jpg);" data-stellar-background-ratio="0.5">
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(/coffee/images/bg_2.jpg);" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
@@ -185,3 +189,11 @@
     </div>
 </section>
 
+<script type="text/javascript">
+    let video = document.querySelector('video');
+    window.addEventListener('scroll', function () {
+        let value = 1 + window.scrollY / -600;
+        video.style.opacity = value;
+    })
+
+</script>

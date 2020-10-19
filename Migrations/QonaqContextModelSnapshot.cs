@@ -18,6 +18,66 @@ namespace QonaqWebApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("QonaqWebApp.Models.Entity.AppDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselSubTitle1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselSubTitle2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselSubTitle3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselSubTitle4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselTitle1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselTitle2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselTitle3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarouselTitle4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Facebook")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instagram")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Twitter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppDetails");
+                });
+
             modelBuilder.Entity("QonaqWebApp.Models.Entity.MenuItem", b =>
                 {
                     b.Property<int>("Id")
