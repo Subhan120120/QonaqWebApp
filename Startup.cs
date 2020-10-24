@@ -45,6 +45,9 @@ namespace QonaqWebApp
         {
             services.AddScoped<IRepository<MenuItem>, MenuItemRepository>();
             services.AddScoped<IRepository<MenuItemGroup>, MenuItemGroupRepository>();
+            services.AddScoped<IRepository<Reservation>, ReservationRepository>();
+            services.AddScoped<IRepository<DineInTable>, DineInTableRepository>();
+            services.AddScoped<IRepository<DineInTableGroup>, DineInTableGroupRepository>();
         }
 
 
@@ -76,7 +79,7 @@ namespace QonaqWebApp
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=Schedule}/{action=Event}/{id?}"
                    //defaults: new { area = "Admin", controller = "Dashboard", action = "Index" }
                 );
                 endpoints.MapControllerRoute(

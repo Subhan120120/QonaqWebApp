@@ -15,9 +15,9 @@
                     <input type="hidden" asp-for="Id" />
 
                     <div class="form-group">
-                        <label asp-for="MenuItemText" class="control-label"></label>
-                        <input asp-for="MenuItemText" class="form-control" />
-                        <span asp-validation-for="MenuItemText" class="text-danger"></span>
+                        <label asp-for="MenuItemName" class="control-label"></label>
+                        <input asp-for="MenuItemName" class="form-control" />
+                        <span asp-validation-for="MenuItemName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
@@ -41,7 +41,7 @@
                     
                     <div class="form-group">
                         <label asp-for="MenuItemDescription" class="control-label"></label>
-                        <input asp-for="MenuItemDescription" class="form-control" />
+                        <textarea asp-for="MenuItemDescription" class="form-control" ></textarea>
                         <span asp-validation-for="MenuItemDescription" class="text-danger"></span>
                     </div>
                     <div class="form-group">

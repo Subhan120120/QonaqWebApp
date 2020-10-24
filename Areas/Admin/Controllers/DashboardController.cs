@@ -40,7 +40,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult AddOrEdit(int id = 0)
         {
-            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupText");
+            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupName");
             if (id == 0)
             {
                 return View(new MenuItem());
@@ -61,7 +61,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult AddOrEdit(int id, MenuItem menuItem, IFormFile ImagePath)
         {
-            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupText");
+            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupName");
 
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                             menuItemRepo.GetById(id).ImagePath = menuItem.ImagePath;
                         menuItemRepo.GetById(id).MenuItemDescription = menuItem.MenuItemDescription;
                         menuItemRepo.GetById(id).MenuItemGroupId = menuItem.MenuItemGroupId;
-                        menuItemRepo.GetById(id).MenuItemText = menuItem.MenuItemText;
+                        menuItemRepo.GetById(id).MenuItemName = menuItem.MenuItemName;
                         menuItemRepo.GetById(id).Price = menuItem.Price;
                         menuItemRepo.SaveChanges();
                     }

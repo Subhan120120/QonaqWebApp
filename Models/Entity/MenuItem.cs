@@ -9,7 +9,7 @@ namespace QonaqWebApp.Models.Entity
         [DisplayName("Menyu Adı")]
         [MaxLength(40,ErrorMessage = "{0} {1} simvoldan artıq ola bilməz.")]
         [Required(ErrorMessage = "Boş buraxıla bilməz. ")]
-        public string MenuItemText { get; set; }
+        public string MenuItemName { get; set; }
 
         [DisplayName("Menyunun Tərkibi")]
         [MaxLength(50, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz.")]

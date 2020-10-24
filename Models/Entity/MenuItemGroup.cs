@@ -13,7 +13,7 @@ namespace QonaqWebApp.Models.Entity
         [DisplayName("Qurup Adı")]
         [Required(ErrorMessage = "Boş buraxıla bilməz. ")]
         [MaxLength(40, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz.")]
-        public string MenuItemGroupText { get; set; }
+        public string MenuItemGroupName { get; set; }
         public virtual List<MenuItem> menuItems { get; set; }
     }
 }

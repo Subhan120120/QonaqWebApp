@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 
-    @*<link href="~/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/coffee/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/coffee/css/animate.css">
@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="~/coffee/css/jquery.timepicker.css">
     <link rel="stylesheet" href="~/coffee/css/flaticon.css">
     <link rel="stylesheet" href="~/coffee/css/icomoon.css">
-
-    <link rel="stylesheet" href="~/coffee/css/style.css">
+      
+    @*<link rel="stylesheet" href="~/coffee/css/Bootstrap4.1.0.css">*@
+    <link rel="stylesheet" href="~/coffee/css/ftco-style.css">
     <link rel="stylesheet" href="~/coffee/css/customstyle.css">
 
     <link href="~/npm/@@fortawesome/fontawesome-free/css/all.css" rel="stylesheet" />
@@ -36,7 +37,7 @@
     <!-- Start nav -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home">
                 <img src="~/coffee/images/qonaq_logo.png" class="img-fluid" height="100" width="150" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +45,11 @@
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a asp-action="Index" class="nav-link">XOŞ GƏLMİSİNİZ</a></li>
-                    <li class="nav-item"><a asp-action="Menu" class="nav-link">MENYU</a></li>
-                    <li class="nav-item"><a asp-action="Book" class="nav-link">SİFARİŞ</a></li>
-                    <li class="nav-item"><a asp-action="Reservation" class="nav-link">REZERV</a></li>
-                    <li class="nav-item"><a asp-action="About" class="nav-link">HAQQIMIZDA</a></li>
+                    <li class="nav-item active"><a asp-action="Index" asp-controller="Home" class="nav-link">XOŞ GƏLMİSİNİZ</a></li>
+                    <li class="nav-item"><a asp-action="Menu" asp-controller="Home" class="nav-link">MENYU</a></li>
+                    <li class="nav-item"><a asp-action="Event" asp-controller="Schedule" class="nav-link">SCHEDULE</a></li>
+                    <li class="nav-item"><a asp-action="Reserve" asp-controller="Reservation" class="nav-link">REZERVASİYA</a></li>
+                    <li class="nav-item"><a asp-action="About" asp-controller="Home" class="nav-link">HAQQIMIZDA</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">XİDMƏT</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -68,7 +69,7 @@
 
 
 
-    @RenderBody();
+    @RenderBody()
 
     <footer class="ftco-footer ftco-section img">
         <div class="overlay"></div>
@@ -89,7 +90,7 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">YENİLİKLƏR</h2>
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url('Uploads/Images/image_1.jpg');"></a>
+                            <a class="blog-img mr-4" style="background-image: url('/coffee/images/image_1.jpg');"></a>
                             <div class="text">
                                 <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                                 <div class="meta">
@@ -100,7 +101,7 @@
                             </div>
                         </div>
                         <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url('Uploads/Images/image_2.jpg');"></a>
+                            <a class="blog-img mr-4" style="background-image: url('/coffee/images/image_2.jpg');"></a>
                             <div class="text">
                                 <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                                 <div class="meta">
@@ -136,28 +137,21 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-            </div>
         </div>
     </footer>
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="~/coffee/js/jquery.min.js"></script>
+    <script src="~/npm/jquery/dist/jquery.js"></script>
+    <script src="~/npm/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/npm/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/npm/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+
+    @*<script src="~/coffee/js/jquery.min.js"></script>*@
     <script src="~/coffee/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="~/coffee/js/popper.min.js"></script>
-    <script src="~/coffee/js/bootstrap.min.js"></script>
+    @*<script src="~/coffee/js/bootstrap.min.js"></script>*@
     <script src="~/coffee/js/jquery.easing.1.3.js"></script>
     <script src="~/coffee/js/jquery.waypoints.min.js"></script>
     <script src="~/coffee/js/jquery.stellar.min.js"></script>
@@ -171,8 +165,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="~/coffee/js/google-map.js"></script>
     <script src="~/coffee/js/main.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
     @RenderSection("Scripts", false)
 
 </body>

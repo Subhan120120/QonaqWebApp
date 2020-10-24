@@ -51,7 +51,7 @@
                 <th data-sortable="true" data-field="MenuItemText">Menu Adi</th>
                 <th data-sortable="true" data-field="MenuItemDescription">Terkibi</th>
                 <th data-sortable="true" data-field="Price">Qiymeti</th>
-                <th data-sortable="true" data-field="MenuItemGroup.MenuItemGroupText">Grub Adi</th>
+                <th data-sortable="true" data-field="MenuItemGroup.MenuItemGroupName">Grub Adi</th>
             </tr>
         </thead>
         <tbody>
@@ -61,46 +61,28 @@
                     <td></td>
                     <td id="@item.Id" class="txtbx0">@item.Id</td>
                     <td id="@item.Id" class="txtbx1 p-1">
-                        <div class="center-cropped img-thumbnail" style="background-image: url('../Uploads/Images/@item.ImagePath');">
+                        <div class="center-cropped img-thumbnail" style="background-image: url('/Uploads/Images/@item.ImagePath');">
                         </div>
                     </td>
-                    <td id="@item.Id" class="txtbx2">@item.MenuItemText</td>
+                    <td id="@item.Id" class="txtbx2">@item.MenuItemName</td>
                     <td id="@item.Id" class="txtbx3">@item.MenuItemDescription</td>
                     <td id="@item.Id" class="txtbx4">@item.Price</td>
-                    <td id="@item.Id" class="cmbx">@item.MenuItemGroup.MenuItemGroupText</td>
+                    <td id="@item.Id" class="cmbx">@item.MenuItemGroup.MenuItemGroupName</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
+
+
 @section Styles{
-    <link href="~/sb-admin/css/sb-admin-2.css" rel="stylesheet">
-    <link href="~/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
     <link href="~/npm/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet" />
-    <link href="~/npm/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
-
-    <link href="~/sb-admin/css/custom.css" rel="stylesheet" />
-
 }
 
-
 @section Scripts{
-    <script src="~/sb-admin/vendor/jquery/jquery.min.js"></script>
-    <script src="~/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="~/sb-admin/js/sb-admin-2.min.js"></script>
-
     <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
     <script src="~/npm/bootstrap-table/dist/bootstrap-table.js"></script>
     <script src="~/npm/bootstrap-table/dist/extensions/export/bootstrap-table-export.js"></script>
     <script src="~/npm/bootstrap-table/dist/locale/bootstrap-table-tr-TR.js"></script>
-    <script src="~/npm/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="~/sb-admin/js/site.js"></script>
-    <script>
-
-
-    </script>
 }
