@@ -39,11 +39,13 @@ namespace QonaqWebApp.Controllers
         {
             ViewBag.TblGrp = new SelectList(dineInTableGroupRepo.GetAll(), "Id", "TableGroupName");
             ViewBag.DnInTbl = new SelectList(dineInTableRepo.GetAll(), "Id", "TableName");
+
+            reservation.EndTime = reservation.StartTime.AddHours(1);
+
             ModelState["Id"].ValidationState = ModelValidationState.Valid;
             if (!ModelState.IsValid)
-            {
                 return View(reservation);
-            }
+
             reservationRepo.Add(reservation);
             reservationRepo.SaveChanges();
             return RedirectToAction("Reserve");

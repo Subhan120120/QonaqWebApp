@@ -54,7 +54,7 @@
                     @foreach (var item in group.menuItems)
                     {
                         <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
-                            <div class=" card mb-3">
+                            <div class="card mb-3">
                                 <div class="row no-gutters ">
                                     @*style="background-image:url(../Uploads/Images/@item.ImagePath)"*@
                                     <div class="item-dishes card-custom col-md-8  img-top overflow-hidden">
@@ -68,10 +68,9 @@
                                     <div class="col-md-4 bg-color ">
                                         <div class="card-body outerdiv">
                                             <h5 class="card-title">@item.MenuItemDescription</h5>
-                                            <p class="card-text">@item.MenuItemDescription</p>
+                                            @*<p class="card-text">@item.MenuItemDescription</p>*@
 
-                                            <a href="" class="btn btn-outline-danger rounded-circle"><i class="fa fa-cart-arrow-down"></i></a>
-
+                                            <a href="" class="btn btn-danger rounded-circle"><i class="fa fa-cart-arrow-down"></i></a>
                                         </div>
                                     </div>
                                 </div>

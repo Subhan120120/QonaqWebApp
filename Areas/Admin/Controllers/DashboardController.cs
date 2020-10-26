@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-//using System.Text.Json;
 
 
 
@@ -32,7 +31,11 @@ namespace QonaqWebApp.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-
+            return View();
+        }        
+        
+        public IActionResult Menu()
+        {
             IList<MenuItem> melumat = menuItemRepo.GetAll().Include(x => x.MenuItemGroup).ToList();
             return View(melumat);
         }

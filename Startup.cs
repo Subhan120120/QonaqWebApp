@@ -79,7 +79,7 @@ namespace QonaqWebApp
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area:exists}/{controller=Schedule}/{action=Event}/{id?}"
+                  pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
                    //defaults: new { area = "Admin", controller = "Dashboard", action = "Index" }
                 );
                 endpoints.MapControllerRoute(

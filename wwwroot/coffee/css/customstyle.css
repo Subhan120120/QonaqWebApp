@@ -4,6 +4,12 @@ body {
     box-sizing: border-box;
 }
 
+.inner-shadow {
+    -webkit-box-shadow: inset 0px 0px 19px 6px rgba(0,0,0,0.9);
+    -moz-box-shadow: inset 0px 0px 19px 6px rgba(0,0,0,0.9);
+    box-shadow: inset 0px 0px 19px 6px rgba(0,0,0,0.9);
+}
+
 .overflow-hidden {
     overflow: hidden;
 }
@@ -21,10 +27,17 @@ body {
 }*/
 
 .bg-color {
-    background-color: #bfbfbf
+    background-color: #9e6f2d
 }
 
+
+
 /*menu card*/
+.card {
+    border-radius: 0px;
+    background-color: #c49b63
+}
+
 .card-custom {
     height: 500px;
     background-size: cover;
@@ -32,6 +45,10 @@ body {
 }
 
 .card-title {
+    color: #fff;
+}
+
+.card-text {
     color: #000;
 }
 

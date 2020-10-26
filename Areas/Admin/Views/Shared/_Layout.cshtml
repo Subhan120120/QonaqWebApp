@@ -75,16 +75,13 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Yönetim</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="~/templates/sb-admin/utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="~/templates/sb-admin/utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="~/templates/sb-admin/utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="~/templates/sb-admin/utilities-other.html">Other</a>
-
+                        <h6 class="collapse-header">Qonaq Yönetim:</h6>
+                        <a class="collapse-item" asp-area="Admin" asp-action="Schedule" asp-controller="Reservation">Rezervlər</a>
+                        <a class="collapse-item" asp-area="Admin" asp-action="Menu" asp-controller="Dashboard">Menyu</a>
                     </div>
                 </div>
             </li>
@@ -101,15 +98,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Səhifələr</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">My Pages:</h6>
+                        <h6 class="collapse-header">Qonaq:</h6>
                         <a class="collapse-item" asp-area="" asp-action="Menu" asp-controller="Home">Menyu</a>
-                        <a class="collapse-item" asp-area="Admin" asp-action="Schedule" asp-controller="Reservation">Rezervlər</a>
                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
+                        <h6 class="collapse-header">Digər:</h6>
                         <a class="collapse-item" href="~/templates/sb-admin/login.html">Login</a>
                         <a class="collapse-item" href="~/templates/sb-admin/register.html">Register</a>
                         <a class="collapse-item" href="~/templates/sb-admin/forgot-password.html">Forgot Password</a>
@@ -404,7 +400,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
+
     @*<script src="~/templates/sb-admin/vendor/jquery/jquery-2.2.4.min.js"></script>*@
     <script src="~/sb-admin/vendor/jquery/jquery.min.js"></script>
     <script src="~/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
