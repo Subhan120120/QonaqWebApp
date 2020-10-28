@@ -11,7 +11,11 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row d-flex align-self-start">
-
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <span class="subheading">Menyu</span>
+                    <h2 class="mb-4"><B>SİZƏ LAYİQ DADLAR</B></h2>
+                    <p>Ağız dadınıza uyğun nəfis yeməkləri bir kliklə əldə edin</p>
+                </div>
                 @foreach (var group in Model)
                 {
 
@@ -49,6 +53,7 @@
     <section class="ftco-section">
         <div class="container">
             <div class="d-flex flex-wrap">
+
                 @foreach (var group in Model)
                 {
                     @foreach (var item in group.menuItems)
@@ -56,16 +61,14 @@
                         <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
                             <div class="card mb-3">
                                 <div class="row no-gutters ">
-                                    @*style="background-image:url(../Uploads/Images/@item.ImagePath)"*@
                                     <div class="item-dishes card-custom col-md-8  img-top overflow-hidden">
                                         <div class="text">
                                             <p class="dishes-price">@item.Price &#x20BC</p>
                                             <h2 class="dishes-heading">@item.MenuItemName</h2>
                                         </div>
-
                                         <img src="../Uploads/Images/@item.ImagePath">
                                     </div>
-                                    <div class="col-md-4 bg-color ">
+                                    <div class="col-md-4 testimony">
                                         <div class="card-body outerdiv">
                                             <h5 class="card-title">@item.MenuItemDescription</h5>
                                             @*<p class="card-text">@item.MenuItemDescription</p>*@

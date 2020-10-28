@@ -1,5 +1,4 @@
 
-
 body {
     box-sizing: border-box;
 }
@@ -14,23 +13,11 @@ body {
     overflow: hidden;
 }
 
-
 .outerdiv {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
 }
-
-/*.innerdiv {
-    display: inline-block;
-        margin: 0 auto;
-}*/
-
-.bg-color {
-    background-color: #9e6f2d
-}
-
-
 
 /*menu card*/
 .card {
@@ -165,7 +152,6 @@ section .video-section {
 }
 
 section video {
-    /*position: absolute;*/
     top: 0;
     left: 0;
     width: 100%;
@@ -178,9 +164,6 @@ section video {
 
 
 /*form control setting*/
-
-
-
 .booking-form {
     padding: 0px 40px 40px;
     max-width: 642px;
@@ -331,3 +314,7 @@ section video {
     filter: invert(1); /*change color of input calendar icon*/
 }
 /*form control setting end*/
+
+section > img {
+    min-width: 100%
+}
