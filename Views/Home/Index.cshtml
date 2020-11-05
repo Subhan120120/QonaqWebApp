@@ -1,71 +1,23 @@
-﻿
+﻿@model List<AppDetail>
 
 <section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image: url('../coffee/images/IMG_9233.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-                <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                    <span class="subheading">Qonaq Baku</span>
-                    <h1 class="mb-4">XOŞ GƏMİSİNİZ!</h1>
-                    <p class="mb-4 mb-md-5"><span>Türkiyənin zengin mətbəx tarixini ləziz Azərbaycan yeməkləri ilə birləşdirdik</span></p>
-                    <p>
-                        <a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Sifariş Et</a>
-                        <a asp-action="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
-                    </p>
+    @for (int i = 1; i < Model.Count; i++)
+    {
+        <div class="slider-item" style=" background-image: url('../coffee/images/@Url.Content(String.Format("carousel-{0}.jpg",i.ToString()))')">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+                    <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                        <span class="subheading">@Model[i].Heading</span>
+                        <h1 class="mb-4">@Model[i].SubHeading</h1>
+                        <p class="mb-4 mb-md-5"><span>@Model[i].Description</span></p>
+                        <p>
+                            <a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Sifariş Et</a>
+                            <a asp-action="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="slider-item" style="background-image: url('../coffee/images/IMG_9210.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-                <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                    <span class="subheading">Qonaq Baku</span>
-                    <h1 class="mb-4">ŞƏHƏRİN MƏRKƏZİNDƏ GÖZƏL YER</h1>
-                    <p class="mb-4 mb-md-5"><span>Hüzurlu və eləcə də isti mühiti ilə Malakan bağında hem qapalı, hem açıq havada, dört mövsüm boyu lezzet seven qonaqlarımızı qəbul edirik </span></p>
-                    <p>
-                        <a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Sifariş Et</a>
-                        <a asp-action="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="slider-item" style="background-image: url('../coffee/images/IMG_9352.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-                <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                    <span class="subheading">Qonaq Baku</span>
-                    <h1 class="mb-4">DADLI YEMƏKLƏR &amp; MÜNASİB QİYMƏT</h1>
-                    <p class="mb-4 mb-md-5"><span>Dadına doyulmaz yeməklər və münasib qiymətlərlə sizlərə xidmət göstərməkdən qürur duyuruq </span></p>
-                    <p>
-                        <a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Sifariş Et</a>
-                        <a asp-action="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="slider-item" style="background-image: url('../coffee/images/IMG_9216.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-                <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                    <span class="subheading">Qonaq Baku</span>
-                    <h1 class="mb-4">QÜSURSUZ ÇATDIRILMA SİSTEMİ</h1>
-                    <p class="mb-4 mb-md-5"><span>Vaxtınız yoxdursa bircə dəfə çağırmaqla restoranın işçiləri nəfis və keyfiyyətli yeməklərimizi olduğunuz yerə çatdıracaq. </span></p>
-                    <p>
-                        <a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Sifariş Et</a>
-                        <a asp-action="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </section>

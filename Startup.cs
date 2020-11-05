@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,10 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
-using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.AppCode.Repositories;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
+using System.IO;
 
 namespace QonaqWebApp
 {
@@ -41,15 +37,16 @@ namespace QonaqWebApp
             RepositoryDIImplementation(services);
         }
 
+
         private void RepositoryDIImplementation(IServiceCollection services)
         {
+            services.AddScoped<IRepository<AppDetail>, AppDetailRepository>();
             services.AddScoped<IRepository<MenuItem>, MenuItemRepository>();
             services.AddScoped<IRepository<MenuItemGroup>, MenuItemGroupRepository>();
             services.AddScoped<IRepository<Reservation>, ReservationRepository>();
             services.AddScoped<IRepository<DineInTable>, DineInTableRepository>();
             services.AddScoped<IRepository<DineInTableGroup>, DineInTableGroupRepository>();
         }
-
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

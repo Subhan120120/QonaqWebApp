@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +9,24 @@ namespace QonaqWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly IRepository<MenuItem> menuItemRepo;
+        public readonly IRepository<AppDetail> appDetailRepo;
         public readonly IRepository<MenuItemGroup> menuItemGroupRepo;
 
-        public HomeController(IRepository<MenuItem> menuItemRepo,
+        public HomeController(IRepository<AppDetail> appDetailRepo,
                                 IRepository<MenuItemGroup> menuItemGroupRepo)
         {
-            this.menuItemRepo = menuItemRepo;
+            this.appDetailRepo = appDetailRepo;
             this.menuItemGroupRepo = menuItemGroupRepo;
         }
 
         public IActionResult Index()
         {
-            //IList<MenuItem> melumat = menuItemRepo.GetAll().Include(x => x.MenuItemGroup).ToList();
-            return View();
+            List<AppDetail> appDetailList = appDetailRepo.GetAll().ToList();
+            return View(appDetailList);
         }
 
         public IActionResult About()
         {
-            var hoqqa = menuItemGroupRepo.GetAll().FirstOrDefault();
             return View();
         }
 

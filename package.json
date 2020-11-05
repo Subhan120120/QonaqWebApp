@@ -10,6 +10,7 @@
     "bootstrap-toggle": "^2.2.2",
     "bootstrap4-toggle": "^3.6.1",
     "codyhouse-framework": "^2.8.0",
+    "intl-tel-input": "^9.2.7",
     "jquery": "^3.5.1",
     "jquery-validate": "^2.0.0",
     "jquery-validation-unobtrusive": "^3.2.11",

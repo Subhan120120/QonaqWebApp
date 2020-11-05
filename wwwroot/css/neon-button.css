@@ -1,0 +1,76 @@
+﻿/*
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');*/
+
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+}*/
+
+a.neon-button {
+    position: relative;
+    padding: 10px 30px;
+    margin: 0 15px;
+    color: #c49b63;
+    text-decoration: none;
+    /*text-transform: uppercase;*/
+    /*letter-spacing: 2px;*/
+    /*font-size: 20px;*/
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0003);
+}
+
+    a.neon-button:hover {
+        background: #c49b63;
+        color: #111;
+        box-shadow: 0 0 50px #c49b63;
+        transition-delay: 0.4s;
+    }
+
+    a.neon-button:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid #c49b63;
+        border-left: 2px solid #c49b63;
+        transition: 0.5s;
+        transition-delay: 0.4s;
+    }
+
+    a.neon-button:hover:before {
+        width: 100%;
+        height: 100%;
+        transition-delay: 0s;
+    }
+
+    a.neon-button:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid #c49b63;
+        border-right: 2px solid #c49b63;
+        transition: 0.5s;
+        transition-delay: 0.4s;
+    }
+
+    a.neon-button:hover:after {
+        width: 100%;
+        height: 100%;
+        transition-delay: 0s;
+    }

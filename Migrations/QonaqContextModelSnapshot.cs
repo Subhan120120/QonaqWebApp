@@ -27,52 +27,46 @@ namespace QonaqWebApp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(190)")
+                        .HasMaxLength(190);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.Property<string>("CarouselSubTitle1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselSubTitle2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselSubTitle3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselSubTitle4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselTitle1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselTitle2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselTitle3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CarouselTitle4")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Heading")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Instagram")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SubHeading")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
                     b.Property<string>("Twitter")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("WebTitle")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 

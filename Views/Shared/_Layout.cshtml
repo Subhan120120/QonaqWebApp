@@ -1,16 +1,24 @@
 ﻿
+@inject IRepository<AppDetail> menuItemRepo
+@{
+    var appDetail = menuItemRepo.GetAll().FirstOrDefault();
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <title>@appDetail?.WebTitle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes" >
 
-    <link href="~/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/npm/bootstrap/dist/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="~/npm/@@fortawesome/fontawesome-free/css/all.min.css"  />
+
     <link rel="stylesheet" href="~/coffee/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/coffee/css/animate.css">
     <link rel="stylesheet" href="~/coffee/css/owl.carousel.min.css">
@@ -18,15 +26,14 @@
     <link rel="stylesheet" href="~/coffee/css/magnific-popup.css">
     <link rel="stylesheet" href="~/coffee/css/aos.css">
     <link rel="stylesheet" href="~/coffee/css/ionicons.min.css">
-    <link rel="stylesheet" href="~/coffee/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="~/coffee/css/jquery.timepicker.css">
     <link rel="stylesheet" href="~/coffee/css/flaticon.css">
     <link rel="stylesheet" href="~/coffee/css/icomoon.css">
-      
+    @*<link rel="stylesheet" href="~/coffee/css/bootstrap-datepicker.css">*@
+    @*<link rel="stylesheet" href="~/coffee/css/jquery.timepicker.css">*@
+
     @*<link rel="stylesheet" href="~/coffee/css/Bootstrap4.1.0.css">*@
     <link rel="stylesheet" href="~/coffee/css/ftco-style.css">
     <link rel="stylesheet" href="~/coffee/css/customstyle.css">
-    <link href="~/npm/@@fortawesome/fontawesome-free/css/all.css" rel="stylesheet" />
 
     @RenderSection("Styles", false)
 
@@ -42,18 +49,18 @@
                 <span class="oi"></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto" id="mynav" >
-                    <li class="nav-item active"><a asp-action="Index" asp-controller="Home" class="nav-link">XOŞ GƏLMİSİNİZ</a></li>
-                    <li class="nav-item"><a asp-action="Menu" asp-controller="Home" class="nav-link">MENYU</a></li>
-                    <li class="nav-item"><a asp-action="Reserve" asp-controller="Reservation" class="nav-link">REZERVASİYA</a></li>
-                    <li class="nav-item"><a asp-action="About" asp-controller="Home" class="nav-link">HAQQIMIZDA</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">XİDMƏT</a>
+                <ul class="navbar-nav ml-auto" id="mynav">
+                    <li is-active-route asp-controller="Home" asp-action="Index" class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link">XOŞ GƏLMİSİNİZ</a></li>
+                    <li is-active-route asp-controller="Home" asp-action="Menu" class="nav-item"><a asp-controller="Home" asp-action="Menu" class="nav-link">MENYU</a></li>
+                    <li is-active-route asp-controller="Reservation" asp-action="Reserve" class="nav-item"><a asp-controller="Reservation" asp-action="Reserve" class="nav-link">REZERVASİYA</a></li>
+                    <li is-active-route asp-controller="Home" asp-action="About" class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">HAQQIMIZDA</a></li>
+                    <li is-active-route asp-controller="Service" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">XİDMƏT</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="shop">ENDİRİM KARTLARI</a>
-                            <a class="dropdown-item" href="room">KAMANDAMIZ</a>
-                            <a class="dropdown-item" href="product-single">MÜŞTƏRİLƏRİMİZ</a>
-                            <a class="dropdown-item" href="checkout">Checkout</a>
+                            <a class="dropdown-item" asp-controller="Service" asp-action="DiscountCard">Endirim Kartları</a>
+                            <a class="dropdown-item" asp-controller="Service" asp-action="Team">Komandamız</a>
+                            <a class="dropdown-item" asp-controller="Service" asp-action="Customer">Müştərilərimiz</a>
+                            <a class="dropdown-item" asp-controller="Service" asp-action="Feedback">Geridönüş</a>
                         </div>
                     </li>
                     <li class="nav-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link">Admin</a></li>
@@ -75,11 +82,11 @@
                 <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">RESTORANIMIZ</h2>
-                        <p>Açık ve kapalı teraslarda 100 koltukla dolu 1500 m2 alana, Milli və modern dekorasiyası ilə büyük açık salon ve konforlu özel odalara sahip olup, müşterilere möhtəşəm bir mühit yaratmaqdadır.</p>
+                        <p>@appDetail?.About</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="https://www.twitter.com/qonaqbaku" target="_blank"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="https://fb.com/qonaqbaku" target="_blank"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="https://instagram.com/qonaqbaku" target="_blank"><span class="icon-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="@appDetail?.Twitter" target="_blank"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="@appDetail?.Facebook" target="_blank"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="@appDetail?.Instagram" target="_blank"><span class="icon-instagram"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -126,9 +133,9 @@
                         <h2 class="ftco-heading-2">ÜNVANIMIZ</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">Khagani Street 4, Baku, Azerbaycan</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+994 50 754 33 33</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">qonaqbaku@gmail.com</span></a></li>
+                                <li><span class="icon icon-map-marker"></span><span class="text">@appDetail?.Address</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">@appDetail?.PhoneNumber</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">@appDetail.EmailAddress</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -140,10 +147,11 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
-    <script src="~/npm/jquery/dist/jquery.js"></script>
-    <script src="~/npm/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/npm/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/npm/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    <script src="~/npm/jquery/dist/jquery.min.js"></script>
+    <script src="~/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/npm/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/npm/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+
 
     @*<script src="~/coffee/js/jquery.min.js"></script>*@
     <script src="~/coffee/js/jquery-migrate-3.0.1.min.js"></script>
@@ -156,12 +164,10 @@
     <script src="~/coffee/js/jquery.magnific-popup.min.js"></script>
     <script src="~/coffee/js/aos.js"></script>
     <script src="~/coffee/js/jquery.animateNumber.min.js"></script>
-    <script src="~/coffee/js/bootstrap-datepicker.js"></script>
-    <script src="~/coffee/js/jquery.timepicker.min.js"></script>
     <script src="~/coffee/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="~/coffee/js/google-map.js"></script>
     <script src="~/coffee/js/main.js"></script>
+    @*<script src="~/coffee/js/bootstrap-datepicker.js"></script>*@
+    @*<script src="~/coffee/js/jquery.timepicker.min.js"></script>*@
 
     @RenderSection("Scripts", false)
 

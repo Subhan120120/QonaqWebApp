@@ -225,7 +225,7 @@ h1, h2, h3, h4, h5,
 
     .ftco-navbar-light .navbar-nav > .nav-item.active > a:after {
         opacity: 1;
-        background: #c49b63;
+        /*background: #c49b63;*/ /*biri budu sildim*/
     }
 
 .ftco-navbar-light .navbar-toggler {
@@ -446,7 +446,7 @@ h1, h2, h3, h4, h5,
     left: 0;
     right: 0;
     background: #000;
-    opacity: .3;
+    opacity: .4;
 }
 
 .owl-carousel.home-slider .slider-item .slider-text {
@@ -731,7 +731,7 @@ h1, h2, h3, h4, h5,
 
 @media (min-width: 1200px) {
     .ftco-intro .wrap .info {
-        width: calc(100% - 35%);
+        width: 100%; /*biri budu - sagda form sildim calc(100% - 35%)*/
         padding: 2% 5% 2% 12%;
     }
 }
@@ -766,6 +766,7 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-intro .wrap .text {
+    margin-right: 10px;
     width: calc(100% - 40px);
 }
 

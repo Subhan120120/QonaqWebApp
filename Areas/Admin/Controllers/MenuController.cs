@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
 
 namespace QonaqWebApp.Areas.Admin.Controllers

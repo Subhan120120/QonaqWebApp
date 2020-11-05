@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
+using QonaqWebApp.Models.ViewModel;
 
 namespace QonaqWebApp.Controllers
 {
@@ -15,14 +16,17 @@ namespace QonaqWebApp.Controllers
         public readonly IRepository<Reservation> reservationRepo;
         public readonly IRepository<DineInTableGroup> dineInTableGroupRepo;
         public readonly IRepository<DineInTable> dineInTableRepo;
+        public readonly IRepository<AppDetail> appDetailRepo;
 
         public ReservationController(IRepository<Reservation> reservationRepo,
                                     IRepository<DineInTableGroup> dineInTableGroupRepo,
-                                    IRepository<DineInTable> dineInTableRepo)
+                                    IRepository<DineInTable> dineInTableRepo,
+                                    IRepository<AppDetail> appDetailRepo)
         {
             this.reservationRepo = reservationRepo;
             this.dineInTableGroupRepo = dineInTableGroupRepo;
             this.dineInTableRepo = dineInTableRepo;
+            this.appDetailRepo = appDetailRepo;
         }
 
         [HttpGet]
@@ -30,7 +34,9 @@ namespace QonaqWebApp.Controllers
         {
             ViewBag.TblGrp = new SelectList(dineInTableGroupRepo.GetAll(), "Id", "TableGroupName");
             ViewBag.DnInTbl = new SelectList(dineInTableRepo.GetAll(), "Id", "TableName");
-            return View();
+
+            ReservationVM reservationVM = new ReservationVM(appDetailRepo.GetById(1));
+            return View(reservationVM);
         }
 
         [HttpPost]
@@ -53,8 +59,14 @@ namespace QonaqWebApp.Controllers
 
         public IActionResult Test()
         {
-            return View();
+            List<AppDetail> appdetailList = appDetailRepo.GetAll().ToList();
+            return View(appdetailList);
         }
 
+        [HttpPost]
+        public IActionResult Test(List<AppDetail> appdetailList)
+        {
+            return View(appdetailList);
+        }
     }
 }

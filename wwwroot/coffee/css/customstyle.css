@@ -3,6 +3,16 @@ body {
     box-sizing: border-box;
 }
 
+/* section parallax scrolling  */
+.parallax {
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* section parallax scrolling end */
+
 .inner-shadow {
     -webkit-box-shadow: inset 0px 0px 19px 6px rgba(0,0,0,0.9);
     -moz-box-shadow: inset 0px 0px 19px 6px rgba(0,0,0,0.9);
@@ -314,7 +324,3 @@ section video {
     filter: invert(1); /*change color of input calendar icon*/
 }
 /*form control setting end*/
-
-section > img {
-    min-width: 100%
-}

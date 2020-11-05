@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
 using QonaqWebApp.Models.ViewModel;
 
@@ -28,8 +28,8 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         }
         public IActionResult Schedule()
         {
-            var reservationVm = new ReservationVM(reservationRepo.GetAll().ToList(), dineInTableRepo.GetAll().ToList());
-            return View(reservationVm);
+            var scheduleVM = new ScheduleVM(reservationRepo.GetAll().ToList(), dineInTableRepo.GetAll().ToList());
+            return View(scheduleVM);
         }
     }
 }

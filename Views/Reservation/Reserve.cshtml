@@ -1,21 +1,59 @@
 ﻿
-@model Reservation
+@model ReservationVM
 
-<section>
-    <img class="img-fluid" src="~/coffee/images/IMG_9229.jpg" />
+<section class="parallax ftco-section" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9229.jpg'); padding: 15%">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="heading-section text-center ftco-animate">
+                <span class="subheading">Rezerv Edin</span>
+                <h2 class="mb-4">VAXTINIZA QƏNAƏT EDİN</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-intro">
+    <div class="container-wrap">
+        <div class="wrap d-md-flex align-items-xl-end">
+            <div class="info">
+                <div class="row no-gutters">
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="icon"><span class="icon-phone"></span></div>
+                        <div class="text">
+                            <h3>@Model.AppDetail.PhoneNumber</h3>
+                            <p>Nömrəmiz 7/24 zənginizə və sifarişlərinizə açıqdır.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="icon"><span class="icon-my_location"></span></div>
+                        <div class="text">
+                            <h3>@Model.AppDetail.Address</h3>
+                            <p>İstirahətiniz üçün buradan daha gözəl yer tapa bilməyəcəksiniz</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="icon"><span class="icon-clock-o"></span></div>
+                        <div class="text">
+                            <h3>Bazar Ertəsi - Bazar</h3>
+                            <p>Həftənin 7 günü xidmət göstəririk</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="book p-4">
+                    <h3>Book a Table</h3>
+                </div>*@
+        </div>
+    </div>
 </section>
 
 <section class="ftco-about d-md-flex">
     <div class="one-half ">
-
         <div class="ftco-animate booking-form">
-            <div class="heading-section text-md-right ftco-animate ">
-                <span class="subheading">Rezerv Edin</span>
-                <h2 class="mb-4">VAXTINIZA QƏNAƏT</h2>
-            </div>
-            <form asp-action="Reserve" asp-controller="Reservation" method="post" autocomplete="off">
+            <form asp-action="Reserve" asp-controller="Reservation" name="subform" method="post" autocomplete="off">
                 <div class="form-group">
-                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Reservation.Id" />
                 </div>
                 <div class="form-group">
                     <div class="form-checkbox">
@@ -30,53 +68,51 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Name" class="form-control">
-                    <label asp-for="Name" class="form-label"></label>
-                    <span asp-validation-for="Name"></span>
+                    <input asp-for="Reservation.Name" class="form-control">
+                    <label asp-for="Reservation.Name" class="form-label"></label>
+                    <span asp-validation-for="Reservation.Name"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="PhoneNumber" class="form-control">
-                    <label asp-for="PhoneNumber" class="form-label"></label>
-                    <span asp-validation-for="PhoneNumber"></span>
+                    <input asp-for="Reservation.PhoneNumber" type="tel" id="phone" class="form-control">
+                    <label asp-for="Reservation.PhoneNumber" id="phoneLabel" class="form-label"></label>
+                    <span asp-validation-for="Reservation.PhoneNumber"></span>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <input asp-for="StartTime" class="form-control">
-                            <label asp-for="StartTime" class="form-label"></label>
-                            <span asp-validation-for="StartTime"></span>
+                            <input asp-for="Reservation.StartTime" class="form-control">
+                            <label asp-for="Reservation.StartTime" class="form-label"></label>
+                            <span asp-validation-for="Reservation.StartTime"></span>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <input asp-for="NumberOfGuest" class="form-control" />
-                            <label asp-for="NumberOfGuest" class="form-label"></label>
-                            <span asp-validation-for="NumberOfGuest"></span>
+                            <input asp-for="Reservation.NumberOfGuest" class="form-control" />
+                            <label asp-for="Reservation.NumberOfGuest" class="form-label"></label>
+                            <span asp-validation-for="Reservation.NumberOfGuest"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <select asp-for="DineInTableGroupId" class="form-control" asp-items="ViewBag.TblGrp"></select>
-                            <label asp-for="DineInTableGroupId" class="form-label"></label>
+                            <select asp-for="Reservation.DineInTableGroupId" class="form-control" asp-items="ViewBag.TblGrp"></select>
                             <span class="select-arrow"></span>
-                            <span asp-validation-for="DineInTableGroupId"></span>
+                            <label asp-for="Reservation.DineInTableGroupId" class="form-label"></label>
+                            <span asp-validation-for="Reservation.DineInTableGroupId"></span>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <select asp-for="DineInTableId" class="form-control" asp-items="ViewBag.DnInTbl"></select>
-                            <label asp-for="DineInTableId" class="form-label"></label>
+                            <select asp-for="Reservation.DineInTableId" class="form-control" asp-items="ViewBag.DnInTbl"></select>
                             <span class="select-arrow"></span>
-                            <span asp-validation-for="DineInTableGroupId"></span>
+                            <label asp-for="Reservation.DineInTableId" class="form-label"></label>
+                            <span asp-validation-for="Reservation.DineInTableGroupId"></span>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="form-group">
-                    <input type="submit" value="Save" class="float-right btn btn-primary btn-outline-primary px-4 py-3" />
+                    <input type="submit" value="REZERV ET" class="float-right btn btn-primary btn-outline-primary px-4 py-3" />
                 </div>
             </form>
         </div>
@@ -104,24 +140,24 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="row ">
-                    <div class="col-md-6 ftco-animate">
-                        <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(/coffee/images/IMG_9201.jpg);"></a>
+                    <div class="col-md-6 ">
+                        <div class="menu-entry ">
+                            <a href="#" class="img tl show-on-scroll" style="background-image: url(/coffee/images/IMG_9201.jpg);"></a>
                         </div>
                     </div>
-                    <div class="col-md-6 ftco-animate">
+                    <div class="col-md-6">
                         <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(/coffee/images/IMG_9210.jpg);"></a>
+                            <a href="#" class="img tr show-on-scroll" style="background-image: url(/coffee/images/IMG_9210.jpg);"></a>
                         </div>
                     </div>
-                    <div class="col-md-6 ftco-animate">
+                    <div class="col-md-6">
                         <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(/coffee/images/IMG_9217.jpg);"></a>
+                            <a href="#" class="img bl show-on-scroll" style="background-image: url(/coffee/images/IMG_9217.jpg);"></a>
                         </div>
                     </div>
-                    <div class="col-md-6 ftco-animate">
+                    <div class="col-md-6 ">
                         <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(/coffee/images/IMG_9225.jpg);"></a>
+                            <a href="#" class="img br show-on-scroll" style="background-image: url(/coffee/images/IMG_9225.jpg);"></a>
                         </div>
                     </div>
                 </div>
@@ -188,12 +224,36 @@
 
 
 
+@section Styles{
 
+    <link href="~/css/site.css" rel="stylesheet" />
+    @*<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">*@
+
+    <link href="~/npm/intl-tel-input/build/css/intlTelInput.css" rel="stylesheet" />
+    <style>
+        #phoneLabel {
+            padding-left: 35px !important;
+        }
+    </style>
+}
 
 
 
 @section Scripts{
-    @*<script src="js/jquery.min.js"></script>*@
+    <script src="~/js/site.js"></script>
+    @*<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>*@
+
+    <script src="~/npm/intl-tel-input/build/js/intlTelInput.min.js"></script>
+    @*<script src="~/npm/intl-tel-input/build/js/utils.js"></script>*@
+
+    <script>
+        $("#phone").intlTelInput({
+            initialCountry: "az",
+            nationalMode: true,
+            utilsScript: 'js/utils.js'
+        });
+    </script>
+
     <script>
         $('.form-control').each(function () {
             floatedLabel($(this));

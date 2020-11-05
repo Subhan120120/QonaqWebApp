@@ -1,115 +1,105 @@
 ﻿
-
 @model List<MenuItemGroup>
 
 
-
-<section>
-    <img class="img-fluid" src="~/coffee/images/IMG_9276.jpg"/>
-</section>
-
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row d-flex align-self-start">
-                <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Menyu</span>
-                    <h2 class="mb-4"><B>SİZƏ LAYİQ DADLAR</B></h2>
-                    <p>Ağız dadınıza uyğun nəfis yeməkləri bir kliklə əldə edin</p>
-                </div>
-                @foreach (var group in Model)
-                {
-
-                    if (group.menuItems.Any())
-                    {
-                        <div class="col-md-6  mb-5 pb-3">
-                            <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupName</h3>
-
-                            @foreach (var item in group.menuItems)
-                            {
-                                <div class="pricing-entry d-flex ftco-animate">
-                                    <div class="img" style="background-image: url('../Uploads/Images/@item.ImagePath');"></div>
-                                    <div class="desc pl-3">
-                                        <a href="#@item.Id">
-                                            <div class="d-flex text align-items-center">
-                                                <h3><span>@item.MenuItemName</span></h3>
-                                                <span class="price">@item.Price ₼</span>
-                                            </div>
-                                            <div class="d-block">
-                                                <p>@item.MenuItemDescription</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                }
+<section class="parallax ftco-section" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9276.jpg'); padding: 15%">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="heading-section text-center  ftco-animate">
+                <span class="subheading"> Menyu</span>
+                <h2 class="mb-4"> <B> SİZƏ LAYİQ DADLAR</B> </h2>
+                <p> Ağız dadınıza uyğun nəfis yeməkləri bir kliklə əldə edin</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<section class="ftco-section">
+    <div class="container">
+        <div class="row d-flex align-self-start">
+            @foreach (var group in Model)
+            {
 
-
-    <section class="ftco-section">
-        <div class="container">
-            <div class="d-flex flex-wrap">
-
-                @foreach (var group in Model)
+                if (group.menuItems.Any())
                 {
-                    @foreach (var item in group.menuItems)
-                    {
-                        <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
-                            <div class="card mb-3">
-                                <div class="row no-gutters ">
-                                    <div class="item-dishes card-custom col-md-8  img-top overflow-hidden">
-                                        <div class="text">
-                                            <p class="dishes-price">@item.Price &#x20BC</p>
-                                            <h2 class="dishes-heading">@item.MenuItemName</h2>
+                    <div class="col-md-6  mb-5 pb-3">
+                        <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupName </h3>
+                        @foreach (var item in group.menuItems)
+                        {
+                            <div class="pricing-entry d-flex ftco-animate">
+                                <div class="img" style="background-image: url('../Uploads/Images/@item.ImagePath');"> </div>
+                                <div class="desc pl-3">
+                                    <a href="#@item.Id">
+                                        <div class="d-flex text align-items-center">
+                                            <h3> <span>@item.MenuItemName </span> </h3>
+                                            <span class="price">@item.Price ₼</span>
                                         </div>
-                                        <img src="../Uploads/Images/@item.ImagePath">
-                                    </div>
-                                    <div class="col-md-4 testimony">
-                                        <div class="card-body outerdiv">
-                                            <h5 class="card-title">@item.MenuItemDescription</h5>
-                                            @*<p class="card-text">@item.MenuItemDescription</p>*@
+                                        <div class="d-block">
+                                            <p>@item.MenuItemDescription </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
 
-                                            <a href="" class="btn btn-danger rounded-circle"><i class="fa fa-cart-arrow-down"></i></a>
-                                        </div>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="d-flex flex-wrap">
+            @foreach (var group in Model)
+            {
+                @foreach (var item in group.menuItems)
+                {
+                    <div class="ftco-animate col-lg-6 col-md-10 col-11 mx-auto" id="@item.Id">
+                        <div class="card mb-3">
+                            <div class="row no-gutters ">
+                                <div class="item-dishes card-custom col-md-8  img-top overflow-hidden">
+                                    <div class="text">
+                                        <p class="dishes-price">@item.Price &#x20BC</p>
+                                        <h2 class="dishes-heading">@item.MenuItemName </h2>
+                                    </div>
+                                    <img src="../Uploads/Images/@item.ImagePath">
+                                </div>
+                                <div class="col-md-4 testimony">
+                                    <div class="card-body outerdiv">
+                                        <h5 class="card-title">@item.MenuItemDescription </h5>
+                                        @*<p class="card-text">@item.MenuItemDescription</p>*@
+                                        <a href="" class="btn btn-danger rounded-circle"> <i class="fa fa-cart-arrow-down"> </i> </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    }
+                    </div>
                 }
-            </div>
+            }
         </div>
-    </section>
-
-    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
-
-    @section Scripts{
-
-
-
-        <script>
-            // ScrollSpy Smooth Animation
-            $(document).ready(function () {
-                $('body').scrollspy({ target: ".navbar", offset: 50 });
-                $(".pl-3 a").on('click', function (event) {
-                    if (this.hash !== "") {
-                        event.preventDefault();
-                        var hash = this.hash;
-                        $('html, body').animate({
-                            scrollTop: $(hash).offset().top
-                        }, 800, function () {
-                            window.location.hash = hash;
-                        });
-                    }
-                });
+    </div>
+</section>
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+@section Scripts{
+    <script>
+        // ScrollSpy Smooth Animation
+        $(document).ready(function () {
+            $('body').scrollspy({ target: ".navbar", offset: 50 });
+            $(".pl-3 a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+                        window.location.hash = hash;
+                    });
+                }
             });
-        </script>
-
-        <script src="~/npm/@@fortawesome/fontawesome-free/js/all.js"></script>
-        <script src="~/npm/@@fortawesome/fontawesome-free/js/fontawesome.js"></script>
-
-    }
+        });
+    </script>
+}

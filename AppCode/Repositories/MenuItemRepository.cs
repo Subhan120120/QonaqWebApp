@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using QonaqWebApp.AppCode.Interface;
+using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
 using System;

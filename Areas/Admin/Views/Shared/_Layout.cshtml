@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="~/sb-admin/css/sb-admin-2.css" rel="stylesheet">
+
+    <link href="~/sb-admin/css/sb-admin-2.min.css" rel="stylesheet" />
     <link href="~/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="~/npm/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
     <link href="~/sb-admin/css/custom.css" rel="stylesheet" />
-
 
     <title>Qonaq Restoranı</title>
 
@@ -60,13 +60,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Sayt Düzəni</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" asp-action="Error" asp-controller="Dashboard">Buttons</a>
-                        <a class="collapse-item" asp-action="Error" asp-controller="Dashboard">Cards</a>
+                        <h6 class="collapse-header">ƏSAS:</h6>
+                        <a class="collapse-item" asp-action="PageLayout" asp-controller="SiteLayout">Leyout Səhifə</a>
+                        <h6 class="collapse-header">DİGƏR SƏHİFƏLƏR:</h6>
+                        <a class="collapse-item" asp-action="PageOther" asp-controller="SiteLayout">Xoş Gəlmisiniz</a>
                     </div>
                 </div>
             </li>
@@ -127,7 +128,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-action="Error" asp-controller="Dashboard">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
+                    <span>Cədvəllər</span>
                 </a>
             </li>
 

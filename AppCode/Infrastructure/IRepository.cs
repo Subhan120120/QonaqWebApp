@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace QonaqWebApp.AppCode.Interface
+namespace QonaqWebApp.AppCode.Infrastructure
 {
     public interface IRepository<T>
         where T : class
