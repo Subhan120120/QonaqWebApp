@@ -3,6 +3,7 @@ using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -48,6 +49,12 @@ namespace QonaqWebApp.AppCode.Repositories
         {
             db.Update(entity);
             return entity;
+        }
+
+        public IEnumerable<DineInTableGroup> UpdateRange(IEnumerable<DineInTableGroup> entities)
+        {
+            db.UpdateRange(entities);
+            return entities;
         }
     }
 }

@@ -51,5 +51,11 @@ namespace QonaqWebApp.AppCode.Repositories
             db.Update(entity);
             return entity;
         }
+
+        public IEnumerable<DineInTable> UpdateRange(IEnumerable<DineInTable> entities)
+        {
+            db.UpdateRange(entities);
+            return entities;
+        }
     }
 }

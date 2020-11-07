@@ -15,6 +15,7 @@ namespace QonaqWebApp.AppCode.Infrastructure
         IQueryable<T> GetAll(Expression<Func<T, bool>> predicate = null);
         T GetById(int id);
         T Update(T entity);
+        IEnumerable<T> UpdateRange(IEnumerable<T> entities);
         int SaveChanges();
     }
 }

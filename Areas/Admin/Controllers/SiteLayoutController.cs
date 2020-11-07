@@ -16,6 +16,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
             this.appDetailRepo = appDetailRepo;
         }
 
+        [HttpGet]
         public IActionResult PageLayout()
         {
             var appDetail = appDetailRepo.GetById(1);
@@ -23,6 +24,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult PageLayout(AppDetail appDetail)
         {
             appDetailRepo.Update(appDetail);
@@ -31,18 +33,36 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult PageOther()
+        public IActionResult PageIndex()
         {
-            List<AppDetail> appDetailList = appDetailRepo.GetAll().ToList();
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id != 1 && x.Id <= 5).ToList();
             return View(appDetailList);
-        }        
-        
-        [HttpPost]
-        public IActionResult PageOther(List<AppDetail> appDetailList)
-        {
-            //appDetailRepo.Update(appDetailList);
-            //appDetailRepo.SaveChanges();
-            return RedirectToAction("PageOther");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PageIndex(List<AppDetail> appDetailList)
+        {
+            appDetailRepo.UpdateRange(appDetailList);
+            appDetailRepo.SaveChanges();
+            return RedirectToAction("PageIndex");
+        }
+
+        [HttpGet]
+        public IActionResult PageMenu()
+        {
+            AppDetail appDetail = appDetailRepo.GetById(10);
+            return View(appDetail);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PageMenu(AppDetail appDetail)
+        {
+            appDetailRepo.Update(appDetail);
+            appDetailRepo.SaveChanges();
+            return RedirectToAction("PageLayout");
+        }
+
     }
 }

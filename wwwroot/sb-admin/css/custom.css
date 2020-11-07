@@ -122,4 +122,29 @@ i.header-right-button {
 
 /*image chooser end*/
 
+/*input icon container*/
+.input-container {
+    display: -ms-flexbox; /*IE10 */
+    display: flex;
+}
 
+.icon {
+    opacity: 0.8;
+    padding: 10px;
+    background: #4e73de;
+    color: white;
+    min-width: 42px;
+    text-align: center;
+    border-top-left-radius: 0.35rem;
+    border-bottom-left-radius: 0.35rem;
+}
+
+.input-field {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+    .input-field:focus {
+        border: 2px solid #4e73de;
+    }
+/*input icon container end*/

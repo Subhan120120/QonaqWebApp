@@ -37,7 +37,6 @@ namespace QonaqWebApp
             RepositoryDIImplementation(services);
         }
 
-
         private void RepositoryDIImplementation(IServiceCollection services)
         {
             services.AddScoped<IRepository<AppDetail>, AppDetailRepository>();
@@ -47,7 +46,6 @@ namespace QonaqWebApp
             services.AddScoped<IRepository<DineInTable>, DineInTableRepository>();
             services.AddScoped<IRepository<DineInTableGroup>, DineInTableGroupRepository>();
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -83,8 +81,6 @@ namespace QonaqWebApp
                     name: "default",
                     pattern: "{controller=Home}/{action=About}/{id?}");
             });
-
-
         }
     }
 }

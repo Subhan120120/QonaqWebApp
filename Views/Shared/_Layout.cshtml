@@ -12,13 +12,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes">
 
-    <link rel="stylesheet" href="~/npm/bootstrap/dist/css/bootstrap.min.css"  />
-    <link rel="stylesheet" href="~/npm/@@fortawesome/fontawesome-free/css/all.min.css"  />
-
+    <link rel="stylesheet" href="~/npm/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/npm/@@fortawesome/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="~/coffee/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/coffee/css/animate.css">
     <link rel="stylesheet" href="~/coffee/css/owl.carousel.min.css">
@@ -28,10 +27,6 @@
     <link rel="stylesheet" href="~/coffee/css/ionicons.min.css">
     <link rel="stylesheet" href="~/coffee/css/flaticon.css">
     <link rel="stylesheet" href="~/coffee/css/icomoon.css">
-    @*<link rel="stylesheet" href="~/coffee/css/bootstrap-datepicker.css">*@
-    @*<link rel="stylesheet" href="~/coffee/css/jquery.timepicker.css">*@
-
-    @*<link rel="stylesheet" href="~/coffee/css/Bootstrap4.1.0.css">*@
     <link rel="stylesheet" href="~/coffee/css/ftco-style.css">
     <link rel="stylesheet" href="~/coffee/css/customstyle.css">
 
@@ -39,14 +34,23 @@
 
 </head>
 <body>
+
     <!-- Start nav -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
+            <div>
+                <svg id="icon" viewBox="0 0 800 600">
+                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                    <path d="M300,320 L540,320" id="middle"></path>
+                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                </svg>
+            </div>
             <a class="navbar-brand" asp-action="Index" asp-controller="Home">
                 <img src="~/coffee/images/qonaq_logo.png" class="img-fluid" height="100" width="150" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi"></span> Menu
+                <span class="oi"></span>Menu
+
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto" id="mynav">
@@ -145,18 +149,22 @@
     </footer>
 
     <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+        </svg>
+    </div>
+
 
     <script src="~/npm/jquery/dist/jquery.min.js"></script>
+    <script src="~/coffee/js/customjs.js"></script>
     <script src="~/npm/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/npm/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/npm/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
-
-
-    @*<script src="~/coffee/js/jquery.min.js"></script>*@
     <script src="~/coffee/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="~/coffee/js/popper.min.js"></script>
-    @*<script src="~/coffee/js/bootstrap.min.js"></script>*@
+    <script src="~/coffee/js/bootstrap.min.js"></script>
     <script src="~/coffee/js/jquery.easing.1.3.js"></script>
     <script src="~/coffee/js/jquery.waypoints.min.js"></script>
     <script src="~/coffee/js/jquery.stellar.min.js"></script>
@@ -166,8 +174,8 @@
     <script src="~/coffee/js/jquery.animateNumber.min.js"></script>
     <script src="~/coffee/js/scrollax.min.js"></script>
     <script src="~/coffee/js/main.js"></script>
-    @*<script src="~/coffee/js/bootstrap-datepicker.js"></script>*@
-    @*<script src="~/coffee/js/jquery.timepicker.min.js"></script>*@
+    <script src="~/coffee/js/bootstrap-datepicker.js"></script>
+    <script src="~/coffee/js/jquery.timepicker.min.js"></script>
 
     @RenderSection("Scripts", false)
 

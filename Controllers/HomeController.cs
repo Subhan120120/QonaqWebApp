@@ -32,7 +32,7 @@ namespace QonaqWebApp.Controllers
 
         public IActionResult Menu()
         {
-            IList<MenuItemGroup> menuItemGroup = menuItemGroupRepo.GetAll().Include(x => x.menuItems).ToList();
+            IList<MenuItemGroup> menuItemGroup = menuItemGroupRepo.GetAll().Include(x => x.menuItems).Where(x => x.menuItems.Any()).ToList();
             return View(menuItemGroup);
         }
 

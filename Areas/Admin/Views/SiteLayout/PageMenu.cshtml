@@ -1,0 +1,50 @@
+﻿@model QonaqWebApp.Models.Entity.AppDetail
+
+<h1 class="h3 mb-4 text-gray-800">Sayt Düzəni</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow mb-4 p-0">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">@Model.WebTitle</h6>
+            </div>
+            <div class="card-body">
+                <form asp-action="PageMenu" method="post">
+                    <div class="form-group">
+                        <label asp-for="Heading" class="control-label"></label>
+                        <div class="input-container">
+                            <img class="icon" src="~/coffee/svg-icon/T1.svg" />
+                            <input asp-for="Heading" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Heading" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubHeading" class="control-label"></label>
+                        <div class="input-container">
+                            <img class="icon" src="~/coffee/svg-icon/T2.svg" />
+                            <input asp-for="SubHeading" class="form-control" />
+                        </div>
+                        <span asp-validation-for="SubHeading" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <div class="input-container">
+                            <img class="icon" src="~/coffee/svg-icon/T3.svg" />
+                            <input asp-for="Description" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <input type="submit" value="@Model.WebTitle Yadda Saxla" class="btn btn-primary btn-block" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

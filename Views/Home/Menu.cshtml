@@ -1,7 +1,6 @@
 ﻿
 @model List<MenuItemGroup>
 
-
 <section class="parallax ftco-section" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9276.jpg'); padding: 15%">
     <div class="overlay"></div>
     <div class="container">
@@ -20,30 +19,26 @@
         <div class="row d-flex align-self-start">
             @foreach (var group in Model)
             {
-
-                if (group.menuItems.Any())
-                {
-                    <div class="col-md-6  mb-5 pb-3">
-                        <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupName </h3>
-                        @foreach (var item in group.menuItems)
-                        {
-                            <div class="pricing-entry d-flex ftco-animate">
-                                <div class="img" style="background-image: url('../Uploads/Images/@item.ImagePath');"> </div>
-                                <div class="desc pl-3">
-                                    <a href="#@item.Id">
-                                        <div class="d-flex text align-items-center">
-                                            <h3> <span>@item.MenuItemName </span> </h3>
-                                            <span class="price">@item.Price ₼</span>
-                                        </div>
-                                        <div class="d-block">
-                                            <p>@item.MenuItemDescription </p>
-                                        </div>
-                                    </a>
-                                </div>
+                <div class="col-md-6  mb-5 pb-3">
+                    <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupName </h3>
+                    @foreach (var item in group.menuItems)
+                    {
+                        <div class="pricing-entry d-flex ftco-animate">
+                            <div class="img" style="background-image: url('../Uploads/Images/@item.ImagePath');"> </div>
+                            <div class="desc pl-3">
+                                <a href="#@item.Id">
+                                    <div class="d-flex text align-items-center">
+                                        <h3> <span>@item.MenuItemName </span> </h3>
+                                        <span class="price">@item.Price ₼</span>
+                                    </div>
+                                    <div class="d-block">
+                                        <p>@item.MenuItemDescription </p>
+                                    </div>
+                                </a>
                             </div>
-                        }
-                    </div>
-                }
+                        </div>
+                    }
+                </div>
             }
         </div>
     </div>
@@ -71,7 +66,7 @@
                                 <div class="col-md-4 testimony">
                                     <div class="card-body outerdiv">
                                         <h5 class="card-title">@item.MenuItemDescription </h5>
-                                        @*<p class="card-text">@item.MenuItemDescription</p>*@
+                                        <!-- <p class="card-text">@item.MenuItemDescription</p> -->
                                         <a href="" class="btn btn-danger rounded-circle"> <i class="fa fa-cart-arrow-down"> </i> </a>
                                     </div>
                                 </div>
@@ -83,7 +78,7 @@
         </div>
     </div>
 </section>
-@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+
 @section Scripts{
     <script>
         // ScrollSpy Smooth Animation
