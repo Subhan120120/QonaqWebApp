@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
 using QonaqWebApp.Models.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QonaqWebApp.Controllers
 {
@@ -35,25 +33,34 @@ namespace QonaqWebApp.Controllers
             ViewBag.TblGrp = new SelectList(dineInTableGroupRepo.GetAll(), "Id", "TableGroupName");
             ViewBag.DnInTbl = new SelectList(dineInTableRepo.GetAll(), "Id", "TableName");
 
+            if (TempData.ContainsKey("Notify"))
+                ViewBag.Notify = TempData["Notify"] as string;
+
             ReservationVM reservationVM = new ReservationVM(appDetailRepo.GetById(1));
             return View(reservationVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Reserve(Reservation reservation)
+        public IActionResult Reserve(ReservationVM reservationVM)
         {
             ViewBag.TblGrp = new SelectList(dineInTableGroupRepo.GetAll(), "Id", "TableGroupName");
             ViewBag.DnInTbl = new SelectList(dineInTableRepo.GetAll(), "Id", "TableName");
 
-            reservation.EndTime = reservation.StartTime.AddHours(1);
+            reservationVM.Reservation.EndTime = reservationVM.Reservation.StartTime.AddHours(1);
 
-            ModelState["Id"].ValidationState = ModelValidationState.Valid;
+            ModelState["Reservation.Id"].ValidationState = ModelValidationState.Valid;
             if (!ModelState.IsValid)
-                return View(reservation);
+                return View(reservationVM.Reservation);
 
-            reservationRepo.Add(reservation);
-            reservationRepo.SaveChanges();
+            reservationRepo.Add(reservationVM.Reservation);
+
+            int rowAffected = reservationRepo.SaveChanges();
+            if (rowAffected > 0)
+                TempData["Notify"] = "Success";
+            else
+                TempData["Notify"] = "Error";
+
             return RedirectToAction("Reserve");
         }
 

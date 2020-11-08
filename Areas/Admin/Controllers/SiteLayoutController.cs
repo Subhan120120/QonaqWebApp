@@ -61,7 +61,39 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         {
             appDetailRepo.Update(appDetail);
             appDetailRepo.SaveChanges();
-            return RedirectToAction("PageLayout");
+            return RedirectToAction("PageMenu");
+        }
+
+        [HttpGet]
+        public IActionResult PageReserve()
+        {
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id >= 15 && x.Id <= 17).ToList();
+            return View(appDetailList);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PageReserve(List<AppDetail> appDetailList)
+        {
+            appDetailRepo.UpdateRange(appDetailList);
+            appDetailRepo.SaveChanges();
+            return RedirectToAction("PageReserve");
+        }
+
+        [HttpGet]
+        public IActionResult PageAbout()
+        {
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id >= 20 && x.Id <= 22).ToList();
+            return View(appDetailList);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PageAbout(List<AppDetail> appDetailList)
+        {
+            appDetailRepo.UpdateRange(appDetailList);
+            appDetailRepo.SaveChanges();
+            return RedirectToAction("PageReserve");
         }
 
     }

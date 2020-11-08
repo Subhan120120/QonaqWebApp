@@ -50,7 +50,7 @@ namespace QonaqWebApp.Models.Entity
         public string SubHeading { get; set; }
 
         [DisplayName("Açıqlama")]
-        [StringLength(150, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz ")]
+        [StringLength(300, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz ")]
         public string Description { get; set; }
         
     }

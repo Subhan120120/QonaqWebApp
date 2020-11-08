@@ -48,81 +48,106 @@
     </div>
 </section>
 
-<section class="ftco-about d-md-flex">
-    <div class="one-half ">
-        <div class="ftco-animate booking-form">
-            <form asp-action="Reserve" asp-controller="Reservation" name="subform" method="post" autocomplete="off">
-                <div class="form-group">
-                    <input type="hidden" asp-for="Reservation.Id" />
-                </div>
-                <div class="form-group">
-                    <div class="form-checkbox">
-                        <label for="radio1">
-                            <input type="radio" id="radio1" name="Smoking">
-                            <span></span>Smoking
-                        </label>
-                        <label for="radio2">
-                            <input type="radio" id="radio2" name="Smoking">
-                            <span></span>Non-smoking
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Reservation.Name" class="form-control">
-                    <label asp-for="Reservation.Name" class="form-label"></label>
-                    <span asp-validation-for="Reservation.Name"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Reservation.PhoneNumber" type="tel" id="phone" class="form-control">
-                    <label asp-for="Reservation.PhoneNumber" id="phoneLabel" class="form-label"></label>
-                    <span asp-validation-for="Reservation.PhoneNumber"></span>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
+<section class="ftco-section d-md-flex">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 pr-md-5">
+                <div class="ftco-animate booking-form">
+                    <form asp-action="Reserve" asp-controller="Reservation" name="subform" method="post" autocomplete="off">
                         <div class="form-group">
-                            <input asp-for="Reservation.StartTime" class="form-control">
-                            <label asp-for="Reservation.StartTime" class="form-label"></label>
-                            <span asp-validation-for="Reservation.StartTime"></span>
+                            <input type="hidden" asp-for="Reservation.Id" />
+                        </div>
+                        <div class="form-group">
+                            <div class="form-checkbox">
+                                <label for="radio1">
+                                    <input type="radio" id="radio1" name="Smoking">
+                                    <span></span>Smoking
+                                </label>
+                                <label for="radio2">
+                                    <input type="radio" id="radio2" name="Smoking">
+                                    <span></span>Non-smoking
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Reservation.Name" class="form-control">
+                            <label asp-for="Reservation.Name" class="form-label"></label>
+                            <span asp-validation-for="Reservation.Name"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Reservation.PhoneNumber" type="tel" id="phone" class="form-control">
+                            <label asp-for="Reservation.PhoneNumber" id="phoneLabel" class="form-label"></label>
+                            <span asp-validation-for="Reservation.PhoneNumber"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input asp-for="Reservation.StartTime" class="form-control">
+                                    <label asp-for="Reservation.StartTime" class="form-label"></label>
+                                    <span asp-validation-for="Reservation.StartTime"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input asp-for="Reservation.NumberOfGuest" class="form-control" />
+                                    <label asp-for="Reservation.NumberOfGuest" class="form-label"></label>
+                                    <span asp-validation-for="Reservation.NumberOfGuest"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <select asp-for="Reservation.DineInTableGroupId" class="form-control" asp-items="ViewBag.TblGrp" id="selected" onchange="getSelectValue(this)"></select>
+                                    <span class="select-arrow"></span>
+                                    <label asp-for="Reservation.DineInTableGroupId" class="form-label"></label>
+                                    <span asp-validation-for="Reservation.DineInTableGroupId"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <select asp-for="Reservation.DineInTableId" class="form-control" asp-items="ViewBag.DnInTbl"></select>
+                                    <span class="select-arrow"></span>
+                                    <label asp-for="Reservation.DineInTableId" class="form-label"></label>
+                                    <span asp-validation-for="Reservation.DineInTableGroupId"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="REZERV ET" class="float-right btn btn-primary btn-outline-primary px-4 py-3" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row ">
+                    <div class="col-md-6 ">
+                        <div class="menu-entry ">
+                            <a href="#" class="img highlight show-on-scroll" style="background-image: url(/coffee/images/IMG_9201.jpg);"></a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <input asp-for="Reservation.NumberOfGuest" class="form-control" />
-                            <label asp-for="Reservation.NumberOfGuest" class="form-label"></label>
-                            <span asp-validation-for="Reservation.NumberOfGuest"></span>
+                    <div class="col-md-6">
+                        <div class="menu-entry mt-lg-4">
+                            <a href="#" class="img highlight show-on-scroll" style="background-image: url(/coffee/images/small-2.jpg);"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="menu-entry">
+                            <a href="#" class="img highlight show-on-scroll" style="background-image: url(/coffee/images/small-3.jpg);"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="menu-entry mt-lg-4">
+                            <a href="#" class="img highlight show-on-scroll" style="background-image: url(/coffee/images/small-4.jpg);"></a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <select asp-for="Reservation.DineInTableGroupId" class="form-control" asp-items="ViewBag.TblGrp"></select>
-                            <span class="select-arrow"></span>
-                            <label asp-for="Reservation.DineInTableGroupId" class="form-label"></label>
-                            <span asp-validation-for="Reservation.DineInTableGroupId"></span>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <select asp-for="Reservation.DineInTableId" class="form-control" asp-items="ViewBag.DnInTbl"></select>
-                            <span class="select-arrow"></span>
-                            <label asp-for="Reservation.DineInTableId" class="form-label"></label>
-                            <span asp-validation-for="Reservation.DineInTableGroupId"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="REZERV ET" class="float-right btn btn-primary btn-outline-primary px-4 py-3" />
-                </div>
-            </form>
+            </div>
         </div>
-
     </div>
-    <div class="one-half img" style="background-image: url('/coffee/images/IMG_9221.jpg');"></div>
 </section>
 
 <section class="ftco-section img" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9201.jpg');" data-stellar-background-ratio="0.5">
-
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -142,22 +167,22 @@
                 <div class="row ">
                     <div class="col-md-6 ">
                         <div class="menu-entry ">
-                            <a href="#" class="img tl show-on-scroll" style="background-image: url(/coffee/images/IMG_9201.jpg);"></a>
+                            <a href="#" class="img ftco-animate" style="background-image: url(/coffee/images/IMG_9201.jpg);"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img tr show-on-scroll" style="background-image: url(/coffee/images/IMG_9210.jpg);"></a>
+                            <a href="#" class="img ftco-animate" style="background-image: url(/coffee/images/IMG_9210.jpg);"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="menu-entry">
-                            <a href="#" class="img bl show-on-scroll" style="background-image: url(/coffee/images/IMG_9217.jpg);"></a>
+                            <a href="#" class="img ftco-animate" style="background-image: url(/coffee/images/IMG_9217.jpg);"></a>
                         </div>
                     </div>
                     <div class="col-md-6 ">
                         <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img br show-on-scroll" style="background-image: url(/coffee/images/IMG_9225.jpg);"></a>
+                            <a href="#" class="img ftco-animate" style="background-image: url(/coffee/images/IMG_9225.jpg);"></a>
                         </div>
                     </div>
                 </div>
@@ -175,10 +200,9 @@
 
 @section Styles{
 
-    <link href="~/css/site.css" rel="stylesheet" />
-    @*<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">*@
-
     <link href="~/npm/intl-tel-input/build/css/intlTelInput.css" rel="stylesheet" />
+    <link href="~/npm/toastr/build/toastr.min.css" rel="stylesheet" />
+    <link href="~/coffee/css/customstyle.css" rel="stylesheet" />
     <style>
         #phoneLabel {
             padding-left: 35px !important;
@@ -187,36 +211,50 @@
 }
 
 @section Scripts{
-    <script src="~/js/site.js"></script>
-    @*<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>*@
+
+    <script>
+        function getSelectValue(sended) {
+
+            if (typeof sended !== 'undefined') {
+                var slctdIndx = sended.selectedIndex;
+
+                var highlight = document.getElementsByClassName("highlight");
+
+                for (var i = 0; i < highlight.length; i++) {
+
+                    if (i == slctdIndx) {
+
+                        highlight.item(i).classList.remove("jello-horizontal");
+                        highlight.item(i).classList.add("jello-horizontal");
+                    }
+                    else {
+                        highlight.item(i).classList.remove("jello-horizontal");
+                    }
+                }
+            }
+        }
+
+        getSelectValue();
+
+    </script>
 
     <script src="~/npm/intl-tel-input/build/js/intlTelInput.min.js"></script>
-    @*<script src="~/npm/intl-tel-input/build/js/utils.js"></script>*@
+    <script src="~/npm/toastr/build/toastr.min.js"></script>
+    <script src="~/coffee/js/customjs.js"></script>
+    <script src="~/js/site.js"></script>  <!--toastra gore-->
+    <script>
+        if ("@ViewBag.Notify" == "Success") {
+            toastr["success"]("Rezervasiyanız Qeydə Alındı", "Təşəkkürlər!")
+        }
+        else if ("@ViewBag.Notify" == "Error")
+            toastr["error"]("Rezervasiyanız Qeydə Alınmaddı", "Xəta!")
+    </script>
 
     <script>
         $("#phone").intlTelInput({
             initialCountry: "az",
             nationalMode: true,
-            utilsScript: 'js/utils.js'
         });
     </script>
 
-    <script>
-        $('.form-control').each(function () {
-            floatedLabel($(this));
-        });
-
-        $('.form-control').on('input', function () {
-            floatedLabel($(this));
-        });
-
-        function floatedLabel(input) {
-            var $field = input.closest('.form-group');
-            if (input.val()) {
-                $field.addClass('input-not-empty');
-            } else {
-                $field.removeClass('input-not-empty');
-            }
-        }
-    </script>
 }

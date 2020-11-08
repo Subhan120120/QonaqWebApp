@@ -16,6 +16,7 @@
     "jquery-validation-unobtrusive": "^3.2.11",
     "mdbootstrap": "^4.9.0",
     "sweetalert2": "^9.9.0",
+    "toastr": "^2.1.4",
     "x-editable": "^1.5.1"
   }
 }

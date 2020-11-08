@@ -16,10 +16,10 @@
 
 <section class="ftco-section">
     <div class="container">
-        <div class="row d-flex align-self-start">
+        <div class="row d-flex justify-content-center">
             @foreach (var group in Model)
             {
-                <div class="col-md-6  mb-5 pb-3">
+                <div class="col-md-5  mb-5 pb-3">
                     <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupName </h3>
                     @foreach (var item in group.menuItems)
                     {

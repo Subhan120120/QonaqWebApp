@@ -7,21 +7,26 @@
 
   <ItemGroup>
     <Compile Remove="Views\Schedule\**" />
+    <Compile Remove="wwwroot\Animate-Elements-In-When-They-Come-Into-View\**" />
     <Compile Remove="wwwroot\NonFactorsGridMVC6\**" />
     <Compile Remove="wwwroot\templates\**" />
     <Content Remove="Views\Schedule\**" />
+    <Content Remove="wwwroot\Animate-Elements-In-When-They-Come-Into-View\**" />
     <Content Remove="wwwroot\NonFactorsGridMVC6\**" />
     <Content Remove="wwwroot\templates\**" />
     <EmbeddedResource Remove="Views\Schedule\**" />
+    <EmbeddedResource Remove="wwwroot\Animate-Elements-In-When-They-Come-Into-View\**" />
     <EmbeddedResource Remove="wwwroot\NonFactorsGridMVC6\**" />
     <EmbeddedResource Remove="wwwroot\templates\**" />
     <None Remove="Views\Schedule\**" />
+    <None Remove="wwwroot\Animate-Elements-In-When-They-Come-Into-View\**" />
     <None Remove="wwwroot\NonFactorsGridMVC6\**" />
     <None Remove="wwwroot\templates\**" />
     <TypeScriptCompile Remove="node_modules\bootstrap-editable\**" />
     <TypeScriptCompile Remove="node_modules\bootstrap4-toggle\**" />
     <TypeScriptCompile Remove="node_modules\x-editable\**" />
     <TypeScriptCompile Remove="Views\Schedule\**" />
+    <TypeScriptCompile Remove="wwwroot\Animate-Elements-In-When-They-Come-Into-View\**" />
     <TypeScriptCompile Remove="wwwroot\NonFactorsGridMVC6\**" />
     <TypeScriptCompile Remove="wwwroot\templates\**" />
   </ItemGroup>
@@ -163,6 +168,16 @@
     <Content Include="node_modules\jquery\package.json" />
     <Content Include="node_modules\sweetalert2\dist\sweetalert2.css" />
     <Content Include="node_modules\sweetalert2\dist\sweetalert2.min.css" />
+    <Content Include="node_modules\toastr\build\toastr.css" />
+    <Content Include="node_modules\toastr\build\toastr.min.css" />
+    <Content Include="node_modules\toastr\demo.html" />
+    <Content Include="node_modules\toastr\nuget\content\content\toastr.css" />
+    <Content Include="node_modules\toastr\nuget\content\content\toastr.min.css" />
+    <Content Include="node_modules\toastr\package-lock.json" />
+    <Content Include="node_modules\toastr\package.json" />
+    <Content Include="node_modules\toastr\tests\qunit\qunit.css" />
+    <Content Include="node_modules\toastr\tests\toastr-tests.html" />
+    <Content Include="node_modules\toastr\toastr-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -2612,6 +2627,71 @@
     <None Include="node_modules\sweetalert2\dist\sweetalert2.all.min.js" />
     <None Include="node_modules\sweetalert2\dist\sweetalert2.js" />
     <None Include="node_modules\sweetalert2\dist\sweetalert2.min.js" />
+    <None Include="node_modules\toastr\.gitattributes" />
+    <None Include="node_modules\toastr\.jscsrc" />
+    <None Include="node_modules\toastr\.jshintrc" />
+    <None Include="node_modules\toastr\.npmignore" />
+    <None Include="node_modules\toastr\.travis.yml" />
+    <None Include="node_modules\toastr\build\toastr.js.map" />
+    <None Include="node_modules\toastr\build\toastr.min.js" />
+    <None Include="node_modules\toastr\CHANGELOG.md" />
+    <None Include="node_modules\toastr\gulpfile.js" />
+    <None Include="node_modules\toastr\karma.conf.js" />
+    <None Include="node_modules\toastr\nuget\content\content\toastr.less" />
+    <None Include="node_modules\toastr\nuget\content\content\toastr.scss" />
+    <None Include="node_modules\toastr\nuget\content\scripts\toastr.js" />
+    <None Include="node_modules\toastr\nuget\content\scripts\toastr.min.js" />
+    <None Include="node_modules\toastr\nuget\content\scripts\toastr.min.js.map" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.0.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.0.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.2.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.2.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.3.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.0.3.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.0.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.0.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.2.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.2.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.3.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.4.1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.4.1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.4.2.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.4.2.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.4.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.4.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.5.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.1.5.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.2.0.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.2.0.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.2.1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.2.1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.2.2.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.2.2.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.3.0.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.3.0.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.1.3.1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.1.3.1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.0-rc1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.0-rc1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.1.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.1.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.2.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.2.nuspec" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.3.nupkg" />
+    <None Include="node_modules\toastr\nuget\toastr.2.0.3.nuspec" />
+    <None Include="node_modules\toastr\README.md" />
+    <None Include="node_modules\toastr\release checklist.md" />
+    <None Include="node_modules\toastr\tests\qunit\qunit.js" />
+    <None Include="node_modules\toastr\tests\unit\qunit-helper.js" />
+    <None Include="node_modules\toastr\tests\unit\toastr-tests.js" />
+    <None Include="node_modules\toastr\tests\unit\x.js" />
+    <None Include="node_modules\toastr\toastr.js" />
+    <None Include="node_modules\toastr\toastr.less" />
+    <None Include="node_modules\toastr\toastr.scss" />
     <None Include="wwwroot\coffee\images\qonaq.svg" />
   </ItemGroup>
 

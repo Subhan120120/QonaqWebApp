@@ -35,8 +35,8 @@ namespace QonaqWebApp.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");

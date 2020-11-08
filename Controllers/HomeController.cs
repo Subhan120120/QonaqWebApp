@@ -21,7 +21,7 @@ namespace QonaqWebApp.Controllers
 
         public IActionResult Index()
         {
-            List<AppDetail> appDetailList = appDetailRepo.GetAll().ToList();
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id != 1 && x.Id <= 5).ToList();
             return View(appDetailList);
         }
 
