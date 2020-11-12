@@ -1,4 +1,39 @@
+//Parallax-Scrolling-Effect
+const translate = document.querySelectorAll(".translate");
+const big_title = document.querySelector(".big-title");
+const header = document.querySelector("header");
+const shadow = document.querySelector(".shadow");
+const content = document.querySelector(".content");
+const section = document.querySelector("section");
+const image_container = document.querySelector(".imgContainer");
+const opacity = document.querySelectorAll(".opacity");
+const border = document.querySelector(".border");
 
+let header_height = header.offsetHeight;
+let section_height = section.offsetHeight;
+
+window.addEventListener('scroll', () => {
+    let scroll = window.pageYOffset;
+    let sectionY = section.getBoundingClientRect();
+
+    translate.forEach(element => {
+        let speed = element.dataset.speed;
+        element.style.transform = `translateY(${scroll * speed}px)`;
+    });
+
+    opacity.forEach(element => {
+        element.style.opacity = scroll / (sectionY.top + section_height);
+    })
+
+    big_title.style.opacity = - scroll / (header_height / 2) + 1;
+    shadow.style.height = `${scroll * 0.5 + 300}px`;
+
+    content.style.transform = `translateY(${scroll / (section_height + sectionY.top) * 50 - 50}px)`;
+    image_container.style.transform = `translateY(${scroll / (section_height + sectionY.top) * -50 + 50}px)`;
+
+    border.style.width = `${scroll / (sectionY.top + section_height) * 30}%`;
+})
+//Parallax-Scrolling-Effect end
 //input phone 
 
 ////input phone end
@@ -83,3 +118,62 @@ function floatedLabel(input) {
     }
 }
 //floated label end
+
+//addToCart animate
+$('.add-to-cart').on('click', function () {
+    var cart = $('.cart .nav-link');
+    var imgtodrag = $(this).closest('.no-gutters').find('img').eq(0);
+    if (imgtodrag) {
+        var imgclone = imgtodrag.clone()
+            .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+            .css({
+                'opacity': '0.8',
+                'position': 'absolute',
+                'height': '150px',
+                'width': '150px',
+                'z-index': '100'
+            })
+            .appendTo($('body'))
+            .animate({
+                'top': cart.offset().top + 10,
+                'left': cart.offset().left + 10,
+                'width': 75,
+                'height': 75
+            }, 1000, 'easeInOutExpo');
+
+        setTimeout(function () {
+            cart.effect("shake", {
+                times: 2
+            }, 200);
+        }, 1500);
+
+        imgclone.animate({
+            'width': 0,
+            'height': 0
+        }, function () {
+            $(this).detach()
+        });
+    }
+});
+//addToCart animate end
+
+// ScrollSpy Smooth Animation
+$(document).ready(function () {
+    $('body').scrollspy({ target: ".navbar", offset: 50 });
+    $(".pl-3 a").on('click', function (event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top - 120
+            }, 800, function () {
+                window.location.hash = hash - 120;
+            });
+        }
+    });
+});
+// ScrollSpy Smooth Animation
+

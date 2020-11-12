@@ -1,119 +1,95 @@
-﻿@model AppDetail
+﻿@model List<AppDetail>
 
 <h1 class="h3 mb-4 text-gray-800">Sayt Düzəni</h1>
+<div class="row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="col-lg-6">
+            <div class="card shadow mb-4 p-0">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Layout Səhifəsi üçün Məlumatlar</h6>
+                </div>
+                <div class="card-body">
+                    <form asp-action="SavePage" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model[i].WebTitle" class="control-label"></label>
+                                    <div class="input-container">
+                                        <i class="fab fa-quora icon"></i>
+                                        <input asp-for="@Model[i].WebTitle" class="form-control input-field" />
+                                    </div>
+                                    <span asp-validation-for="@Model[i].WebTitle" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model[i].PhoneNumber" class="control-label"></label>
+                                    <div class="input-container">
+                                        <i class="fas fa-phone icon"></i>
+                                        <input asp-for="@Model[i].PhoneNumber" class="form-control input-field" />
+                                    </div>
+                                    <span asp-validation-for="@Model[i].PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model[i].EmailAddress" class="control-label"></label>
+                                    <div class="input-container">
+                                        <i class="fas fa-at icon"></i>
+                                        <input asp-for="@Model[i].EmailAddress" class="form-control input-field" />
+                                    </div>
+                                    <span asp-validation-for="@Model[i].EmailAddress" class="text-danger"></span>
+                                </div>
+                            </div>
 
-<div class="card shadow mb-4 p-0">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Layout Səhifəsi üçün Məlumatlar</h6>
-    </div>
-    <div class="card-body">
-        <form asp-action="PageLayout" method="post">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="WebTitle" class="control-label"></label>
-                        <div class="input-container">
-                            <i class="fab fa-quora icon"></i>
-                            <input asp-for="WebTitle" class="form-control input-field" />
-                        </div>
-                        <span asp-validation-for="WebTitle" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PhoneNumber" class="control-label"></label>
-                        <div class="input-container">
-                            <i class="fas fa-phone icon"></i>
-                            <input asp-for="PhoneNumber" class="form-control input-field" />
-                        </div>
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
-                        <div class="input-container">
-                            <i class="fas fa-at icon"></i>
-                            <input asp-for="EmailAddress" class="form-control input-field" />
-                        </div>
-                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                    </div>
-                </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model[i].Facebook" class="control-label"></label>
+                                    <div class="input-container">
+                                        <i class="fab fa-facebook-f icon"></i>
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="Facebook" class="control-label"></label>
-                        <div class="input-container">
-                            <i class="fab fa-facebook-f icon"></i>
-
-                            <input asp-for="Facebook" class="form-control input-field" />
+                                        <input asp-for="@Model[i].Facebook" class="form-control input-field" />
+                                    </div>
+                                    <span asp-validation-for="@Model[i].Facebook" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model[i].Twitter" class="control-label"></label>
+                                    <div class="input-container">
+                                        <i class="fab fa-twitter icon"></i>
+                                        <input asp-for="@Model[i].Twitter" class="form-control input-field" />
+                                    </div>
+                                    <span asp-validation-for="@Model[i].Twitter" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model[i].Instagram" class="control-label"></label>
+                                    <div class="input-container">
+                                        <i class="fab fa-instagram icon"></i>
+                                        <input asp-for="@Model[i].Instagram" class="form-control input-field" />
+                                    </div>
+                                    <span asp-validation-for="@Model[i].Instagram" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
-                        <span asp-validation-for="Facebook" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Twitter" class="control-label"></label>
-                        <div class="input-container">
-                            <i class="fab fa-twitter icon"></i>
-                            <input asp-for="Twitter" class="form-control input-field" />
+                        <div class="form-group">
+                            <label asp-for="@Model[i].Address" class="control-label"></label>
+                            <div class="input-container">
+                                <i class="fas fa-map-marker-alt icon"></i>
+                                <input asp-for="@Model[i].Address" class="form-control input-field" />
+                            </div>
+                            <span asp-validation-for="@Model[i].Address" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="Twitter" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Instagram" class="control-label"></label>
-                        <div class="input-container">
-                            <i class="fab fa-instagram icon"></i>
-                            <input asp-for="Instagram" class="form-control input-field" />
+                        <div class="form-group">
+                            <label asp-for="@Model[i].About" class="control-label"></label>
+                            <div class="input-container">
+                                <i class="fas fa-info icon"></i>
+                                <textarea asp-for="@Model[i].About" class="form-control input-field overflow-hidden"></textarea>
+                            </div>
+                            <span asp-validation-for="@Model[i].About" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="Instagram" class="text-danger"></span>
-                    </div>
+                        <input type="hidden" asp-for="@Model[i].Id" />
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <div class="input-container">
-                    <i class="fas fa-map-marker-alt icon"></i>
-                    <input asp-for="Address" class="form-control input-field" />
-                </div>
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="About" class="control-label"></label>
-                <div class="input-container">
-                    <i class="fas fa-info icon"></i>
-                    <textarea asp-for="About" class="form-control input-field overflow-hidden"></textarea>
-                </div>
-                <span asp-validation-for="About" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary btn-block" />
-            </div>
-        </form>
-    </div>
+        </div>
+    }
 </div>
-
-
-@section Styles{
-    <style>
-        .input-container {
-            display: -ms-flexbox; /*IE10 */
-            display: flex;
-        }
-
-        .icon {
-            opacity: 0.8;
-            padding: 10px;
-            background: #4e73de;
-            color: white;
-            min-width: 50px;
-            text-align: center;
-            border-top-left-radius: 0.35rem;
-            border-bottom-left-radius: 0.35rem;
-        }
-
-        .input-field {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-            .input-field:focus {
-                border: 2px solid #4e73de;
-            }
-    </style>
-}

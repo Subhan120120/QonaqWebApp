@@ -19,17 +19,8 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult PageLayout()
         {
-            var appDetail = appDetailRepo.GetById(1);
-            return View(appDetail);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult PageLayout(AppDetail appDetail)
-        {
-            appDetailRepo.Update(appDetail);
-            appDetailRepo.SaveChanges();
-            return RedirectToAction("PageLayout");
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id == 1).ToList();
+            return View(appDetailList);
         }
 
         [HttpGet]
@@ -39,62 +30,34 @@ namespace QonaqWebApp.Areas.Admin.Controllers
             return View(appDetailList);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult PageIndex(List<AppDetail> appDetailList)
-        {
-            appDetailRepo.UpdateRange(appDetailList);
-            appDetailRepo.SaveChanges();
-            return RedirectToAction("PageIndex");
-        }
-
         [HttpGet]
         public IActionResult PageMenu()
         {
-            AppDetail appDetail = appDetailRepo.GetById(10);
-            return View(appDetail);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult PageMenu(AppDetail appDetail)
-        {
-            appDetailRepo.Update(appDetail);
-            appDetailRepo.SaveChanges();
-            return RedirectToAction("PageMenu");
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id == 10).ToList();
+            return View("PageIndex", appDetailList);
         }
 
         [HttpGet]
         public IActionResult PageReserve()
         {
             List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id >= 15 && x.Id <= 17).ToList();
-            return View(appDetailList);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult PageReserve(List<AppDetail> appDetailList)
-        {
-            appDetailRepo.UpdateRange(appDetailList);
-            appDetailRepo.SaveChanges();
-            return RedirectToAction("PageReserve");
+            return View("PageIndex", appDetailList);
         }
 
         [HttpGet]
         public IActionResult PageAbout()
         {
             List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id >= 20 && x.Id <= 22).ToList();
-            return View(appDetailList);
+            return View("PageIndex", appDetailList);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PageAbout(List<AppDetail> appDetailList)
+        public IActionResult SavePage(List<AppDetail> appDetailList)
         {
             appDetailRepo.UpdateRange(appDetailList);
             appDetailRepo.SaveChanges();
-            return RedirectToAction("PageReserve");
+            return RedirectToAction("PageLayout");
         }
-
     }
 }

@@ -1,14 +1,14 @@
 ﻿
-@model List<MenuItemGroup>
+@model MenuVM
 
 <section class="parallax ftco-section" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9276.jpg'); padding: 15%">
     <div class="overlay"></div>
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="heading-section text-center  ftco-animate">
-                <span class="subheading"> Menyu</span>
-                <h2 class="mb-4"> <B> SİZƏ LAYİQ DADLAR</B> </h2>
-                <p> Ağız dadınıza uyğun nəfis yeməkləri bir kliklə əldə edin</p>
+                <span class="subheading">@Model.AppDetails[0].Heading</span>
+                <h2 class="mb-4"> <B>@Model.AppDetails[0].SubHeading</B> </h2>
+                <p>@Model.AppDetails[0].Description</p>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 <section class="ftco-section">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            @foreach (var group in Model)
+            @foreach (var group in Model.MenuItemGroups)
             {
                 <div class="col-md-5  mb-5 pb-3">
                     <h3 class="mb-5 heading-pricing ftco-animate">@group.MenuItemGroupName </h3>
@@ -44,12 +44,10 @@
     </div>
 </section>
 
-
-
 <section class="ftco-section">
     <div class="container">
         <div class="d-flex flex-wrap">
-            @foreach (var group in Model)
+            @foreach (var group in Model.MenuItemGroups)
             {
                 @foreach (var item in group.menuItems)
                 {
@@ -66,8 +64,9 @@
                                 <div class="col-md-4 testimony">
                                     <div class="card-body outerdiv">
                                         <h5 class="card-title">@item.MenuItemDescription </h5>
+
                                         <!-- <p class="card-text">@item.MenuItemDescription</p> -->
-                                        <a href="" class="btn btn-danger rounded-circle"> <i class="fa fa-cart-arrow-down"> </i> </a>
+                                        <a class="btn btn-danger rounded-circle add-to-cart"> <i class="fa fa-cart-arrow-down"> </i> </a>
                                     </div>
                                 </div>
                             </div>
@@ -80,21 +79,9 @@
 </section>
 
 @section Scripts{
-    <script>
-        // ScrollSpy Smooth Animation
-        $(document).ready(function () {
-            $('body').scrollspy({ target: ".navbar", offset: 50 });
-            $(".pl-3 a").on('click', function (event) {
-                if (this.hash !== "") {
-                    event.preventDefault();
-                    var hash = this.hash;
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top
-                    }, 800, function () {
-                        window.location.hash = hash;
-                    });
-                }
-            });
-        });
-    </script>
+
+    <script src="~/npm/jquery-ui/ui/effect.js"></script> <!--add to cart-->
+    <script src="~/npm/jquery-ui/ui/widget.js"></script> <!--add to cart-->
+    <script src="~/npm/jquery-ui/ui/effects/effect-shake.js"></script> <!--add to cart-->
+
 }

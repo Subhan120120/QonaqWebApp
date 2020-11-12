@@ -1,4 +1,5 @@
 ﻿
+@model List<AppDetail>
 
 <section class="video-section">
     <video src="~/coffee/images/video_6_videosmaller_720.mp4" autoplay="" muted="" loop=""></video>
@@ -9,9 +10,9 @@
     <div class="one-half ftco-animate">
         <div class="overlap">
             <div class="heading-section ftco-animate ">
-                <span class="subheading">Keşf et</span>
-                <h2 class="mb-4">ORTAM</h2>
-                <p>Əgər Siz paytaxda şəhərin səs küyündən və küçələrin gurultusundan gizlənə biləcəyiniz, istirahət ab-havasına qərq ola biləcəyiniz məkanın axtarışındasınızsa QonaqBaku restoranına gəlin! Sizi gözləyirik!</p>
+                <span class="subheading">@Model[0].Heading</span>
+                <h2 class="mb-4">@Model[0].SubHeading</h2>
+                <p>@Model[0].Description</p>
             </div>
         </div>
     </div>
@@ -23,9 +24,9 @@
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Kompliment</span>
-                <h2 class="mb-4">MÜŞTƏRİLƏRİN DÜŞÜNCƏLƏRİ</h2>
-                <p>Bizə dəyər verən və verməyən bütün müştərilər bizim üçün əzizdir. </p>
+                <span class="subheading">@Model[1].Heading</span>
+                <h2 class="mb-4">@Model[1].SubHeading</h2>
+                <p>@Model[1].Description</p>
             </div>
         </div>
     </div>
@@ -105,9 +106,9 @@
         <div class="row align-items-center">
             <div class="col-md-6 pr-md-5">
                 <div class="heading-section text-md-right ftco-animate">
-                    <span class="subheading">Lezzet</span>
-                    <h2 class="mb-4">ÖZEL MENYU</h2>
-                    <p class="mb-4">Həyatı şən və pozitiv dalğada keçirmək lazımdır! QonaqBaku sizə bu məsələdə kömək edəcək. 😎 Məkanımızın atəşfəşanlı ab-havası, dadlı içkiləri və füsünkar təamları qonaqları hər zaman valeh edir. Siz də əyləncəmizə qatılın! </p>
+                    <span class="subheading">@Model[2].Heading</span>
+                    <h2 class="mb-4">@Model[2].SubHeading</h2>
+                    <p class="mb-4">@Model[2].Description</p>
                     <p><a asp-action="Menu" asp-controller="Home" class="btn btn-primary btn-outline-primary px-4 py-3">Bütün Menyunu Gör</a></p>
                 </div>
             </div>

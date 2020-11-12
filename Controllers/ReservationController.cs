@@ -36,7 +36,9 @@ namespace QonaqWebApp.Controllers
             if (TempData.ContainsKey("Notify"))
                 ViewBag.Notify = TempData["Notify"] as string;
 
-            ReservationVM reservationVM = new ReservationVM(appDetailRepo.GetById(1));
+
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id == 1 || x.Id <= 17 && x.Id >= 15).ToList();
+            ReservationVM reservationVM = new ReservationVM(appDetailList);
             return View(reservationVM);
         }
 
@@ -62,18 +64,6 @@ namespace QonaqWebApp.Controllers
                 TempData["Notify"] = "Error";
 
             return RedirectToAction("Reserve");
-        }
-
-        public IActionResult Test()
-        {
-            List<AppDetail> appdetailList = appDetailRepo.GetAll().ToList();
-            return View(appdetailList);
-        }
-
-        [HttpPost]
-        public IActionResult Test(List<AppDetail> appdetailList)
-        {
-            return View(appdetailList);
         }
     }
 }

@@ -1,84 +1,49 @@
-﻿@model QonaqWebApp.Models.Entity.AppDetail
+﻿
 
 @{
-    ViewData["Title"] = "DiscountCard";
+//Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parallax Scrolling Effect</title>
+    @*<link href="~/templates/Parallax-Scrolling-Effect-master/style.css" rel="stylesheet" />*@
+<link href="~/coffee/css/customstyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header-container">
+        <header>
+            <h1 class="big-title translate" data-speed="0.1">Discover.</h1>
 
-<h1>DiscountCard</h1>
+            <img src="~/templates/Parallax-Scrolling-Effect-master/tree.png" class="tree translate" data-speed="-0.4" alt="">
+            <img src="~/templates/Parallax-Scrolling-Effect-master/statue.png" class="statue translate" data-speed="-0.2" alt="">
+            <img src="~/templates/Parallax-Scrolling-Effect-master/pool.png" class="pool translate" data-speed="0.6" alt="">
+            <img src="~/templates/Parallax-Scrolling-Effect-master/qonaq.png" class="qonaq translate" data-speed="0.9" alt="">
+            <img src="~/templates/Parallax-Scrolling-Effect-master/sky.png" class="sky translate" data-speed="1.2" alt="">
+        </header>
+    </div>
 
-<div>
-    <h4>AppDetail</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WebTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WebTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Facebook)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Facebook)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Twitter)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Twitter)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Instagram)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Instagram)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.About)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.About)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Heading)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Heading)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SubHeading)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SubHeading)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
-    <a asp-action="Index">Back to List</a>
-</div>
+    <section>
+        <div class="shadow"></div>
+
+        <div class="container">
+            <div class="content opacity">
+                <h3 class="title">
+                    About
+                    <div class="border"></div>
+                </h3>
+                <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque officiis quos expedita ipsa, a quidem inventore voluptates debitis accusamus tenetur qui et voluptas dicta, culpa earum, doloribus odio consectetur consequuntur soluta quasi nobis! Deserunt voluptatum reiciendis iure expedita sequi quisquam laboriosam temporibus exercitationem.</p>
+            </div>
+
+            <div class="imgContainer opacity">
+                <img src="~/templates/Parallax-Scrolling-Effect-master/img/image.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    <script src="~/coffee/js/customjs.js"></script>
+    @*<script src="~/templates/Parallax-Scrolling-Effect-master/app.js"></script>*@
+</body>
+</html>

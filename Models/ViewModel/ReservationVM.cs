@@ -12,18 +12,18 @@ namespace QonaqWebApp.Models.ViewModel
         {
         }
 
-        public ReservationVM(AppDetail appDetail)
+        public ReservationVM(List<AppDetail> appDetails)
         {
-            this.AppDetail = appDetail;
+            this.AppDetails = appDetails;
         }
 
-        public ReservationVM(AppDetail appDetail, Reservation reservation)
-            : this(appDetail)
+        public ReservationVM(List<AppDetail> appDetails, Reservation reservation)
+            : this(appDetails)
         {
             this.Reservation = reservation;
         }
 
-        public AppDetail AppDetail { get; set; }
+        public List<AppDetail> AppDetails { get; set; }
         public Reservation Reservation { get; set; }
     }
 }

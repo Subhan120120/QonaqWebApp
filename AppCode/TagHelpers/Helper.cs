@@ -8,7 +8,6 @@ namespace QonaqWebApp
 {
     public class Helper
     {
-
         public static string RenderRazorViewToString(Controller controller, string viewName, object model = null)
         {
             controller.ViewData.Model = model;

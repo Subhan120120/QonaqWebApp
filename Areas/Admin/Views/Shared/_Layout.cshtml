@@ -32,7 +32,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="" asp-controller="Home" asp-action="Index">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img src="/sb-admin/images/türk-devlet.png" class="w-100">
                 </div>
                 <div class="sidebar-brand-text mx-3">Qonaq Baku</div>
             </a>
@@ -53,7 +53,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                İDARƏ PANELİ
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -65,12 +65,12 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ƏSAS:</h6>
-                        <a class="collapse-item" asp-action="PageLayout" asp-controller="SiteLayout">Leyout Səhifə</a>
+                        <a class="collapse-item" is-active-route asp-action="PageLayout" asp-controller="SiteLayout">Ümumi Səhifə</a>
                         <h6 class="collapse-header">DİGƏR SƏHİFƏLƏR:</h6>
-                        <a class="collapse-item" asp-action="PageIndex" asp-controller="SiteLayout">Xoş Gəlmisiniz</a>
-                        <a class="collapse-item" asp-action="PageMenu" asp-controller="SiteLayout">Menyu</a>
-                        <a class="collapse-item" asp-action="PageReserve" asp-controller="SiteLayout">Rezervasiya</a>
-                        <a class="collapse-item" asp-action="PageAbout" asp-controller="SiteLayout">Haqqında</a>
+                        <a class="collapse-item" is-active-route asp-action="PageIndex" asp-controller="SiteLayout">Xoş Gəlmisiniz</a>
+                        <a class="collapse-item" is-active-route asp-action="PageMenu" asp-controller="SiteLayout">Menyu</a>
+                        <a class="collapse-item" is-active-route asp-action="PageReserve" asp-controller="SiteLayout">Rezervasiya</a>
+                        <a class="collapse-item" is-active-route asp-action="PageAbout" asp-controller="SiteLayout">Haqqında</a>
                     </div>
                 </div>
             </li>
@@ -84,8 +84,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Qonaq Yönetim:</h6>
-                        <a class="collapse-item" asp-action="Schedule" asp-controller="Reservation">Rezervlər</a>
-                        <a class="collapse-item" asp-action="Menu" asp-controller="Menu">Menyu</a>
+                        <a class="collapse-item" is-active-route asp-action="Schedule" asp-controller="Reservation">Rezervlər</a>
+                        <a class="collapse-item" is-active-route asp-action="Menu" asp-controller="Menu">Menyu</a>
                     </div>
                 </div>
             </li>
@@ -95,7 +95,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                STATİSTİKA PANELİ
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -107,14 +107,14 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Qonaq:</h6>
-                        <a class="collapse-item" asp-area="" asp-action="Menu" asp-controller="Home">Menyu</a>
+                        <a class="collapse-item" is-active-route asp-area="" asp-action="Menu" asp-controller="Home">Menyu</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Digər:</h6>
-                        <a class="collapse-item" asp-action="Error" asp-controller="Dashboard">Login</a>
-                        <a class="collapse-item" asp-action="Error" asp-controller="Dashboard">Register</a>
-                        <a class="collapse-item" asp-action="Error" asp-controller="Dashboard">Forgot Password</a>
-                        <a class="collapse-item" asp-action="Error" asp-controller="Dashboard">404 Page</a>
-                        <a class="collapse-item active" asp-action="Error" asp-controller="Dashboard">Blank Page</a>
+                        <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">Login</a>
+                        <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">Register</a>
+                        <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">Forgot Password</a>
+                        <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">404 Page</a>
+                        <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">Blank Page</a>
                     </div>
                 </div>
             </li>
@@ -123,7 +123,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-action="Error" asp-controller="Dashboard">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
+                    <span>Qrafiklər</span>
                 </a>
             </li>
 
@@ -417,7 +417,5 @@
 
     @RenderSection("Scripts", false)
 
-
 </body>
-
 </html>

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
+using QonaqWebApp.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,13 +28,14 @@ namespace QonaqWebApp.Controllers
 
         public IActionResult About()
         {
-            return View();
+            List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id >= 20 && x.Id <= 22).ToList();
+            return View(appDetailList);
         }
 
         public IActionResult Menu()
         {
-            IList<MenuItemGroup> menuItemGroup = menuItemGroupRepo.GetAll().Include(x => x.menuItems).Where(x => x.menuItems.Any()).ToList();
-            return View(menuItemGroup);
+            MenuVM menuVM = new MenuVM(appDetailRepo.GetAll(x => x.Id == 10).ToList(), menuItemGroupRepo.GetAll().Include(x => x.menuItems).Where(x => x.menuItems.Any()).ToList());
+            return View(menuVM);
         }
 
     }

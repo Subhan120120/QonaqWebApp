@@ -154,3 +154,6 @@ var removePhoto = function () {
 }
 //image chooser end
 
+// active navbar show 
+document.getElementsByClassName("active")[0].closest(".collapse").classList.add("show");
+//active navbar show end
