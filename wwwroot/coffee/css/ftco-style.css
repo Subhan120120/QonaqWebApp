@@ -109,6 +109,7 @@ h1, h2, h3, h4, h5,
 
 .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu {
     border: none;
+    margin: 0;
     background: #000;
     border-radius: 0;
     -webkit-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
@@ -709,14 +710,14 @@ h1, h2, h3, h4, h5,
             color: #fff;
         }
 
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
     .ftco-intro {
-        margin-top: -130px;
-    }
-}
+        margin-top: -130px;*/ /*biri de budu*/
+    /*}
+}*/
 
 .ftco-intro .container-wrap {
-    z-index: 2 !important;
+    z-index: 5 !important;
     position: relative;
 }
 
@@ -1063,9 +1064,9 @@ h1, h2, h3, h4, h5,
     position: relative;
 }
 
-    .product-details .form-group  {
-        padding-right: 40px;
-    }
+.product-details .form-group {
+    padding-right: 40px;
+}
 
     .product-details .form-group .icon {
         position: absolute;
@@ -1113,7 +1114,7 @@ h1, h2, h3, h4, h5,
     padding: 16px 20px;
 }
 
-.ftco-cart button, .ftco-cart  {
+.ftco-cart button, .ftco-cart {
     height: 54px !important;
     text-align: center;
     bordeR: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -1121,28 +1122,28 @@ h1, h2, h3, h4, h5,
     padding: 0;
 }
 
-.ftco-cart .form-group {
-    position: relative;
-}
+    .ftco-cart .form-group {
+        position: relative;
+    }
 
-    .ftco-cart .form-group  {
+    .ftco-cart .form-group {
         padding-right: 40px;
     }
 
-    .ftco-cart .form-group .icon {
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        font-size: 14px;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-        color: #c49b63;
-    }
-
-        .ftco-cart .form-group .icon span {
+        .ftco-cart .form-group .icon {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            font-size: 14px;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
             color: #c49b63;
         }
+
+            .ftco-cart .form-group .icon span {
+                color: #c49b63;
+            }
 
 @media (max-width: 767.98px) {
     .ftco-cart .form-group .icon {
@@ -1306,7 +1307,7 @@ h1, h2, h3, h4, h5,
         appearance: none;
     }
 
-.billing-form  {
+.billing-form {
     font-weight: 300;
     border: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -1345,9 +1346,9 @@ h1, h2, h3, h4, h5,
         border-color: #c49b63 !important;
     }
 
-.billing-form textarea {
-    height: inherit !important;
-}
+    .billing-form textarea {
+        height: inherit !important;
+    }
 
 .cart-detail {
     width: 100%;
@@ -1465,7 +1466,7 @@ h1, h2, h3, h4, h5,
         display: block !important;
     }
 
-.appointment-form  {
+.appointment-form {
     border: transparent !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
     height: 58px !important;
@@ -1503,9 +1504,9 @@ h1, h2, h3, h4, h5,
         border-color: #fff;
     }
 
-.appointment-form textarea {
-    height: inherit !important;
-}
+    .appointment-form textarea {
+        height: inherit !important;
+    }
 
 .staff {
     padding: 25px;
@@ -1914,7 +1915,7 @@ h1, h2, h3, h4, h5,
 }
 
 .heading-section {
-    z-index: 0;
+    z-index: 5;
     padding: 50px;
 }
 

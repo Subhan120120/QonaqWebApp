@@ -1,20 +1,24 @@
 ﻿
 @model ReservationVM
 
-<section class="parallax ftco-section" id="ftco-testimony" style="background-image: url('/coffee/images/IMG_9229.jpg'); padding: 15%">
+<section class="header ftco-section">
     <div class="overlay"></div>
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="heading-section text-center ftco-animate">
-                <span class="subheading">@Model.AppDetails[1].Heading</span>
-                <h2 class="mb-4">@Model.AppDetails[1].SubHeading</h2>
-                <p class="mb-4">@Model.AppDetails[1].Description</p>
-            </div>
+    <div class="row justify-content-center m-5">
+        <div class="heading-section text-center ftco-animate">
+            <span class="subheading">@Model.AppDetails[1].Heading</span>
+            <h2 class="mb-4">@Model.AppDetails[1].SubHeading</h2>
+            <p class="mb-4">@Model.AppDetails[1].Description</p>
         </div>
     </div>
+    <img src="~/coffee/images/tree.png" class="tree translate" data-speed="-0.4" />
+    <img src="~/coffee/images/statue.png" class="statue translate" data-speed="-0.2" />
+    <img src="~/coffee/images/pool.png" class="pool translate" data-speed="0.6" />
+    <img src="~/coffee/images/qonaq.png" class="qonaq translate" data-speed="0.9" />
+    <img src="~/coffee/images/sky.png" class="sky translate" data-speed="1.2" />
 </section>
 
-<section class="ftco-intro">
+<section class="ftco-intro under-paral">
+    <div class="shadow"></div>
     <div class="container-wrap">
         <div class="wrap d-md-flex align-items-xl-end">
             <div class="info">
@@ -42,9 +46,6 @@
                     </div>
                 </div>
             </div>
-            @*<div class="book p-4">
-                    <h3>Book a Table</h3>
-                </div>*@
         </div>
     </div>
 </section>
@@ -91,6 +92,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <input asp-for="Reservation.NumberOfGuest" class="form-control" />
+                                    <span class="select-arrow arrow-updown"></span>
                                     <label asp-for="Reservation.NumberOfGuest" class="form-label"></label>
                                     <span asp-validation-for="Reservation.NumberOfGuest"></span>
                                 </div>
@@ -100,7 +102,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <select asp-for="Reservation.DineInTableGroupId" class="form-control" asp-items="ViewBag.TblGrp" id="selected" onchange="getSelectValue(this)"></select>
-                                    <span class="select-arrow"></span>
+                                    <span class="select-arrow arrow-down"></span>
                                     <label asp-for="Reservation.DineInTableGroupId" class="form-label"></label>
                                     <span asp-validation-for="Reservation.DineInTableGroupId"></span>
                                 </div>
@@ -108,7 +110,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <select asp-for="Reservation.DineInTableId" class="form-control" asp-items="ViewBag.DnInTbl"></select>
-                                    <span class="select-arrow"></span>
+                                    <span class="select-arrow arrow-down"></span>
                                     <label asp-for="Reservation.DineInTableId" class="form-label"></label>
                                     <span asp-validation-for="Reservation.DineInTableGroupId"></span>
                                 </div>
@@ -200,7 +202,7 @@
 </section>
 
 @section Styles{
-
+    <link href="~/coffee/css/parallax-scrolling.css" rel="stylesheet" />
     <link href="~/npm/intl-tel-input/build/css/intlTelInput.css" rel="stylesheet" />
     <link href="~/npm/toastr/build/toastr.min.css" rel="stylesheet" />
     <link href="~/coffee/css/customstyle.css" rel="stylesheet" />
@@ -212,19 +214,18 @@
 }
 
 @section Scripts{
+    <script src="~/coffee/js/parallax-scrolling.js"></script>
+    <script src="~/npm/intl-tel-input/build/js/intlTelInput.min.js"></script>
+    <script src="~/npm/toastr/build/toastr.min.js"></script>
+    <script src="~/js/site.js"></script>  <!--toastra gore-->
 
     <script>
         function getSelectValue(sended) {
-
             if (typeof sended !== 'undefined') {
                 var slctdIndx = sended.selectedIndex;
-
                 var highlight = document.getElementsByClassName("highlight");
-
                 for (var i = 0; i < highlight.length; i++) {
-
                     if (i == slctdIndx) {
-
                         highlight.item(i).classList.remove("jello-horizontal");
                         highlight.item(i).classList.add("jello-horizontal");
                     }
@@ -234,19 +235,12 @@
                 }
             }
         }
-
         getSelectValue();
-
     </script>
 
-    <script src="~/npm/intl-tel-input/build/js/intlTelInput.min.js"></script>
-    <script src="~/npm/toastr/build/toastr.min.js"></script>
-    <script src="~/coffee/js/customjs.js"></script>
-    <script src="~/js/site.js"></script>  <!--toastra gore-->
     <script>
-        if ("@ViewBag.Notify" == "Success") {
+        if ("@ViewBag.Notify" == "Success")
             toastr["success"]("Rezervasiyanız Qeydə Alındı", "Təşəkkürlər!")
-        }
         else if ("@ViewBag.Notify" == "Error")
             toastr["error"]("Rezervasiyanız Qeydə Alınmaddı", "Xəta!")
     </script>

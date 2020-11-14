@@ -628,6 +628,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\database\" />
     <Folder Include="wwwroot\templates\Parallax-Scrolling-Effect-master\img\" />
     <Folder Include="wwwroot\Uploads\Images\" />
   </ItemGroup>

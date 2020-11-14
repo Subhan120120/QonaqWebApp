@@ -1,4 +1,3 @@
-
 const translate = document.querySelectorAll(".translate");
 const big_title = document.querySelector(".big-title");
 const header = document.querySelector("header");
