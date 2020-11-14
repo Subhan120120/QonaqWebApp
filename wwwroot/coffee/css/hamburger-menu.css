@@ -1,0 +1,84 @@
+﻿
+/*html,
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-color: #121314;
+}
+*/
+input {
+    display: none;
+}
+
+label {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    width: 20vw;
+    height: 20vw;
+    max-width: 110px;
+    max-height: 110px;
+}
+
+@media (min-aspect-ratio: 1/1) {
+    label {
+        width: 50vh;
+        height: 50vh;
+    }
+}
+
+.menu label {
+    top: 0;
+    right: 0;
+}
+
+path {
+    fill: none;
+    stroke: #c49b63;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    --length: 24;
+    --offset: -38;
+    stroke-dasharray: var(--length) var(--total-length);
+    stroke-dashoffset: var(--offset);
+    transition: all .8s cubic-bezier(.645, .045, .355, 1);
+}
+
+circle {
+    fill: #fff3;
+    opacity: 0;
+}
+
+label:hover circle {
+    opacity: 1;
+}
+
+.menu input:checked + svg .line-1,
+.menu input:checked + svg .line-3 {
+    --length: 22.627416998;
+}
+
+.menu input:checked + svg .line-2 {
+    --length: 0;
+}
+
+.menu .line-1,
+.menu .line-3 {
+    --total-length: 126.64183044433594;
+}
+
+.menu .line-2 {
+    --total-length: 70;
+}
+
+.menu input:checked + svg .line-1,
+.menu input:checked + svg .line-3 {
+    --offset: -94.1149185097;
+}
+
+.menu input:checked + svg .line-2 {
+    --offset: -50;
+}
