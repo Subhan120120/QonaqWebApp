@@ -1,61 +1,37 @@
 
-//input phone 
-
-////input phone end
-
-//div animated
+//animated show-on-scroll
 //var scroll = window.requestAnimationFrame ||
 //    function (callback) { window.setTimeout(callback, 1000 / 60) };
-
 //var elementsToShow = document.querySelectorAll('.show-on-scroll');
-
 //function loop() {
-
 //    elementsToShow.forEach(function (el) {
 //        var anime = '';
-
-//        if (el.classList.contains('tr')) {
+//        if (el.classList.contains('tr')) 
 //            anime = 'tilt-in-tr';
-//        }
-
-//        if (el.classList.contains('tl')) {
+//        if (el.classList.contains('tl')) 
 //            anime = 'tilt-in-tl';
-//        }
-
-//        if (el.classList.contains('br')) {
+//        if (el.classList.contains('br'))
 //            anime = 'tilt-in-br';
-//        }
-
-//        if (el.classList.contains('bl')) {
+//        if (el.classList.contains('bl'))
 //            anime = 'tilt-in-bl';
-//        }
-
-//        if (iselInViewport(el)) {
+//        if (iselInViewport(el))
 //            el.classList.add(anime);
-//        }
-//        else {
+//        else
 //            el.classList.remove(anime);
-//        }
 //    });
-
 //    scroll(loop);
 //}
-
 //loop();
-
 //function isElementInViewport(el) {
-
 //    var top = el.offsetTop;
 //    var left = el.offsetLeft;
 //    var width = el.offsetWidth;
 //    var height = el.offsetHeight;
-
 //    while (el.offsetParent) {
 //        el = el.offsetParent;
 //        top += el.offsetTop;
 //        left += el.offsetLeft;
 //    }
-
 //    return (
 //        top < (window.pageYOffset + window.innerHeight) &&
 //        left < (window.pageXOffset + window.innerWidth) &&
@@ -63,7 +39,7 @@
 //        (left + width) > window.pageXOffset
 //    );
 //}
-//div animated end
+//animated show-on-scroll
 
 //floated label
 $('.form-control').each(function () {
@@ -124,8 +100,6 @@ $('.add-to-cart').on('click', function () {
         }, function () {
             $(this).detach()
         });
-
-
     }
 });
 //addToCart animate end
@@ -147,3 +121,11 @@ $(document).ready(function () {
 });
 // ScrollSpy Smooth Animation
 
+//ScrollProgressBar
+var progressbar = document.getElementById("progressbar");
+var totalHeight = document.body.scrollHeight - window.innerHeight;
+window.onscroll = function () {
+    var progress = (window.pageYOffset / totalHeight) * 100;
+    progressbar.style.height = progress + "%";
+}
+//ScrollProgressBar end
