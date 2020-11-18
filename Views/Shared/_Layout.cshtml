@@ -29,25 +29,21 @@
     <link rel="stylesheet" href="~/coffee/css/customstyle.css">
     <link rel="stylesheet" href="~/coffee/css/hamburger-menu.css">
     @RenderSection("Styles", false)
-
 </head>
 <body>
-
     <!-- Start nav -->
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <!--hamburger menu -->
-
             <a class="navbar-brand" asp-action="Index" asp-controller="Home">
                 <img src="~/coffee/images/qonaq-logo.svg" height="64" />
             </a>
-
+            <!--hamburger menu -->
             <div class="menu navbar-toggler" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <label>
                     <input type="checkbox">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" >
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="50" cy="50" r="22" />
-                        <path class="line-1" d="M0 40h62c13 0 6 28-4 18L35 35"  />
+                        <path class="line-1" d="M0 40h62c13 0 6 28-4 18L35 35" />
                         <path class="line-2" d="M0 50h70" />
                         <path class="line-3" d="M0 60h62c13 0 6-28-4-18L35 65" />
                     </svg>
@@ -56,9 +52,15 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto" id="mynav">
-                    <li is-active-route asp-controller="Home" asp-action="Menu" class="nav-item"><a asp-controller="Home" asp-action="Menu" class="nav-link">MENYU</a></li>
-                    <li is-active-route asp-controller="Reservation" asp-action="Reserve" class="nav-item"><a asp-controller="Reservation" asp-action="Reserve" class="nav-link">REZERVASİYA</a></li>
-                    <li is-active-route asp-controller="Home" asp-action="About" class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">HAQQIMIZDA</a></li>
+                    <li is-active-route asp-controller="Home" asp-action="Menu" class="nav-item">
+                        <a asp-controller="Home" asp-action="Menu" class="nav-link">MENYU</a>
+                    </li>
+                    <li is-active-route asp-controller="Reservation" asp-action="Reserve" class="nav-item">
+                        <a asp-controller="Reservation" asp-action="Reserve" class="nav-link">REZERVASİYA</a>
+                    </li>
+                    <li is-active-route asp-controller="Home" asp-action="About" class="nav-item">
+                        <a asp-controller="Home" asp-action="About" class="nav-link">HAQQIMIZDA</a>
+                    </li>
                     <li is-active-route asp-controller="Service" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">XİDMƏT</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -70,7 +72,7 @@
                     </li>
                     <li class="nav-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link">Admin</a></li>
                     <li class="nav-item cart">
-                        <a href="cart.html" class="nav-link">
+                        <a asp-controller="ShoppingCart" asp-action="ShoppingList" class="nav-link">
                             <span class="icon icon-shopping_cart"></span>
                             <span class="bag d-flex justify-content-center align-items-center"><small>0</small></span>
                         </a>
@@ -82,7 +84,7 @@
     <!-- END nav -->
 
     @RenderBody()
-
+    <!-- Footer -->
     <footer class="ftco-footer ftco-section img">
         <div class="overlay"></div>
         <div class="container">
@@ -151,19 +153,20 @@
             </div>
         </div>
     </footer>
+    <!-- Footer end-->
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen">
-        <img src="~/coffee/images/qonaq.svg" style="display: block; margin-left: auto; margin-right: auto;" />
+        <img src="~/coffee/images/qonaq-loading.svg" style="display: block; margin-left: auto; margin-right: auto;" />
     </div>
-
+    <!-- loader end -->
     <!-- ScrollProgressBar -->
-    <div id="progressbar"></div>
-    <div id="scrollpath"></div>
+    <div class="disable-scroll" id="progressbar"></div>
+    <div class="disable-scroll" id="scrollpath"></div>
     <!-- ScrollProgressBar end-->
 
 
     <script src="~/npm/jquery/dist/jquery.min.js"></script>
-    <!--<script src="~/coffee/js/bootstrap.min.js"></script>-->
+    <!-- <script src="~/coffee/js/bootstrap.min.js"></script> -->
     <script src="~/npm/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/npm/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/npm/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>

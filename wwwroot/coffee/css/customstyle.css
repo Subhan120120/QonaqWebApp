@@ -2,12 +2,35 @@ body {
     box-sizing: border-box;
 }
 
+/* Black Scroll  */
+@media (max-width: 1200px) {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: grey;
+        border-radius: 6px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #000;
+        }
+}
+/* Black Scroll  */
+
 /*ScrollProgressBar*/
 #scrollpath {
     position: fixed;
     top: 0;
     right: 0;
     width: 1vw;
+    max-width: 10px;
     height: 100%;
     background: rgba(255,255,255,0.05);
     z-index: 7;
@@ -18,6 +41,7 @@ body {
     top: 0;
     right: 0;
     width: 1vw;
+    max-width: 10px;
     background: linear-gradient(to top, #008aff, #00ffe7);
     animation: animate 5s linear infinite;
     z-index: 7;
@@ -246,7 +270,7 @@ section video {
     .booking-form .form-control {
         background-color: #1c2126;
         height: 50px;
-        padding: 7px 10px 0px;
+        /*padding: 7px 10px 0px;*/
         border: none;
         border-radius: 0px;
         -webkit-box-shadow: none;

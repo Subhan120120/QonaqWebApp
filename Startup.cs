@@ -11,6 +11,7 @@ using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.AppCode.Repositories;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
+using System;
 using System.IO;
 
 namespace QonaqWebApp
@@ -27,10 +28,17 @@ namespace QonaqWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache(); //before AddControllersWithViews
+            services.AddSession(options =>
+           {
+               options.IdleTimeout = TimeSpan.FromMinutes(10);
+               options.Cookie.HttpOnly = true;
+               options.Cookie.IsEssential = true;
+           });
+
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
-            //AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true);
             services.AddDbContext<QonaqContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
 
@@ -70,12 +78,14 @@ namespace QonaqWebApp
 
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
                   pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
-                   //defaults: new { area = "Admin", controller = "Dashboard", action = "Index" }
+                //defaults: new { area = "Admin", controller = "Dashboard", action = "Index" }
                 );
                 endpoints.MapControllerRoute(
                     name: "default",

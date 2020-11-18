@@ -1,18 +1,9 @@
 ﻿
-/*html,
-body {
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    background-color: #121314;
-}
-*/
-input {
+.menu input {
     display: none;
 }
 
-label {
+.menu label {
     display: block;
     cursor: pointer;
     position: absolute;
@@ -20,21 +11,18 @@ label {
     height: 20vw;
     max-width: 110px;
     max-height: 110px;
+    top: 0;
+    right: 0;
 }
 
 @media (min-aspect-ratio: 1/1) {
-    label {
+    .menu label {
         width: 50vh;
         height: 50vh;
     }
 }
 
-.menu label {
-    top: 0;
-    right: 0;
-}
-
-path {
+.menu path {
     fill: none;
     stroke: #c49b63;
     stroke-width: 3;
@@ -47,12 +35,12 @@ path {
     transition: all .8s cubic-bezier(.645, .045, .355, 1);
 }
 
-circle {
+.menu circle {
     fill: #fff3;
     opacity: 0;
 }
 
-label:hover circle {
+.menu label:hover circle {
     opacity: 1;
 }
 
