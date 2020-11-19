@@ -1,7 +1,7 @@
 ﻿
-@inject IRepository<AppDetail> menuItemRepo
+@inject IRepository<AppDetail> appDetailRepo
 @{
-    var appDetail = menuItemRepo.GetAll().FirstOrDefault();
+    var appDetail = appDetailRepo.GetAll().FirstOrDefault();
 }
 
 <!DOCTYPE html>
@@ -52,8 +52,8 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto" id="mynav">
-                    <li is-active-route asp-controller="Home" asp-action="Menu" class="nav-item">
-                        <a asp-controller="Home" asp-action="Menu" class="nav-link">MENYU</a>
+                    <li is-active-route asp-controller="Menu" asp-action="Index" class="nav-item">
+                        <a asp-controller="Menu" asp-action="Index" class="nav-link">MENYU</a>
                     </li>
                     <li is-active-route asp-controller="Reservation" asp-action="Reserve" class="nav-item">
                         <a asp-controller="Reservation" asp-action="Reserve" class="nav-link">REZERVASİYA</a>
@@ -72,7 +72,7 @@
                     </li>
                     <li class="nav-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link">Admin</a></li>
                     <li class="nav-item cart">
-                        <a asp-controller="ShoppingCart" asp-action="ShoppingList" class="nav-link">
+                        <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
                             <span class="icon icon-shopping_cart"></span>
                             <span class="bag d-flex justify-content-center align-items-center"><small>0</small></span>
                         </a>
@@ -163,7 +163,6 @@
     <div class="disable-scroll" id="progressbar"></div>
     <div class="disable-scroll" id="scrollpath"></div>
     <!-- ScrollProgressBar end-->
-
 
     <script src="~/npm/jquery/dist/jquery.min.js"></script>
     <!-- <script src="~/coffee/js/bootstrap.min.js"></script> -->

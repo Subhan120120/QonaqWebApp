@@ -1,48 +1,132 @@
-﻿@{
-    Layout = null;
-}
+﻿
+@model List<ShoppingItem>
 
-<!DOCTYPE html>
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list table-responsive-lg">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>Məhsul</th>
+                                <th>Qiymət</th>
+                                <th>Say</th>
+                                <th>Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="text-center">
+                                        <td class="product-remove"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.MenuItem.Id"><span class="icon-close"></span></a></td>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+                                        <td class="image-prod"><div class="img" style="background-image:url(../Uploads/Images/@item.MenuItem.ImagePath);"></div></td>
+                                        <td class="product-name">
+                                            <h3>@item.MenuItem.MenuItemName</h3>
+                                            <p>@item.MenuItem.MenuItemDescription</p>
+                                        </td>
+                                        <td class="price">@item.MenuItem.Price</td>
+                                        <td class="quantity">
+                                            <div class="input-group">
+                                                <input type="text" class="quantity form-control input-number" value="@item.Quantity">
+                                            </div>
+                                        </td>
+                                        <td class="total">@(item.MenuItem.Price * item.Quantity)</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Subtotal</span>
+                        <span>&#x20BC @(ViewBag.total ?? "0.00")</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Daşıma</span>
+                        <span>&#x20BC 0.00</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Endirim</span>
+                        <span>&#x20BC 0.00</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span>&#x20BC @(ViewBag.total ?? "0.00")</span>
+                    </p>
+                </div>
+                <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <h3>Cart Page</h3>
-    <table cellpadding="2" cellspacing="2" border="1">
-        <tr>
-            <th>Option</th>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Photo</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Sub Total</th>
-        </tr>
-        @foreach (var item in ViewBag.cart)
-        {
-            <tr>
-                <td><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.MenuItem.Id">Remove</a></td>
-                <td>@item.MenuItem.Id</td>
-                <td>@item.MenuItem.MenuItemName</td>
-                <td><img src="../Uploads/Images/@item.MenuItem.ImagePath" width="60" /> </td>
-                <td>@item.MenuItem.Price</td>
-                <td>@item.Quantity</td>
-                <td>@(item.MenuItem.Price * item.Quantity)</td>
-            </tr>
-        }
-        <tr>
-            <td align="right" colspan="6">Sum</td>
-            <td>
-                @ViewBag.total
-            </td>
-        </tr>
-    </table>
-    <br>
-    <a asp-controller="MenuItem" asp-action="Index">Continue Shopping</a>
-
-</body>
-</html>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <span class="subheading">Discover</span>
+                <h2 class="mb-4">Related products</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="menu-entry">
+                    <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+                    <div class="text text-center pt-4">
+                        <h3><a href="#">Coffee Capuccino</a></h3>
+                        <p>A small river named Duden flows by their place and supplies</p>
+                        <p class="price"><span>$5.90</span></p>
+                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="menu-entry">
+                    <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
+                    <div class="text text-center pt-4">
+                        <h3><a href="#">Coffee Capuccino</a></h3>
+                        <p>A small river named Duden flows by their place and supplies</p>
+                        <p class="price"><span>$5.90</span></p>
+                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="menu-entry">
+                    <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
+                    <div class="text text-center pt-4">
+                        <h3><a href="#">Coffee Capuccino</a></h3>
+                        <p>A small river named Duden flows by their place and supplies</p>
+                        <p class="price"><span>$5.90</span></p>
+                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="menu-entry">
+                    <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
+                    <div class="text text-center pt-4">
+                        <h3><a href="#">Coffee Capuccino</a></h3>
+                        <p>A small river named Duden flows by their place and supplies</p>
+                        <p class="price"><span>$5.90</span></p>
+                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

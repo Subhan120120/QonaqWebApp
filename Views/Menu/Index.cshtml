@@ -64,9 +64,8 @@
                                 <div class="col-md-4 testimony">
                                     <div class="card-body outerdiv">
                                         <h5 class="card-title">@item.MenuItemDescription </h5>
-
                                         <!-- <p class="card-text">@item.MenuItemDescription</p> -->
-                                        <a class="btn btn-danger rounded-circle add-to-cart"> <i class="fa fa-cart-arrow-down"> </i> </a>
+                                        <a class="btn btn-danger rounded-circle add-to-cart" asp-action="Buy" asp-controller="ShoppingCart" asp-route-id="@item.Id"><i class="fa fa-cart-arrow-down"></i> </a>
                                     </div>
                                 </div>
                             </div>
@@ -79,9 +78,7 @@
 </section>
 
 @section Scripts{
-
     <script src="~/npm/jquery-ui/ui/effect.js"></script> <!--add to cart-->
     <script src="~/npm/jquery-ui/ui/widget.js"></script> <!--add to cart-->
     <script src="~/npm/jquery-ui/ui/effects/effect-shake.js"></script> <!--add to cart-->
-
 }
