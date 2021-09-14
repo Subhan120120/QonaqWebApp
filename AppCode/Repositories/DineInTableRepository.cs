@@ -21,6 +21,24 @@ namespace QonaqWebApp.AppCode.Repositories
             return entity;
         }
 
+        public async Task<DineInTable> AddAsync(DineInTable entity)
+        {
+            await db.DineInTables.AddAsync(entity);
+            return entity;
+        }
+
+        public IEnumerable<DineInTable> AddRange(IEnumerable<DineInTable> entities)
+        {
+            db.DineInTables.AddRange(entities);
+            return entities;
+        }
+
+        public async Task<IEnumerable<DineInTable>> AddRangeAsync(IEnumerable<DineInTable> entities)
+        {
+            await db.DineInTables.AddRangeAsync(entities);
+            return entities;
+        }
+
         public void Delete(DineInTable entity)
         {
             db.DineInTables.Remove(entity);
@@ -41,9 +59,23 @@ namespace QonaqWebApp.AppCode.Repositories
             return db.DineInTables.AsQueryable();
         }
 
+        public async Task<ICollection<DineInTable>> GetAllAsync(Expression<Func<DineInTable, bool>> predicate = null)
+        {
+            if (predicate != null)
+            {
+                return await db.DineInTables.Where(predicate).ToListAsync();
+            }
+            return await db.DineInTables.ToListAsync();
+        }
+
         public DineInTable GetById(int id)
         {
             return db.DineInTables.Find(id);
+        }
+
+        public async Task<DineInTable> GetByIdAsync(int id)
+        {
+            return await db.DineInTables.FindAsync(id);
         }
 
         public DineInTable Update(DineInTable entity)

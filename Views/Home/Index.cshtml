@@ -1,9 +1,10 @@
-﻿@model List<AppDetail>
+﻿
+@model List<AppDetail>
 
 <section class="home-slider owl-carousel">
     @for (int i = 0; i < Model.Count; i++)
     {
-        <div class="slider-item" style=" background-image: url('../coffee/images/@Url.Content(String.Format("carousel-{0}.jpg",i.ToString()))')">
+        <div class="slider-item" style="background-image: url('../coffee/images/@Url.Content(String.Format("carousel-{0}.jpg", i.ToString()))')">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -12,8 +13,8 @@
                         <h1 class="mb-4">@Model[i].SubHeading</h1>
                         <p class="mb-4 mb-md-5"><span>@Model[i].Description</span></p>
                         <p>
-                            <a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Sifariş Et</a>
-                            <a asp-action="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
+                            <a asp-action="Reserve" asp-controller="Reservation" class="btn btn-primary p-3 px-xl-4 py-xl-3">Rezerv Et</a>
+                            <a asp-action="Index" asp-controller="Menu" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Menyunu Gör</a>
                         </p>
                     </div>
                 </div>

@@ -1,12 +1,7 @@
 ﻿@model List<MenuItem>
-@{
-    ViewData["Title"] = "Testing";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}
 
-<h1>INDEX</h1>
-
-
+<h1>Menyu Ürünləri</h1>
+<hr />
 <div id="reset-editable" class="shadow mb-4">
     <div class="float-left">
 
@@ -22,7 +17,6 @@
     <table id="Etable" class="table"
            data-id-field="id"
            data-unique-id="Id"
-
            data-toggle="table"
            data-toolbar="#toolbar"
            data-height="470"
@@ -30,24 +24,21 @@
            data-page-list="[5, 10, 15, All]"
            data-show-pagination-switch="true"
            data-show-export="true"
-
            data-search="true"
            data-visible-search="true"
            data-show-search-button="true"
            data-search-on-enter-key="true"
-           
            data-select-item-name="MenuAdi"
            data-multiple-select-row="true"
            data-click-to-select="true"
-           
-           data-remember-order="true"           
+           data-remember-order="true"
            data-buttons-class="outline-primary btn-circle"
            data-locale="tr-TR">
         <thead class="thead-light">
             <tr>
                 <th data-checkbox="true" data-field="Chbx"></th>
                 <th data-visible="false" data-field="Id">Id</th>
-                <th data-field="ImagePath">ImagePath</th>
+                <th data-field="ImagePath">Şəkil</th>
                 <th data-sortable="true" data-field="MenuItemText">Menu Adi</th>
                 <th data-sortable="true" data-field="MenuItemDescription">Terkibi</th>
                 <th data-sortable="true" data-field="Price">Qiymeti</th>

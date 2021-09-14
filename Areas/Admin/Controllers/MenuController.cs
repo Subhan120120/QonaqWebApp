@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace QonaqWebApp.Areas.Admin.Controllers
 {
@@ -121,6 +120,20 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                 return Json(new { isValid = true });
             else
                 return Json(new { isValid = false });
+        }
+
+        public IActionResult MenuItemGroupList()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult MenuItemGroupList(MenuItemGroup menuItemGroup)
+        {
+            menuItemGroupRepo.Add(menuItemGroup);
+            menuItemGroupRepo.SaveChanges();
+            return RedirectToAction("Menu");
         }
 
     }

@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using QonaqWebApp.AppCode.Helpers;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
 using System;
@@ -17,14 +18,6 @@ namespace QonaqWebApp.Controllers
             this.appDetailRepo = appDetailRepo;
         }
 
-        //[OutputCache(Duration = 5 * 60)]
-        //public ActionResult ShoppingCart(string section)
-        //{
-        //    List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
-        //    int cartCount = cart.Count;
-        //    return PartialView("_cartCount", cartCount);
-        //}
-
         public IActionResult Index()
         {
             List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id != 1 && x.Id <= 5).ToList();
@@ -37,5 +30,12 @@ namespace QonaqWebApp.Controllers
             return View(appDetailList);
         }
 
+        [HttpPost]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+            return LocalRedirect(returnUrl);
+        }
     }
 }

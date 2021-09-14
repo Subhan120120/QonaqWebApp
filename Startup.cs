@@ -1,17 +1,22 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.AppCode.Repositories;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace QonaqWebApp
@@ -25,7 +30,6 @@ namespace QonaqWebApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOutputCaching();
@@ -37,11 +41,31 @@ namespace QonaqWebApp
                options.Cookie.IsEssential = true;
            });
 
-            services.AddControllersWithViews().AddNewtonsoftJson(options =>
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddLocalization(option => { option.ResourcesPath = "AppCode/Resources"; });
 
-            services.AddDbContext<QonaqContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver())
+                .AddSessionStateTempDataProvider()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization(); 
+
+            services.Configure<RequestLocalizationOptions>(option =>
+            {
+                var supportedCultures = new List<CultureInfo>
+                   {
+                        new CultureInfo("en"),
+                        new CultureInfo("tr"),
+                        new CultureInfo("az")
+
+                   };
+                option.DefaultRequestCulture = new RequestCulture("tr");
+                option.SupportedCultures = supportedCultures;
+                option.SupportedUICultures = supportedCultures;
+            });
+
+            services.AddRazorPages();
+            services.AddDbContext<QonaqContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
 
             RepositoryDIImplementation(services);
         }
@@ -54,9 +78,10 @@ namespace QonaqWebApp
             services.AddScoped<IRepository<Reservation>, ReservationRepository>();
             services.AddScoped<IRepository<DineInTable>, DineInTableRepository>();
             services.AddScoped<IRepository<DineInTableGroup>, DineInTableGroupRepository>();
+            services.AddScoped<IRepository<Order>, OrderRepository>();
+            services.AddScoped<IRepository<Customer>, CustomerRepository>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -83,6 +108,8 @@ namespace QonaqWebApp
 
             app.UseSession();
 
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -92,7 +119,8 @@ namespace QonaqWebApp
                 );
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=About}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            endpoints.MapRazorPages();
             });
         }
     }

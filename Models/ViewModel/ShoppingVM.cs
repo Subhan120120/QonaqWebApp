@@ -6,25 +6,29 @@ namespace QonaqWebApp.Models.ViewModel
 {
     public class ShoppingVM
     {
-        public List<MenuItem> MenuItems { get; set; }
-        public List<MenuItem> findAll()
+        public ShoppingVM()
         {
-            MenuItems = new List<MenuItem>
-            {
-                new MenuItem()
-                {
-                    Id = 1
-                }
-            };
-            return MenuItems;
         }
-        public MenuItem find(int id)
+
+        public ShoppingVM(List<AppDetail> appDetails)
         {
-            List<MenuItem> MenuItems = findAll();
-            var prod = MenuItems.Where(a => a.Id == id).FirstOrDefault();
-            return prod;
-
-
+            this.AppDetails = appDetails;
         }
+
+        public ShoppingVM(List<AppDetail> appDetails, List<Order> orders)
+            : this(appDetails)
+        {
+            this.Orders = orders;
+        }
+
+        public ShoppingVM(List<AppDetail> appDetails, List<Order> orders, Customer customer)
+            : this(appDetails, orders)
+        {
+            this.Customer = customer;
+        }
+
+        public List<AppDetail> AppDetails { get; set; }
+        public List<Order> Orders { get; set; }
+        public Customer Customer { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace QonaqWebApp.AppCode.Repositories
 {
@@ -18,6 +19,24 @@ namespace QonaqWebApp.AppCode.Repositories
         {
             db.MenuItemGroups.Add(entity);
             return entity;
+        }
+
+        public async Task<MenuItemGroup> AddAsync(MenuItemGroup entity)
+        {
+            await db.MenuItemGroups.AddAsync(entity);
+            return entity;
+        }
+
+        public IEnumerable<MenuItemGroup> AddRange(IEnumerable<MenuItemGroup> entities)
+        {
+            db.MenuItemGroups.AddRange(entities);
+            return entities;
+        }
+
+        public async Task<IEnumerable<MenuItemGroup>> AddRangeAsync(IEnumerable<MenuItemGroup> entities)
+        {
+            await db.MenuItemGroups.AddRangeAsync(entities);
+            return entities;
         }
 
         public void Delete(MenuItemGroup entity)
@@ -40,9 +59,23 @@ namespace QonaqWebApp.AppCode.Repositories
             return db.MenuItemGroups.AsQueryable();
         }
 
+        public async Task<ICollection<MenuItemGroup>> GetAllAsync(Expression<Func<MenuItemGroup, bool>> predicate = null)
+        {
+            if (predicate != null)
+            {
+                return await db.MenuItemGroups.Where(predicate).ToListAsync();
+            }
+            return await db.MenuItemGroups.ToListAsync();
+        }
+
         public MenuItemGroup GetById(int id)
         {
             return db.MenuItemGroups.Find(id);
+        }
+
+        public async Task<MenuItemGroup> GetByIdAsync(int id)
+        {
+            return await db.MenuItemGroups.FindAsync(id);
         }
 
         public MenuItemGroup Update(MenuItemGroup entity)

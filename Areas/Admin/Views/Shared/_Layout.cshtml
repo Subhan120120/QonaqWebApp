@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <link href="~/sb-admin/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="~/sb-admin/css/sb-admin-2.css" rel="stylesheet" />
     <link href="~/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="~/npm/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
@@ -86,6 +85,7 @@
                         <h6 class="collapse-header">Qonaq Yönetim:</h6>
                         <a class="collapse-item" is-active-route asp-action="Schedule" asp-controller="Reservation">Rezervlər</a>
                         <a class="collapse-item" is-active-route asp-action="Menu" asp-controller="Menu">Menyu</a>
+                        <a class="collapse-item" is-active-route asp-action="Index" asp-controller="Order">Sifarişlər</a>
                     </div>
                 </div>
             </li>
@@ -107,7 +107,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Qonaq:</h6>
-                        <a class="collapse-item" is-active-route asp-area="" asp-action="Menu" asp-controller="Home">Menyu</a>
+                        <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">Page</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Digər:</h6>
                         <a class="collapse-item" is-active-route asp-action="Error" asp-controller="Dashboard">Login</a>

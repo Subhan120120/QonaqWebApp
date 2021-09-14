@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,7 +18,7 @@ namespace QonaqWebApp.Models.Entity
 
         [DisplayName("Qiyməti")]
         [Required(ErrorMessage = "Boş buraxıla bilməz. ")]
-        [Range(0.01, 100.00, ErrorMessage = "0.01 - 100.00 aralığında olmalıdır.")]
+        [Range(0.01, 100.00, ErrorMessage = "{0} {1} - {2} aralığında olmalıdır.")]
         [DataType(DataType.Currency, ErrorMessage = "{1} üçün uyğun format daxil edilməlidir.")]
         //[DisplayFormat(DataFormatString = "{0:C0}")]
         [Column(TypeName = "decimal(18,2)")]
@@ -32,6 +33,8 @@ namespace QonaqWebApp.Models.Entity
         public int MenuItemGroupId { get; set; }
 
         public virtual MenuItemGroup MenuItemGroup { get; set; }
+        public virtual List<Order> Orders { get; set; }
+
 
     }
 }

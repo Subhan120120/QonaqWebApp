@@ -33,10 +33,6 @@ namespace QonaqWebApp.Controllers
             ViewBag.TblGrp = new SelectList(dineInTableGroupRepo.GetAll(), "Id", "TableGroupName");
             ViewBag.DnInTbl = new SelectList(dineInTableRepo.GetAll(), "Id", "TableName");
 
-            if (TempData.ContainsKey("Notify"))
-                ViewBag.Notify = TempData["Notify"] as string;
-
-
             List<AppDetail> appDetailList = appDetailRepo.GetAll(x => x.Id == 1 || x.Id <= 17 && x.Id >= 15).ToList();
             ReservationVM reservationVM = new ReservationVM(appDetailList);
             return View(reservationVM);
@@ -59,9 +55,9 @@ namespace QonaqWebApp.Controllers
 
             int rowAffected = reservationRepo.SaveChanges();
             if (rowAffected > 0)
-                TempData["Notify"] = "Success";
+                TempData["Success"] = "Sifariş Qeydə alındı";
             else
-                TempData["Notify"] = "Error";
+                TempData["Error"] = "Sifariş Qeydə alınmadı";
 
             return RedirectToAction("Reserve");
         }

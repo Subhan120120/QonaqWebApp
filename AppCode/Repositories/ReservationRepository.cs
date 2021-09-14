@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace QonaqWebApp.AppCode.Repositories
 {
@@ -18,6 +19,24 @@ namespace QonaqWebApp.AppCode.Repositories
         {
             db.Reservations.Add(entity);
             return entity;
+        }
+
+        public async Task<Reservation> AddAsync(Reservation entity)
+        {
+            await db.Reservations.AddAsync(entity);
+            return entity;
+        }
+
+        public IEnumerable<Reservation> AddRange(IEnumerable<Reservation> entities)
+        {
+            db.Reservations.AddRange(entities);
+            return entities;
+        }
+
+        public async Task<IEnumerable<Reservation>> AddRangeAsync(IEnumerable<Reservation> entities)
+        {
+            await db.Reservations.AddRangeAsync(entities);
+            return entities;
         }
 
         public void Delete(Reservation entity)
@@ -40,9 +59,23 @@ namespace QonaqWebApp.AppCode.Repositories
             return db.Reservations.AsQueryable();
         }
 
+        public async Task<ICollection<Reservation>> GetAllAsync(Expression<Func<Reservation, bool>> predicate = null)
+        {
+            if (predicate != null)
+            {
+                return await db.Reservations.Where(predicate).ToListAsync();
+            }
+            return await db.Reservations.ToListAsync();
+        }
+
         public Reservation GetById(int id)
         {
             return db.Reservations.Find(id);
+        }
+
+        public async Task<Reservation> GetByIdAsync(int id)
+        {
+            return await db.Reservations.FindAsync(id);
         }
 
         public Reservation Update(Reservation entity)

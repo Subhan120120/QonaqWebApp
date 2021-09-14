@@ -41,9 +41,6 @@ showInPopup = (url, title, action) => {
 
 
 jQueryAjaxPost = form => {
-
-
-
     try {
         $.ajax({
             type: 'POST',
@@ -155,5 +152,8 @@ var removePhoto = function () {
 //image chooser end
 
 // active navbar show 
+if (Math.max(document.documentElement.clientWidth, window.innerWidth) > 768) {
 document.getElementsByClassName("active")[0].closest(".collapse").classList.add("show");
+    document.getElementsByClassName("active")[0].closest(".nav-item").querySelector(".nav-link").classList.remove("collapsed");
+}
 //active navbar show end

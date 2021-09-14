@@ -55,7 +55,7 @@
         <div class="row align-items-center">
             <div class="col-md-6 pr-md-5">
                 <div class="ftco-animate booking-form">
-                    <form asp-action="Reserve" asp-controller="Reservation" name="subform" method="post" autocomplete="off">
+                    <form asp-action="Reserve" asp-controller="Reservation" method="post" autocomplete="off">
                         <div class="form-group">
                             <input type="hidden" asp-for="Reservation.Id" />
                         </div>
@@ -237,17 +237,19 @@
     </script>
 
     <script>
-        if ("@ViewBag.Notify" == "Success")
-            toastr["success"]("Rezervasiyanız Qeydə Alındı", "Təşəkkürlər!")
-        else if ("@ViewBag.Notify" == "Error")
-            toastr["error"]("Rezervasiyanız Qeydə Alınmaddı", "Xəta!")
-    </script>
-
-    <script>
         $("#phone").intlTelInput({
             initialCountry: "az",
             nationalMode: true,
         });
     </script>
+
+    @if (TempData.ContainsKey("Success"))
+    {
+        <script>toastr["success"]("@TempData["Success"]", "Təşəkkürlər!")</script>
+    }
+    @if (TempData.ContainsKey("Error"))
+    {
+        <script>toastr["error"]("@TempData["Error"]", "Xəta!")</script>
+    }
 
 }

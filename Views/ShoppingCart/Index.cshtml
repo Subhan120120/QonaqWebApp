@@ -1,5 +1,7 @@
 ﻿
-@model List<ShoppingItem>
+@model ShoppingVM
+
+
 
 <section class="ftco-section ftco-cart">
     <div class="container">
@@ -18,13 +20,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model != null)
+                            @if (Model.Orders != null)
                             {
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.Orders)
                                 {
                                     <tr class="text-center">
                                         <td class="product-remove"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.MenuItem.Id"><span class="icon-close"></span></a></td>
-
                                         <td class="image-prod"><div class="img" style="background-image:url(../Uploads/Images/@item.MenuItem.ImagePath);"></div></td>
                                         <td class="product-name">
                                             <h3>@item.MenuItem.MenuItemName</h3>
@@ -46,6 +47,36 @@
             </div>
         </div>
         <div class="row justify-content-end">
+            <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+                <div class="ftco-animate booking-form">
+                    <form asp-action="ConfirmCart" asp-controller="ShoppingCart" method="post" autocomplete="off">
+                        <input type="hidden" asp-for="Customer.Id" />
+                        <div class="form-group">
+                            <input asp-for="Customer.Name" class="form-control">
+                            <label asp-for="Customer.Name" class="form-label"></label>
+                            <span asp-validation-for="Customer.Name"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Customer.PhoneNumber" type="tel" id="phone" class="form-control">
+                            <label asp-for="Customer.PhoneNumber" id="phoneLabel" class="form-label"></label>
+                            <span asp-validation-for="Customer.PhoneNumber"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Customer.Address" class="form-control">
+                            <label asp-for="Customer.Address" class="form-label"></label>
+                            <span asp-validation-for="Customer.Address"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Customer.Description" class="form-control">
+                            <label asp-for="Customer.Description" class="form-label"></label>
+                            <span asp-validation-for="Customer.Description"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Sifarişi Təsdiqlə" class="float-right btn btn-primary px-4 py-3" />
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
                     <h3>Cart Totals</h3>
@@ -67,66 +98,25 @@
                         <span>&#x20BC @(ViewBag.total ?? "0.00")</span>
                     </p>
                 </div>
-                <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Sifarişi Təsdiqlə</a></p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="ftco-section">
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section ftco-animate text-center">
-                <span class="subheading">Discover</span>
-                <h2 class="mb-4">Related products</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="menu-entry">
-                    <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-                    <div class="text text-center pt-4">
-                        <h3><a href="#">Coffee Capuccino</a></h3>
-                        <p>A small river named Duden flows by their place and supplies</p>
-                        <p class="price"><span>$5.90</span></p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@section Styles{
+    <link href="~/npm/toastr/build/toastr.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/npm/toastr/build/toastr.min.js"></script>
+    <script src="~/js/site.js"></script>  <!--toastra gore-->
+
+    @if (TempData.ContainsKey("Success"))
+    {
+        <script>toastr["success"]("@TempData["Success"]", "Təşəkkürlər!")</script>
+    }
+    @if (TempData.ContainsKey("Error"))
+    {
+        <script>toastr["error"]("@TempData["Error"]", "Xəta!")</script>
+    }
+}

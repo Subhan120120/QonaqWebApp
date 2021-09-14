@@ -73,6 +73,42 @@ namespace QonaqWebApp.Migrations
                     b.ToTable("AppDetails");
                 });
 
+            modelBuilder.Entity("QonaqWebApp.Models.Entity.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("QonaqWebApp.Models.Entity.DineInTable", b =>
                 {
                     b.Property<int>("Id")
@@ -168,6 +204,34 @@ namespace QonaqWebApp.Migrations
                     b.ToTable("MenuItemGroups");
                 });
 
+            modelBuilder.Entity("QonaqWebApp.Models.Entity.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MenuItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Sended")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("MenuItemId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("QonaqWebApp.Models.Entity.Reservation", b =>
                 {
                     b.Property<int>("Id")
@@ -221,6 +285,21 @@ namespace QonaqWebApp.Migrations
                     b.HasOne("QonaqWebApp.Models.Entity.MenuItemGroup", "MenuItemGroup")
                         .WithMany("menuItems")
                         .HasForeignKey("MenuItemGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QonaqWebApp.Models.Entity.Order", b =>
+                {
+                    b.HasOne("QonaqWebApp.Models.Entity.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QonaqWebApp.Models.Entity.MenuItem", "MenuItem")
+                        .WithMany("Orders")
+                        .HasForeignKey("MenuItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

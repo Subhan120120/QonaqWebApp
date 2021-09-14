@@ -19,5 +19,10 @@ namespace QonaqWebApp.AppCode.Repositories
             return db.SaveChanges();
         }
 
+        public async Task<int> SaveChangesAsync()
+        {
+            return await db.SaveChangesAsync();
+        }
+
     }
 }

@@ -14,7 +14,7 @@ namespace QonaqWebApp.AppCode.ViewComponents
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
+            List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
 
             int cartCount = 0;
             if (cart != null)

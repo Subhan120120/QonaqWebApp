@@ -3,9 +3,11 @@ using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Context;
 using QonaqWebApp.Models.Entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace QonaqWebApp.AppCode.Repositories
 {
@@ -18,6 +20,24 @@ namespace QonaqWebApp.AppCode.Repositories
         {
             db.AppDetails.Add(entity);
             return entity;
+        }
+
+        public async Task<AppDetail> AddAsync(AppDetail entity)
+        {
+            await db.AppDetails.AddAsync(entity);
+            return entity;
+        }
+
+        public IEnumerable<AppDetail> AddRange(IEnumerable<AppDetail> entities)
+        {
+            db.AppDetails.AddRange(entities);
+            return entities;
+        }
+
+        public async Task<IEnumerable<AppDetail>> AddRangeAsync(IEnumerable<AppDetail> entities)
+        {
+            await db.AppDetails.AddRangeAsync(entities);
+            return entities;
         }
 
         public void Delete(AppDetail entity)
@@ -40,9 +60,23 @@ namespace QonaqWebApp.AppCode.Repositories
             return db.AppDetails.AsQueryable();
         }
 
+        public async Task<ICollection<AppDetail>> GetAllAsync(Expression<Func<AppDetail, bool>> predicate = null)
+        {
+            if (predicate != null)
+            {
+                return await db.AppDetails.Where(predicate).ToListAsync();
+            }
+            return await db.AppDetails.ToListAsync();
+        }
+
         public AppDetail GetById(int id)
         {
             return db.AppDetails.Find(id);
+        }
+
+        public async Task<AppDetail> GetByIdAsync(int id)
+        {
+            return await db.AppDetails.FindAsync(id);
         }
 
         public AppDetail Update(AppDetail entity)

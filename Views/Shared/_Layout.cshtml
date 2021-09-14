@@ -1,4 +1,5 @@
-﻿
+﻿    
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @inject IRepository<AppDetail> appDetailRepo
 @{
     var appDetail = appDetailRepo.GetAll().FirstOrDefault();
@@ -70,7 +71,9 @@
                             <a class="dropdown-item" asp-controller="Service" asp-action="Feedback">Geridönüş</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link">Admin</a></li>
+                    <li class="nav-item">
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link">Admin</a>
+                    </li>
                     <li class="nav-item cart">
                         <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
                             <span class="icon icon-shopping_cart"></span>
@@ -80,6 +83,9 @@
                                 </small>
                             </span>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <partial name="_Culture">
                     </li>
                 </ul>
             </div>
@@ -180,6 +186,7 @@
     <script src="~/coffee/js/jquery.animateNumber.min.js"></script>
     <script src="~/coffee/js/scrollax.min.js"></script>
     <script src="~/coffee/js/main.js"></script>
+
 
     @RenderSection("Scripts", false)
 

@@ -2,6 +2,7 @@
 using QonaqWebApp.AppCode.Helpers;
 using QonaqWebApp.AppCode.Infrastructure;
 using QonaqWebApp.Models.Entity;
+using QonaqWebApp.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,47 +12,63 @@ namespace QonaqWebApp.Controllers
     {
         public readonly IRepository<AppDetail> appDetailRepo;
         public readonly IRepository<MenuItem> menuItemRepo;
+        public readonly IRepository<Order> orderRepo;
+        public readonly IRepository<Customer> customerRepo;
 
         public ShoppingCartController(IRepository<AppDetail> appDetailRepo,
-                                      IRepository<MenuItem> menuItemRepo)
+                                      IRepository<MenuItem> menuItemRepo,
+                                      IRepository<Customer> customerRepo,
+                                      IRepository<Order> orderRepo)
         {
             this.appDetailRepo = appDetailRepo;
             this.menuItemRepo = menuItemRepo;
+            this.orderRepo = orderRepo;
+            this.customerRepo = customerRepo;
         }
 
         public IActionResult Index()
         {
-            List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
+            List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
             if (cart != null)
                 ViewBag.total = cart.Sum(item => item.MenuItem.Price * item.Quantity);
-            return View(cart);
+
+            ShoppingVM shoppingVM = new ShoppingVM(null, cart);
+
+            //TempData.Keep("Success");
+            //TempData.Keep("Error");
+
+            return View(shoppingVM);
         }
+
+        [TempData]
+        public string Success { get; set; }
+        [TempData]
+        public string Error { get; set; }
 
         public IActionResult Buy(int id)
         {
-            if (SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart") == null)
+            if (SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart") == null)
             {
-                List<ShoppingItem> cart = new List<ShoppingItem>();
-                cart.Add(new ShoppingItem { MenuItem = menuItemRepo.GetById(id), Quantity = 1 });
+                List<Order> cart = new List<Order>();
+                cart.Add(new Order { MenuItem = menuItemRepo.GetById(id), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
             {
-                List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
+                List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
                 int index = isExist(id);
                 if (isExist(id) != -1)
                     cart[index].Quantity++;
                 else
-                    cart.Add(new ShoppingItem { MenuItem = menuItemRepo.GetById(id), Quantity = 1 });
+                    cart.Add(new Order { MenuItem = menuItemRepo.GetById(id), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            TempData["Alma"] = 5;
             return NoContent();
         }
 
         public IActionResult Remove(int id)
         {
-            List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
+            List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
             int index = isExist(id);
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -60,17 +77,45 @@ namespace QonaqWebApp.Controllers
 
         private int isExist(int id)
         {
-            List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
+            List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)
                 if (cart[i].MenuItem.Id.Equals(id))
                     return i;
             return -1;
         }
 
-        public IActionResult CheckOut()
+        public IActionResult ConfirmCart(ShoppingVM shoppingVM)
         {
-            List<ShoppingItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingItem>>(HttpContext.Session, "cart");
-            return View(cart);
+            List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
+            shoppingVM.Orders = cart;
+
+            if (shoppingVM.Customer != null)
+            {
+                customerRepo.Add(shoppingVM.Customer);
+                customerRepo.SaveChanges();
+
+                if (shoppingVM.Orders != null)
+                {
+                    for (int i = 0; i < shoppingVM.Orders.Count; i++)
+                    {
+                        shoppingVM.Orders[i].CustomerId = shoppingVM.Customer.Id;
+                        shoppingVM.Orders[i].MenuItemId = shoppingVM.Orders[i].MenuItem.Id;
+                        shoppingVM.Orders[i].MenuItem = null;
+                    }
+                    orderRepo.AddRange(shoppingVM.Orders);
+                    int rowAffected = orderRepo.SaveChanges();
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", null);
+
+                    if (rowAffected > 0)
+                        TempData["Success"] = "Sifariş Qeydə alındı";
+                    else
+                        TempData["Error"] = "Sifariş Qeydə alınmadı";
+                }
+                else
+                    TempData["Error"] = "Sifariş üçün heç bir məhsul seçilməyib";
+            }
+
+            return RedirectToAction("Index");
         }
 
     }
