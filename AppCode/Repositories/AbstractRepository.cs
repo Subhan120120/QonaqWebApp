@@ -8,8 +8,8 @@ namespace QonaqWebApp.AppCode.Repositories
 {
     abstract public class AbstractRepository
     {
-        protected readonly QonaqContext db;
-        public AbstractRepository(QonaqContext db)
+        protected readonly IdealContext db;
+        public AbstractRepository(IdealContext db)
         {
             this.db = db;
         }

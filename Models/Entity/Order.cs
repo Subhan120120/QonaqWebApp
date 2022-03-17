@@ -10,11 +10,11 @@ namespace QonaqWebApp.Models.Entity
         public int Quantity { get; set; }
         public bool Sended { get; set; }
         public int CustomerId { get; set; }
-        public int MenuItemId { get; set; }
+        public string ProductId { get; set; }
 
 
         public virtual Customer Customer { get; set; }
-        public virtual MenuItem MenuItem { get; set; }
+        public virtual Product Product { get; set; }
 
     }
 }

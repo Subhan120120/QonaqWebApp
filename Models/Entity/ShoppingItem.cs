@@ -7,7 +7,7 @@ namespace QonaqWebApp.Models.Entity
 {
     public class ShoppingItem
     {
-        public MenuItem MenuItem { get; set; }
+        public Product Product { get; set; }
         public int Quantity { get; set; }
     }
 }

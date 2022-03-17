@@ -1,4 +1,4 @@
-﻿@model List<MenuItem>
+﻿@model List<Product>
 
 <h1>Menyu Ürünləri</h1>
 <hr />
@@ -50,15 +50,15 @@
             {
                 <tr>
                     <td></td>
-                    <td id="@item.Id" class="txtbx0">@item.Id</td>
-                    <td id="@item.Id" class="txtbx1 p-1">
+                    <td id="@item.ProductId" class="txtbx0">@item.ProductId</td>
+                    <td id="@item.ProductId" class="txtbx1 p-1">
                         <div class="center-cropped img-thumbnail" style="background-image: url('/Uploads/Images/@item.ImagePath');">
                         </div>
                     </td>
-                    <td id="@item.Id" class="txtbx2">@item.MenuItemName</td>
-                    <td id="@item.Id" class="txtbx3">@item.MenuItemDescription</td>
-                    <td id="@item.Id" class="txtbx4">@item.Price</td>
-                    <td id="@item.Id" class="cmbx">@item.MenuItemGroup.MenuItemGroupName</td>
+                    <td id="@item.ProductId" class="txtbx2">@item.ProductName</td>
+                    <td id="@item.ProductId" class="txtbx3">@item.ProductDesc</td>
+                    <td id="@item.ProductId" class="txtbx4">@item.Price</td>
+                    <td id="@item.ProductId" class="cmbx">@item.Category.CategoryName</td>
                 </tr>
             }
         </tbody>

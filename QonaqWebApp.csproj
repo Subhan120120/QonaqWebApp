@@ -3433,6 +3433,9 @@
     <None Include="node_modules\toastr\toastr.less" />
     <None Include="node_modules\toastr\toastr.scss" />
     <None Include="wwwroot\coffee\images\qonaq.svg" />
+    <None Include="wwwroot\coffee\js\jquery\dist\jquery.js" />
+    <None Include="wwwroot\coffee\js\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\coffee\js\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
   <ItemGroup>

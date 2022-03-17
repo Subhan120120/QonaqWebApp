@@ -25,7 +25,7 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Order> orders = orderRepo.GetAll(x => x.Sended == false).Include(x => x.Customer)
-                                                   .Include(x => x.MenuItem).ToList();
+                                                   .Include(x => x.Product).ToList();
             List<Customer> customers = customerRepo.GetAll(x => x.IsActive == true).ToList();
             OrderVM orderVM = new OrderVM(orders, customers);
 

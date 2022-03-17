@@ -47,7 +47,7 @@ namespace QonaqWebApp
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .AddSessionStateTempDataProvider()
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization(); 
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
             services.Configure<RequestLocalizationOptions>(option =>
             {
@@ -64,7 +64,7 @@ namespace QonaqWebApp
             });
 
             services.AddRazorPages();
-            services.AddDbContext<QonaqContext>(options => 
+            services.AddDbContext<IdealContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QonaqDBString")));
 
             RepositoryDIImplementation(services);
@@ -73,8 +73,8 @@ namespace QonaqWebApp
         private void RepositoryDIImplementation(IServiceCollection services)
         {
             services.AddScoped<IRepository<AppDetail>, AppDetailRepository>();
-            services.AddScoped<IRepository<MenuItem>, MenuItemRepository>();
-            services.AddScoped<IRepository<MenuItemGroup>, MenuItemGroupRepository>();
+            services.AddScoped<IRepository<Product>, ProductRepository>();
+            services.AddScoped<IRepository<Category>, CategoryRepository>();
             services.AddScoped<IRepository<Reservation>, ReservationRepository>();
             services.AddScoped<IRepository<DineInTable>, DineInTableRepository>();
             services.AddScoped<IRepository<DineInTableGroup>, DineInTableGroupRepository>();
@@ -120,7 +120,7 @@ namespace QonaqWebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            endpoints.MapRazorPages();
+                endpoints.MapRazorPages();
             });
         }
     }

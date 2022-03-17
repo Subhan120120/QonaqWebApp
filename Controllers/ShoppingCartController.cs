@@ -11,17 +11,17 @@ namespace QonaqWebApp.Controllers
     public class ShoppingCartController : Controller
     {
         public readonly IRepository<AppDetail> appDetailRepo;
-        public readonly IRepository<MenuItem> menuItemRepo;
+        public readonly IRepository<Product> productRepo;
         public readonly IRepository<Order> orderRepo;
         public readonly IRepository<Customer> customerRepo;
 
         public ShoppingCartController(IRepository<AppDetail> appDetailRepo,
-                                      IRepository<MenuItem> menuItemRepo,
+                                      IRepository<Product> productRepo,
                                       IRepository<Customer> customerRepo,
                                       IRepository<Order> orderRepo)
         {
             this.appDetailRepo = appDetailRepo;
-            this.menuItemRepo = menuItemRepo;
+            this.productRepo = productRepo;
             this.orderRepo = orderRepo;
             this.customerRepo = customerRepo;
         }
@@ -30,7 +30,7 @@ namespace QonaqWebApp.Controllers
         {
             List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
             if (cart != null)
-                ViewBag.total = cart.Sum(item => item.MenuItem.Price * item.Quantity);
+                ViewBag.total = cart.Sum(item => item.Product.Price * item.Quantity);
 
             ShoppingVM shoppingVM = new ShoppingVM(null, cart);
 
@@ -50,7 +50,7 @@ namespace QonaqWebApp.Controllers
             if (SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart") == null)
             {
                 List<Order> cart = new List<Order>();
-                cart.Add(new Order { MenuItem = menuItemRepo.GetById(id), Quantity = 1 });
+                cart.Add(new Order { Product = productRepo.GetById(id), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
@@ -60,7 +60,7 @@ namespace QonaqWebApp.Controllers
                 if (isExist(id) != -1)
                     cart[index].Quantity++;
                 else
-                    cart.Add(new Order { MenuItem = menuItemRepo.GetById(id), Quantity = 1 });
+                    cart.Add(new Order { Product = productRepo.GetById(id), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             return NoContent();
@@ -79,7 +79,7 @@ namespace QonaqWebApp.Controllers
         {
             List<Order> cart = SessionHelper.GetObjectFromJson<List<Order>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)
-                if (cart[i].MenuItem.Id.Equals(id))
+                if (cart[i].Product.ProductId.Equals(id))
                     return i;
             return -1;
         }
@@ -99,8 +99,8 @@ namespace QonaqWebApp.Controllers
                     for (int i = 0; i < shoppingVM.Orders.Count; i++)
                     {
                         shoppingVM.Orders[i].CustomerId = shoppingVM.Customer.Id;
-                        shoppingVM.Orders[i].MenuItemId = shoppingVM.Orders[i].MenuItem.Id;
-                        shoppingVM.Orders[i].MenuItem = null;
+                        shoppingVM.Orders[i].ProductId = shoppingVM.Orders[i].Product.ProductId;
+                        shoppingVM.Orders[i].Product = null;
                     }
                     orderRepo.AddRange(shoppingVM.Orders);
                     int rowAffected = orderRepo.SaveChanges();

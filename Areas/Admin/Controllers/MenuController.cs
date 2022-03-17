@@ -15,48 +15,48 @@ namespace QonaqWebApp.Areas.Admin.Controllers
     [Area("Admin")]
     public class MenuController : Controller
     {
-        public readonly IRepository<MenuItem> menuItemRepo;
-        public readonly IRepository<MenuItemGroup> menuItemGroupRepo;
+        public readonly IRepository<Product> productRepo;
+        public readonly IRepository<Category> categoryRepo;
 
-        public MenuController(IRepository<MenuItem> menuItemRepo,
-                                IRepository<MenuItemGroup> menuItemGroupRepo)
+        public MenuController(IRepository<Product> productRepo,
+                                IRepository<Category> categoryRepo)
         {
-            this.menuItemRepo = menuItemRepo;
-            this.menuItemGroupRepo = menuItemGroupRepo;
+            this.productRepo = productRepo;
+            this.categoryRepo = categoryRepo;
         }
 
 
         public IActionResult Menu()
         {
-            IList<MenuItem> melumat = menuItemRepo.GetAll().Include(x => x.MenuItemGroup).ToList();
+            IList<Product> melumat = productRepo.GetAll().Include(x => x.Category).ToList();
             return View(melumat);
         }
 
         [HttpGet]
         public IActionResult AddOrEdit(int id = 0)
         {
-            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupName");
+            ViewBag.Category = new SelectList(categoryRepo.GetAll(), "Id", "CategoryName");
             if (id == 0)
             {
-                return View(new MenuItem());
+                return View(new Product());
             }
             else
             {
-                var menuItem = menuItemRepo.GetById(id);
-                if (menuItem == null)
+                var product = productRepo.GetById(id);
+                if (product == null)
                 {
                     return NotFound();
                 }
-                return View(menuItem);
+                return View(product);
             }
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult AddOrEdit(int id, MenuItem menuItem, IFormFile ImagePath)
+        public JsonResult AddOrEdit(int id, Product product, IFormFile ImagePath)
         {
-            ViewBag.MenuItemGroup = new SelectList(menuItemGroupRepo.GetAll(), "Id", "MenuItemGroupName");
+            ViewBag.Category = new SelectList(categoryRepo.GetAll(), "Id", "CategoryName");
 
             if (ModelState.IsValid)
             {
@@ -66,38 +66,38 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                     string randomFileName = Path.Combine("wwwroot", "Uploads", "Images", $"{Guid.NewGuid().ToString()}{Path.GetExtension(ImagePath.FileName)}");
                     using (var stream = new FileStream(randomFileName, FileMode.Create))
                         ImagePath.CopyTo(stream);
-                    menuItem.ImagePath = Path.GetFileName(randomFileName);
+                    product.ImagePath = Path.GetFileName(randomFileName);
                 }
 
 
                 if (id == 0)
                 {
-                    menuItemRepo.Add(menuItem);
-                    menuItemRepo.SaveChanges();
+                    productRepo.Add(product);
+                    productRepo.SaveChanges();
                 }
                 else
                 {
                     try
                     {
                         if (ImagePath != null)
-                            menuItemRepo.GetById(id).ImagePath = menuItem.ImagePath;
-                        menuItemRepo.GetById(id).MenuItemDescription = menuItem.MenuItemDescription;
-                        menuItemRepo.GetById(id).MenuItemGroupId = menuItem.MenuItemGroupId;
-                        menuItemRepo.GetById(id).MenuItemName = menuItem.MenuItemName;
-                        menuItemRepo.GetById(id).Price = menuItem.Price;
-                        menuItemRepo.SaveChanges();
+                            productRepo.GetById(id).ImagePath = product.ImagePath;
+                        productRepo.GetById(id).ProductDesc = product.ProductDesc;
+                        productRepo.GetById(id).CategoryId = product.CategoryId;
+                        productRepo.GetById(id).ProductName = product.ProductName;
+                        productRepo.GetById(id).Price = product.Price;
+                        productRepo.SaveChanges();
                     }
                     catch (DbUpdateConcurrencyException)
                     {
                     }
                 }
 
-                MenuItem AddedRow = menuItemRepo.GetAll(x => x.Id == menuItem.Id).Include(x => x.MenuItemGroup).FirstOrDefault();
+                Product AddedRow = productRepo.GetAll(x => x.ProductId == product.ProductId).Include(x => x.Category).FirstOrDefault();
 
                 //string jsonResult = JsonConvert.SerializeObject(melumat, Formatting.Indented, options);
 
 
-                return Json(new { isValid = true, menuItem = AddedRow }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                return Json(new { isValid = true, product = AddedRow }, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             }
             return Json(new { isValid = false });
         }
@@ -108,13 +108,13 @@ namespace QonaqWebApp.Areas.Admin.Controllers
         {
             foreach (int item in selectRowsArr)
             {
-                MenuItem MenuRow = menuItemRepo.GetById(item);
-                menuItemRepo.Delete(MenuRow);
+                Product MenuRow = productRepo.GetById(item);
+                productRepo.Delete(MenuRow);
                 var pathImage = Path.Combine("wwwroot", "Uploads", "Images", MenuRow.ImagePath);
                 if (System.IO.File.Exists(pathImage))
                     System.IO.File.Delete(pathImage);
             }
-            int affectedRow = menuItemRepo.SaveChanges();
+            int affectedRow = productRepo.SaveChanges();
 
             if (affectedRow != 0)
                 return Json(new { isValid = true });
@@ -122,17 +122,17 @@ namespace QonaqWebApp.Areas.Admin.Controllers
                 return Json(new { isValid = false });
         }
 
-        public IActionResult MenuItemGroupList()
+        public IActionResult CategoryList()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult MenuItemGroupList(MenuItemGroup menuItemGroup)
+        public IActionResult CategoryList(Category category)
         {
-            menuItemGroupRepo.Add(menuItemGroup);
-            menuItemGroupRepo.SaveChanges();
+            categoryRepo.Add(category);
+            categoryRepo.SaveChanges();
             return RedirectToAction("Menu");
         }
 

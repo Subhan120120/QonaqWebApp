@@ -13,7 +13,7 @@ namespace QonaqWebApp.AppCode.Repositories
 {
     public class CustomerRepository : AbstractRepository, IRepository<Customer>
     {
-        public CustomerRepository(QonaqContext db)
+        public CustomerRepository(IdealContext db)
             : base(db) { }
 
         public Customer Add(Customer entity)

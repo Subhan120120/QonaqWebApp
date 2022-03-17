@@ -25,19 +25,19 @@
                                 @foreach (var item in Model.Orders)
                                 {
                                     <tr class="text-center">
-                                        <td class="product-remove"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.MenuItem.Id"><span class="icon-close"></span></a></td>
-                                        <td class="image-prod"><div class="img" style="background-image:url(../Uploads/Images/@item.MenuItem.ImagePath);"></div></td>
+                                        <td class="product-remove"><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Product.ProductId"><span class="icon-close"></span></a></td>
+                                        <td class="image-prod"><div class="img" style="background-image:url(../Uploads/Images/@item.Product.ImagePath);"></div></td>
                                         <td class="product-name">
-                                            <h3>@item.MenuItem.MenuItemName</h3>
-                                            <p>@item.MenuItem.MenuItemDescription</p>
+                                            <h3>@item.Product.ProductName</h3>
+                                            <p>@item.Product.ProductDesc</p>
                                         </td>
-                                        <td class="price">@item.MenuItem.Price</td>
+                                        <td class="price">@item.Product.Price</td>
                                         <td class="quantity">
                                             <div class="input-group">
                                                 <input type="text" class="quantity form-control input-number" value="@item.Quantity">
                                             </div>
                                         </td>
-                                        <td class="total">@(item.MenuItem.Price * item.Quantity)</td>
+                                        <td class="total">@(item.Product.Price * item.Quantity)</td>
                                     </tr>
                                 }
                             }

@@ -10,18 +10,26 @@ namespace QonaqWebApp.Controllers
     public class MenuController : Controller
     {
         public readonly IRepository<AppDetail> appDetailRepo;
-        public readonly IRepository<MenuItemGroup> menuItemGroupRepo;
+        public readonly IRepository<Category> categoryRepo;
 
         public MenuController(IRepository<AppDetail> appDetailRepo,
-                                IRepository<MenuItemGroup> menuItemGroupRepo)
+                                IRepository<Category> categoryRepo)
         {
             this.appDetailRepo = appDetailRepo;
-            this.menuItemGroupRepo = menuItemGroupRepo;
+            this.categoryRepo = categoryRepo;
         }
 
         public IActionResult Index()
         {
-            MenuVM menuVM = new MenuVM(appDetailRepo.GetAll(x => x.Id == 10).ToList(), menuItemGroupRepo.GetAll().Include(x => x.menuItems).Where(x => x.menuItems.Any()).ToList());
+            ProductVM menuVM = new ProductVM(appDetailRepo.GetAll(x => x.Id == 10).ToList(), categoryRepo.GetAll().Include(x => x.Products).Where(x => x.Products.Any()).ToList());
+            return View(menuVM);
+        }
+
+        [HttpPost]
+        public IActionResult Index(ProductVM productVM)
+        {
+
+            ProductVM menuVM = new ProductVM(appDetailRepo.GetAll(x => x.Id == 10).ToList(), categoryRepo.GetAll().Include(x => x.Products).Where(x => x.Products.Any()).ToList());
             return View(menuVM);
         }
     }
