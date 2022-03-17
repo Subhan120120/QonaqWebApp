@@ -12,7 +12,7 @@ namespace QonaqWebApp.AppCode.Repositories
 {
     public class DineInTableGroupRepository : AbstractRepository, IRepository<DineInTableGroup>
     {
-        public DineInTableGroupRepository(QonaqContext db)
+        public DineInTableGroupRepository(IdealContext db)
             : base(db) { }
 
         public DineInTableGroup Add(DineInTableGroup entity)

@@ -12,7 +12,7 @@ namespace QonaqWebApp.AppCode.Repositories
 {
     public class ReservationRepository : AbstractRepository, IRepository<Reservation>
     {
-        public ReservationRepository(QonaqContext db)
+        public ReservationRepository(IdealContext db)
     : base(db) { }
 
         public Reservation Add(Reservation entity)

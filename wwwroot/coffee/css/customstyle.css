@@ -332,7 +332,7 @@ section video {
 
     .booking-form .form-group:not( .input-not-empty) .form-control:not( :focus) {
         color: transparent;
-        border: none;
+        /*border: none;*/
     }
 
     .booking-form .form-group .form-control:focus + .form-label {

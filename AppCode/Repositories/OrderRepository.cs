@@ -13,7 +13,7 @@ namespace QonaqWebApp.AppCode.Repositories
 {
     public class OrderRepository : AbstractRepository, IRepository<Order>
     {
-        public OrderRepository(QonaqContext db)
+        public OrderRepository(IdealContext db)
             : base(db) { }
 
         public Order Add(Order entity)

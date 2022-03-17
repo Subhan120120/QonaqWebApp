@@ -13,7 +13,7 @@ namespace QonaqWebApp.AppCode.Repositories
 {
     public class AppDetailRepository : AbstractRepository, IRepository<AppDetail>
     {
-        public AppDetailRepository(QonaqContext db)
+        public AppDetailRepository(IdealContext db)
             : base(db) { }
 
         public AppDetail Add(AppDetail entity)

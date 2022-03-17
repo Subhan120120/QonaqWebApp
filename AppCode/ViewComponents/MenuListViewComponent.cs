@@ -12,9 +12,9 @@ namespace QonaqWebApp.AppCode.ViewComponents
     [ViewComponent]
     public class MenuList : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(MenuItem menuItem)
+        public async Task<IViewComponentResult> InvokeAsync(Product product)
         {
-            return View(menuItem);
+            return View(product);
         }
     }
 }

@@ -6,6 +6,10 @@ namespace QonaqWebApp.Models.ViewModel
 {
     public class ShoppingVM
     {
+        public List<AppDetail> AppDetails { get; set; }
+        public List<Order> Orders { get; set; }
+        public Customer Customer { get; set; }
+
         public ShoppingVM()
         {
         }
@@ -26,9 +30,5 @@ namespace QonaqWebApp.Models.ViewModel
         {
             this.Customer = customer;
         }
-
-        public List<AppDetail> AppDetails { get; set; }
-        public List<Order> Orders { get; set; }
-        public Customer Customer { get; set; }
     }
 }
