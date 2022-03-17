@@ -40,6 +40,8 @@
     <Compile Remove="Controllers\ScheduleController.cs" />
     <Compile Remove="Migrations\20200913083525_added_Virtual_properties_to_Models_v1.cs" />
     <Compile Remove="Migrations\20200913083525_added_Virtual_properties_to_Models_v1.Designer.cs" />
+    <Compile Remove="Migrations\20210923130640_added-Stored-Procedur-GetDocNum.cs" />
+    <Compile Remove="Migrations\20210923130640_added-Stored-Procedur-GetDocNum.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

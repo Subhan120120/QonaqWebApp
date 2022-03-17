@@ -56,7 +56,6 @@ namespace QonaqWebApp
                         new CultureInfo("en"),
                         new CultureInfo("tr"),
                         new CultureInfo("az")
-
                    };
                 option.DefaultRequestCulture = new RequestCulture("tr");
                 option.SupportedCultures = supportedCultures;

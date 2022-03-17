@@ -46,12 +46,12 @@ namespace QonaqWebApp.Models.Entity
         public string Heading { get; set; }
 
         [DisplayName("Alt Başlıq")]
-        [StringLength(50, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz ")]
+        [StringLength(150, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz ")]
         public string SubHeading { get; set; }
 
         [DisplayName("Açıqlama")]
-        [StringLength(300, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz ")]
+        [StringLength(500, ErrorMessage = "{0} {1} simvoldan artıq ola bilməz ")]
         public string Description { get; set; }
-        
+
     }
 }
